@@ -1,0 +1,137 @@
+% EES Latex-Vorlage März 2012
+\documentclass[
+12pt,               																	% Schriftgröße
+a4paper,            																	% Layout für DINA4
+german,             																	% deutsche Sprache, global
+twoside,            																	% Layout für beidseitigen Druck
+headinclude,        																	% Kopfzeile wird Seiten-Layouts mit berücksichtigt
+headsepline,        																	% horizontale Linie unter Kolumnentitel
+plainheadsepline,																			% horizontale Linie unter Kolumnentitel auch bei Chapter
+BCOR20mm,           																	% Korrektur für die Bindung
+DIV18,              																	% DIV-Wert für die Erstellung des Satzspiegels, siehe scrguide
+parskip=half,       																	% Absatzabstand statt Absatzeinzug
+openany,            																	% Kapitel können auf geraden und ungeraden Seiten beginnen
+bibliography=totoc,version=first, 										% Literaturverz. wird ins Inhaltsverzeichnis eingetragen
+numbers=noenddot,   																	% Kapitelnummern immer ohne Punkt
+captions=tableheading,version=first, 									% korrekte Abstände bei Tabellenüberschriften
+fleqn,             																		% fleqn: Glgen links (statt mittig)
+listof=totoc,version=first														% Abbildungs- und Tabellenverzeichnis ins Inhaltsverzeichnis
+]{scrbook}
+
+
+%--------------- Packages ----------------
+\usepackage[ngerman]{babel} 													% Neue deutsche Trennmuster
+\usepackage[latin1]{inputenc} 												% direkte Eingabe von Umlauten & Co.
+\usepackage[T1]{fontenc} 															% T1-Schriften
+\usepackage{ae}               												% für PDF-Erstellung
+\usepackage[format=hang,justification=raggedright,singlelinecheck=off,labelfont=bf,font=small,skip=4pt]{caption} % Captions ausrichten
+\usepackage[centertags]{amsmath} 											% AMS-Mathematik, centertags zentriert Nummer bei split
+\usepackage{tabularx}																	% erweiterte Tabellen
+\usepackage{graphicx}            											% zum Einbinden von Grafiken
+\usepackage{float}               											% u.a. genaue Plazierung von Gleitobjekten mit H
+\usepackage{setspace}            											% Zeilenabstand einstellbar
+\usepackage{scrpage2}           											% Kopf- und Fußzeilen-Layout 
+\usepackage{befehle}  																% eigene Befehle in der Datei definiert
+\usepackage{listings}																	% Auflistungen
+\usepackage{scrhack}																	% Damit kriegt man den Fehler mit den Kopf- und Fußzeilen weg
+\usepackage{makeidx}																	% Paket für das Stichwortverzeichnis
+\usepackage{xcolor}																		% Paket für die Farben
+\usepackage[colorlinks,pdfpagelabels,pdfstartview = FitH,bookmarksopen = true,bookmarksnumbered = true,linkcolor = black,plainpages = false,hypertexnames = false,citecolor = black] {hyperref}																			% Paket für das verlinkte PDF
+\usepackage[absolute]{textpos}
+\usepackage[clearempty]{titlesec}				
+
+%%
+\usepackage{tikz}
+\usepackage{calc}
+\usepackage{setspace}
+\usepackage{xparse}
+\usetikzlibrary{intersections,decorations.pathreplacing,fit,calc,positioning}
+
+%--------------- Sonstiges ----------------
+
+\pagestyle{scrheadings}																% Kopf- und Fußzeile...
+\renewcommand{\headfont}{\normalfont\sffamily}    		% Kolumnentitel serifenlos
+\renewcommand{\pnumfont}{\normalfont\sffamily}    		% Seitennummern serifenlos
+\ihead[]{\headmark}              											% Kopfzeile innen
+\ohead[\pagemark]{\pagemark}     											% Kopfzeile außen
+\ifoot[]{} 																						% Fußzeile innen
+\ofoot[]{}    																				% Fußzeile außen	
+\setlength{\headheight}{1.5\baselineskip}
+\onehalfspacing																				% 1,5 Zeilenabstand
+%\typearea[current]{current}        									% Neuberechnung des Satzspiegels mit alten Werten nach Änderung von Zeilenabstand,etc
+\renewcommand{\bibname}{Literatur und Quellen} 				% Literaturverzeichnisbezeichnung
+\renewcommand{\figurename}{Abb.}   										% Abbildungsbezeichnung
+\renewcommand{\listfigurename}{Abbildungsverzeichnis} % Abbildungsverzeichnisbezeichnung
+\renewcommand{\captionfont}{\small}										% Bildunterschriften klein kursiv
+\graphicspath{{figs/}{bilder/}}    										% Bildverzeichnis
+
+
+%--------------- Code-Darstellung ----------------
+\lstdefinelanguage{Matlab2}
+{morekeywords={for,if,else,end,function,disp,clc,input,subplot,plot,figure,axis,ylabel,xlabel,legend,set,gca,gcf,grid,switch,case,otherwise,eval,ss,sisotool,linmod,clear,load,addpath,pwd,},
+sensitive=false,
+morecomment=[l]{//},
+morecomment=[l]{\%},
+morecomment=[s]{/*}{*/},
+morestring=[b]",
+}
+\definecolor{MyDarkBlue}{rgb}{0,0.08,0.45}
+\definecolor{fett}{rgb}{0.965,0.984,0.961}
+\definecolor{OliveGreen}{rgb}{0.43,0.66,0.45}
+\lstset{language=Matlab2, basicstyle=\tiny, backgroundcolor=\color{fett}, keywordstyle=\color{MyDarkBlue}\bfseries ,numbers=left, numberstyle=\tiny, tabsize=2, commentstyle=\color{OliveGreen}}
+\makeindex
+
+
+%----------------------- Beginn des Dokuments -----------------------
+\begin{document}
+\pagenumbering{Roman}																	% Römische Seitennummerierung
+\include{inhalt/makros}
+
+\include{inhalt/deckblatt}														% Deckblatt
+
+\include{inhalt/erklaerung}														% Erklärung der Eigenarbeit
+
+\include{inhalt/aufgabe} 															% Aufgabenstellung (optional)
+
+%\include{inhalt/vorwort}															% Vorwort (optional)
+
+\cleardoublepage
+\begin{spacing}{1.15}																	% evtl. kleinerer Zeilenabstand im IV, AV, TV
+\pdfbookmark[1]{Inhaltsverzeichnis}{toc}							% Inhaltsverzeichnis bei den Lesezeichen rein
+\tableofcontents 																			% Inhaltsverzeichnis erzeugen
+\listoffigures   																			% Abbildungsverzeichnis
+\listoftables   																			% Tabellenverzeichnis
+\end{spacing}
+
+%\include{inhalt/abstract}															% Abstract
+
+\mainmatter																						% Hauptteil beginnt
+
+\include{inhalt/einleitung}														% Einleitung (Bezeichnung passend zur Arbeit!)
+
+\include{inhalt/hauptteil}														% Hauptteil (Bezeichnung passend zur Arbeit!)
+
+\include{inhalt/zusammenfassung}											% Zusammenfassung (Bezeichnung passend zur Arbeit!)
+
+\appendix																							% Anhang
+
+\include{inhalt/anhang}																% Anhangsinhalt
+
+\include{inhalt/symbole}															% Symbol- und Abkürzungsverzeichnis
+
+\begin{spacing}{1.5}          												% evtl. kleinerer Zeilenabstand im LV
+%\nocite{*}                              							% alle Literaturquellen einbinden, sonst werden nur die zitierten
+                                            					% Quellen im Literaturverzeichnis angezeigt.
+\bibliographystyle{unsrtdin}		         						  % Darstellung numerisch nach Vorkommen im Text
+\bibliography{literatur}
+\end{spacing}
+
+%\newpage
+%\renewcommand{\indexname}{Stichwortverzeichnis}			% Stichwortverzeichnisbezeichnung
+%\addcontentsline{toc}{chapter}{Stichwortverzeichnis} % Stichwortverzeichnis ins IV einf?gen
+%\begin{spacing}{1.0} 
+%\printindex																					% Stichwortverzeichnis anzeigen
+%\end{spacing}
+
+\end{document}
+%------------------------- Ende des Dokuments -----------------------

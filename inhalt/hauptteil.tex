@@ -1,0 +1,245 @@
+\chapter{Hauptteil}
+\label{kap:hauptteil}
+\section{Beschreibung der Integrationsverfahren}
+Ausgangslage: Numerische Lösung von Anfangswertproblemen. Systeme beschrieben durch allgemeine Zustandsdarstellung:
+(Zur Einfachheit Eingrößensysteme.)
+\begin{align}
+\dot{\vec{x}}\tt&= \vec{A}\, \vec{x}\tt + \vec{b} \, u\tt,\qquad \vec{x}(0)=\vec{x}_0\\
+y\tt&= \vec{c}^T\, \vec{x}\tt
+\end{align}
+Es ergibt sich als Lösung von $\vec{x}\tt$:
+\begin{align}
+x\tt = x_0 + \int\limits_0^t \dot{x}(x,t) \d t 
+\end{align}
+Dafür numerische Lösung erforderlich. Dabei wird mit der Abtastzeit $T$ gerechnet.
+
+\subsection{Einschrittverfahren}
+\subsubsection{Explizites Eulerverfahren}
+Einfachstes Verfahren, ergibt sich aus dem Taylorschen Satz erster Ordnung. Steigung wird in jedem Zeitschritt berechnet und als konstant angenommen. (Zur Verdeutlichung im Zuge dieser Arbeit nur eine Zustandsgröße!)
+\begin{align}
+		&\frac{\d x}{\d t}=\lambda \dd x + b\dd u \\
+		\Rightarrow & \frac{\Delta x}{T} = \lambda \dd x + b \dd u \\
+		\Rightarrow & x_{k+1} = x_k+\Delta x_k = x_k + (\lambda \dd x_k + b\dd u_k) \dd T\\
+		\Rightarrow & \text{Stabilitätsanalyse mit digitaler Regelung Methoden machen!!}
+\end{align}
+
+\subsubsection{Impliztes Eulerverfahren}
+Andere Möglichkeit: Annahme der Steigung des $k+1$-ten Schrittes für $\Delta x$.
+\begin{align}
+	x_{k+1}&= x_k + \Delta x_{k+1}\\
+	x_{k+1}&=x_k + \Delta x_{k+1} \ \text{mit}\\
+	\Delta x_{k+1} &= (\lambda \dd x_{k+1} + b \dd u_{k+1}) \dd T \ \text{(vorherige Gl. einsetzen)}\\
+	\Rightarrow \Delta x_{k+1}&= (1-\lambda \dd T)^{-1} \dd (b\dd u_{k+1} + \lambda x_k)\dd T
+\end{align}
+Es ergibt sich eine implizite Gleichung für die Steigung, und $u_{k+1}$ erforderlich.
+Besonders: Führt immer zu Stabilität (unabhängig von der Schrittweite), wenn System stabil! (Eigenwerte anschauen!) ABER: oft auch für instabile Systeme stabil!
+
+\subsubsection{Trapezregel}Referenz auf SIEMENS SKRIPT
+Kombination der beiden Euler-Verfahren $\Rightarrow$ höhere Genauigkeit!\\
+Mittelwert der Steigungen im $k$-ten und $k+1$-ten Schritt:
+\begin{align}
+	x_{k+1} &= x_k + \Delta x_k = \\
+			& = x_k + T \dd \eh \dd \Big( f(x(t+T),t+T) + f(x\tt,t) \Big)
+\end{align}
+ebenfalls implizites Verfahren!
+Auflösen oder Referenz auf Extrapolationsverfahren... 
+
+\subsubsection{Runge-Kutta-Verfahren}
+Explizites Verfahren
+Ordnung, Heun etc.
+
+
+
+\subsection{explizite Mehrschrittverfahren}
+
+\subsection{implizite Mehrschrittverfahren}
+
+\subsection{Prädiktor-Korrektor-Verfahren}
+
+\subsection{Adaptive Verfahren}
+\subsection{Extrapolationsverfahren}
+
+% Nach Friedrich: Numerische Methoden:
+%\section{Beschreibung der Integrationsverfahren}
+%	\subsection{Explizite Einschrittverfahren}
+%		\subsubsection{Explizites Eulerverfahren}
+%		\subsubsection{Trapezregel}
+%		\subsubsection{Runge-Kutta-Verfahren}
+%	\subsection{Implizite Einschrittverfahren}
+%	\subsection{Impliztes Eulerverfahren}
+%	\subsection{explizite Mehrschrittverfahren}
+%	\subsection{implizite Mehrschrittverfahren}
+%	\subsection{Prädiktor-Korrektor-Verfahren}
+
+% Nach Faires: Numerische Methoden>
+% \subsection{Eulersches Verfahren}
+% \subsection{Runge-Kutta Verfahren}
+% \subsubsection{Mittelpunktmethode}
+% \subsubsection{modifiziertes Eulersches Verfahren $\hat{=}$ implizites Eulerverfahren}
+% \subsubsection{Heunsches Verfahren}
+% \subsubsection{Runge-Kutta Verfahren 4. Ordnung}
+% \subsection{(Prädiktor-Korrektor Verfahren )$\hat{=}$Mehrschrittverfahren}
+% --> Unterscheidung von explizit und implizit (????)
+% \subsubsection{Adam-Bashforth ...(explizit)}
+% \subsubsection{Adams-Moulton ....(implizit)}
+% \subsubsection{Prädiktor-Korrektor Verfahren: Milnesche, Simpsonsche}
+% Ausblick:(?) Extrapolationsverfahren und Adaptive Verfahren
+
+
+\section{Stabilitätsanalyse der Methoden}
+
+
+\section{Anwendung der Integrationsmethoden in Simulationssoftware}
+\subsection{PSS Nettomac}
+\subsection{PowerFactory}
+RMS Simulation Algorithms \\
+\textbullet     Highly accurate, fixed or variable step-size integration technique for solving AC and DC network load 
+flow and dynamic model equations. This is combined with a non-linear electromechanical model 
+representation to enable a high degree of solution accuracy, algorithmic stability and time range validity.\\
+\textbullet     A-stable simulation algorithm for the efficient handling of stiff systems. This is applicable to all or any 
+individually selected model featuring error-controlled automatic step-size adaptation, ranging from 
+milliseconds up to minutes or even hours, including precise handling of interrupts and discontinuities.  
+EMT Simulation Algorithms \\
+\textbullet     The calculation of initial conditions is carried out prior to the EMT simulation, and is based on a solved 
+load flow (symmetrical or asymmetrical). Consequently, there is no need for saving steady state 
+conditions being reached after transients are damped out aiming in simulation re-starting under steady 
+state conditions.  \\
+\textbullet     Special numerical integration methods have been implemented in DIgSILENT PowerFactory in order to 
+avoid numerical oscillations caused by switching devices and other non-linear characteristics.  \\
+\textbullet    Highly accurate, fixed or variable step-size integration technique for solving AC and DC network 
+transients and dynamic model equations. This is combined with a non-linear electromechanical model 
+representation to enable a high degree of solution accuracy, algorithmic stability and time range validity. 
+\subsection{PSSE}
+\subsection{Eurostag}
+The advanced dynamic functions of EUROSTAG® allow for the full range of transient, mid and long-term stability to be covered thanks to a robust algorithm using an auto-adaptative integration stepsize.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+Hier ist das eigentliche Thema zu bearbeiten.
+
+%\section{Einbindung von Bildern}
+%\label{kap:einbindungbilder}
+%Abbildungen sind mit Hilfe des Pakets \textit{graphicx} einzufügen. Sie können im PDF-Format durch die Nutzung des folgenden Codes implementiert werden.
+%\begin{verbatim}
+%\begin{figure}[!htb]\centering
+% \includegraphics*[width = \textwidth]{beispiel}
+% \caption{Beispiel für die Einbindung eines Bildes}
+% \label{abb:beispiel}
+%\end{figure}
+%\end{verbatim}
+%Das Ergebnis ist die Anzeige des Bildes, mittig, wie der Text breit mit der angegebenen Unterschrift. Alternativ kann bei der Breite eine absolute Angabe in mm erfolgen. Über das label \textit{abb:beispiel} kann das Bild referenziert werden.
+%\begin{figure}[!htb]\centering
+% \includegraphics*[width = \textwidth]{beispiel}
+% \caption{Beispiel für die Einbindung eines Bildes}
+% \label{abb:beispiel}
+%\end{figure}
+%Um auf das Bild \ref{abb:beispiel} zu verweisen, bedient man sich der folgenden Funktion:
+%\begin{verbatim}
+%\ref{abb:beispiel}
+%\end{verbatim}
+%Die referenzierte Nummerierung erfolgt Kapitelweise. Will man weiterhin eine Quelle in der Bildunterschrift angeben, so ist darauf zu achten, dass die Einbindung der Bildunterschriften durch ein optionales Element (eingeschlossen in eckigen Klammern) erweitert wird, welches die Beschriftung für das Abbildungsverzeichnis enthält:
+%\begin{verbatim}
+% \caption[Beispiel...]{Beispiel... , aus \cite{schwab}}
+%\end{verbatim}
+%Diese Variante verhindert, dass LaTex die Quellen bereits im Abbildungsverzeichnis zu zählen anfängt.
+%
+%\section{Einbindung von Tabellen}
+%\label{kap:einbindungtabellen}
+%Die Tabellen sollen mit Hilfe des Pakets \textit{tabularx} eingebunden werden. Im Folgenden ist ein Beispiel für die Einbindung von Tabellen aufgeführt. Mit
+%\begin{verbatim}
+%\begin{table}[!htb]
+%\centering
+%\caption{Beispiel einer Tabelle}
+%\label{tab:tabelle1}
+%\begin{tabularx}{\textwidth}{|X|c|c|c|c|c|c|c|c|}
+%\hline
+%        & Spalte 1 & Spalte 2 & Spalte 3 & Spalte 4 & Spalte 5 \\
+%\hline
+%Zeile 1 &          &          &          &          &          \\
+%\hline
+%Zeile 2 &          &          &          &          &          \\
+%\hline
+%Zeile 3 &          &          &          &          &          \\
+%\hline
+%\end{tabularx}
+%\end{table}
+%\end{verbatim}
+%ergibt sich die folgende Tabellenausgabe \ref{tab:tabelle1}.
+%\begin{table}[!htb]
+%\centering
+%\caption{Beispiel einer Tabelle}
+%\label{tab:tabelle1}
+%\begin{tabularx}{\textwidth}{|X|c|c|c|c|c|c|c|c|}
+%\hline
+% 				& Spalte 1 	& Spalte 2 	& Spalte 3 	& Spalte 4 	& Spalte 5 \\
+%\hline
+%Zeile 1 & 					& 					& 					& 					& \\
+%\hline
+%Zeile 2 & 					& 					& 					& 					& \\
+%\hline
+%Zeile 3 & 					& 					& 					& 					& \\
+%\hline
+%\end{tabularx}
+%\end{table}
+%Bei Angabe von Quellen in der Tabellenüberschrift ist ähnlich wie im Kapitel \ref{kap:einbindungbilder} zu verfahren.
+%
+%\section{Eingabe von Gleichungen}
+%\label{kap:einbindunggleichungen}
+%Die Eingabe von Gleichungen erfolgt nach dem folgenden Beispiel:
+%\begin{verbatim}
+%\begin{align}
+%U=R \cdot I
+%\end{align}
+%\end{verbatim}
+%Das Ergebnis ist die folgende Darstellung mit der automatischen Nummerierung:
+%\begin{align}
+%U=R \cdot I
+%\end{align}
+%Durch die Einbindung des eigens definierten Pakets \textit{befehle.sty} stehen zudem die folgenden Funktionen für die Gleichungseingabe zur Verfügung:
+%\begin{tabbing}
+%XXXXXX 	\= XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\kill
+%einh{} 	\> Einheiten\\
+%iz{}		\> Nicht-kursiver Index, unten\\
+%izo{}		\> Nicht-kursiver Index, oben\\
+%izf{}		\> Nicht-kursiver Index, unten, kleinere Schrift\\
+%izof{}	\> Nicht-kursiver Index, oben, kleinere Schrift
+%\end{tabbing}
+%Die Anwendung der Funktionen kann anhand des folgenden Beispiels nachvollzogen werden. Mit dem Code
+%\begin{verbatim}
+%U\iz{R}=I \cdot R = 10\einh{A} \cdot 1\einh{$\Omega$}=10\einh{V}
+%\end{verbatim}
+%ergibt sich die folgende Ausgabe:
+%\begin{align}
+%U\iz{R}=I \cdot R = 10\einh{A} \cdot 1\einh{$\Omega$}=10\einh{V}
+%\end{align}
+%Weitere Funktionen können der Datei entnommen und individuell erweitert werden.
+%
+%\section{Quellenangabe}
+%\label{kap:quellenangabe}
+%Die Angabe von Quellen ist mit folgendem Code als Beispiel möglich:
+%\begin{verbatim}
+%\cite{schwab}
+%\end{verbatim}
+%Die Ausgabe wird an der Stelle eingefügt, an der man es einsetzt. Zum Beispiel hier: \cite{schwab}. Die Zahlen werden nach dem Vorkommen im Text vergeben und durchnummeriert. D.h. die nächste Angabe erhält die Nummer zwei und zwar hier: \cite{oedingoswald}. Die Einträge in der Literaturdatenbank können manuell in der Datei \textit{literatur.bib} oder mit der Software \textit{JabRef} angepasst werden.
