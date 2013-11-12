@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.17)  5 NOV 2013 10:07
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.17)  12 NOV 2013 09:21
 entering extended mode
 **arbeit.tex openout_any=a
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.tex"
@@ -1003,7 +1003,16 @@ File: tikzlibrarypositioning.code.tex 2008/10/06 v2.10 (rcs-revision 1.7)
 \@indexfile=\write4
 
 Writing index file arbeit.idx
-("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.aux")
+("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.aux"
+("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/makros.aux")
+("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/deckblatt.aux")
+("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/erklaerung.aux")
+("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/aufgabe.aux")
+("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/einleitung.aux")
+("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/hauptteil.aux")
+("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/zusammenfassung.aux"
+) ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/anhang.aux")
+("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/symbole.aux"))
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 86.
 LaTeX Font Info:    ... okay on input line 86.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 86.
@@ -1074,7 +1083,7 @@ ABD: EveryShipout initializing macros
 .................................................
 )
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/deckblatt.tex"
-<bilder/ees.pdf, id=6, 2875.83418pt x 560.3816pt>
+<bilder/ees.pdf, id=106, 2875.83418pt x 560.3816pt>
 File: bilder/ees.pdf Graphic file (type pdf)
  <use bilder/ees.pdf>
 Package pdftex.def Info: bilder/ees.pdf used on input line 5.
@@ -1084,7 +1093,7 @@ Overfull \hbox (11.74713pt too wide) in paragraph at lines 5--6
 [][] 
  []
 
-<bilder/fausiegel.pdf, id=7, 389.2402pt x 389.22412pt>
+<bilder/fausiegel.pdf, id=107, 389.2402pt x 389.22412pt>
 File: bilder/fausiegel.pdf Graphic file (type pdf)
 
 <use bilder/fausiegel.pdf>
@@ -1132,28 +1141,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--6
 
 
 
-]
-
-Package hyperref Warning: old toc file detected, not used; run LaTeX again.
-
+] ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.toc")
 \tf@toc=\write6
-[3
+ [3
 
 
 
 ]
-
-Package hyperref Warning: old lof file detected, not used; run LaTeX again.
-
+("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.lof")
 \tf@lof=\write7
-[4
+ [4
 
 ]
-
-Package hyperref Warning: old lot file detected, not used; run LaTeX again.
-
+("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.lot")
 \tf@lot=\write8
-[5
+ [5
 
 ] [6
 
@@ -1176,46 +1178,51 @@ n. Sys-te-me be-schrie-ben durch
 
 
 
-]
-LaTeX Font Info:    Try loading font information for OMS+aer on input line 94.
+] [3]
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 106.
+
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\omsaer.fd"
 File: omsaer.fd 1999/12/27
 )
 LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 94.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 106.
 
-Underfull \vbox (badness 7151) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [3]
-[4] [5]) [6]
+ [4]
+[5] [6]) [7]
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/zusammenfassung.tex"
 Kapitel 3.
-) [7
+) [8
 
 
 
 ] ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/anhang.tex"
 Anhang A.
-[8
+[9
 
 
 
 ]
 Anhang B.
-[9
+[10
 
 ]
 Anhang C.
-) [10
+) [11
 
-] ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/symbole.tex") [11
+] ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/symbole.tex") [12
 
+
+
+] ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.bbl")
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 136.
+ [13
 
 
 ]
-No file arbeit.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 136.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 136.
+
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.aux"
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/makros.aux")
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/deckblatt.aux")
@@ -1228,24 +1235,14 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 136.
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/symbole.aux"))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 136.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 136.
-
-
-Package rerunfilecheck Warning: File `arbeit.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `arbeit.out':
-(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
-(rerunfilecheck)             After:  3605EEF2849BD5F245A94C25F894F9EA;1558.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+Package rerunfilecheck Info: File `arbeit.out' has not changed.
+(rerunfilecheck)             Checksum: 49114B570C0985F5AA1EB4512325E2F6;1714.
  ) 
 Here is how much of TeX's memory you used:
- 25288 strings out of 494045
- 457408 string characters out of 3145972
- 530172 words of memory out of 3000000
- 27968 multiletter control sequences out of 15000+200000
+ 25358 strings out of 494045
+ 459743 string characters out of 3145972
+ 536017 words of memory out of 3000000
+ 28007 multiletter control sequences out of 15000+200000
  41814 words of font info for 87 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
  65i,13n,71p,518b,389s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1262,9 +1259,9 @@ x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program Files (x8
 6)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Program Files (x8
 6)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)
 /MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on arbeit.pdf (19 pages, 727736 bytes).
+Output written on arbeit.pdf (21 pages, 746736 bytes).
 PDF statistics:
- 241 PDF objects out of 1000 (max. 8388607)
- 59 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 355 PDF objects out of 1000 (max. 8388607)
+ 64 named destinations out of 1000 (max. 500000)
+ 223 words of extra memory for PDF output out of 10000 (max. 10000000)
 

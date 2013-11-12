@@ -11,7 +11,10 @@ Es ergibt sich als Lösung von $\vec{x}\tt$:
 \begin{align}
 x\tt = x_0 + \int\limits_0^t \dot{x}(x,t) \d t 
 \end{align}
-Dafür numerische Lösung erforderlich. Dabei wird mit der Abtastzeit $T$ gerechnet.
+Dafür numerische Lösung erforderlich. Dabei wird mit der Schrittweite $T$ gerechnet.
+Auf jeden Fall irgendwo mit hin schreiben:
+Es gibt Taylorverfahren $\rightarrow$ Einbeziehung der höheren Zeitableitungen, eher untauglich für die Praxis\\
+und Runge-Kutta Verfahren etc. welche hier beschrieben werden.
 
 \subsection{Einschrittverfahren}
 \subsubsection{Explizites Eulerverfahren}
@@ -34,20 +37,25 @@ Andere Möglichkeit: Annahme der Steigung des $k+1$-ten Schrittes für $\Delta x$.
 Es ergibt sich eine implizite Gleichung für die Steigung, und $u_{k+1}$ erforderlich.
 Besonders: Führt immer zu Stabilität (unabhängig von der Schrittweite), wenn System stabil! (Eigenwerte anschauen!) ABER: oft auch für instabile Systeme stabil!
 
-\subsubsection{Trapezregel}Referenz auf SIEMENS SKRIPT
+\subsubsection{Trapezregel/Heun-Verfahren}Referenz auf SIEMENS SKRIPT
 Kombination der beiden Euler-Verfahren $\Rightarrow$ höhere Genauigkeit!\\
 Mittelwert der Steigungen im $k$-ten und $k+1$-ten Schritt:
 \begin{align}
 	x_{k+1} &= x_k + \Delta x_k = \\
-			& = x_k + T \dd \eh \dd \Big( f(x(t+T),t+T) + f(x\tt,t) \Big)
+			& = x_k + T \dd \eh \dd \Big(f\big(x_k,t\big) + f\big(x_{k+1},t+T\big) + \Big).
 \end{align}
-ebenfalls implizites Verfahren!
-Auflösen oder Referenz auf Extrapolationsverfahren... 
+Dadurch ergibt sich allgemein ebenfalls ein implizites Verfahren. Dies kann nun also möglicherweise nichtlineares Gleichungssystem gelöst werden, oder durch Abschätzung des unbekannten Wertes $f\big(x_{k+1},t+T\big)$ durch das explizite Euler-Verfahren erhält man das explizite Heun-Verfahren nach \cite{gruene}:
+\begin{align*}
+	x_{k+1} &= x_k + \Delta x_k = \\
+			& = x_k + T \dd \eh \dd \Big(f\big(x_k,t\big) + f\big( x_k +  T \dd f(x_k,t)  ,t+T\big) + \Big).
+\end{align*}
+Weitere Möglichkeiten, siehe Extrapolationsverfahren.
 
 \subsubsection{Runge-Kutta-Verfahren}
-Explizites Verfahren
-Ordnung, Heun etc.
+Um die bisher betrachteten Methoden zu verbessern, gibt es mehrere Ansätze. Ein naheliegender Gedanke ist, statt nur der Rechten Seite der gew. DGL (REF!), Zeitableitungen höherer Ordnung in die Abschätzung einzubauen. Dies führt zu den Taylor-Methoden, welche auf der Taylorreihenentwicklung basieren.
+Da die Differentation der Rechten Seite jedoch nach \cite{gruene} mit verhältnismäßig großem rechnerischen Aufwand verbunden ist, sind diese Verfahren in der Praxis eher ungebräuchlich und sollen im Rahmen dieser Arbeit nicht näher betrachtet werden.
 
+Im Gegensatz dazu ist der erste Ansatz in der Praxis, die Idee der Trapezregel weiter zu führen und die Genauigkeit der Verfahren durch weitere Stützstellen zu erhöhen.
 
 
 \subsection{explizite Mehrschrittverfahren}
@@ -56,7 +64,9 @@ Ordnung, Heun etc.
 
 \subsection{Prädiktor-Korrektor-Verfahren}
 
-\subsection{Adaptive Verfahren}
+\subsection{BDF-Verfahren}
+
+\subsection{Schrittweitensteuerung}
 \subsection{Extrapolationsverfahren}
 
 % Nach Friedrich: Numerische Methoden:
@@ -86,7 +96,7 @@ Ordnung, Heun etc.
 % Ausblick:(?) Extrapolationsverfahren und Adaptive Verfahren
 
 
-\section{Stabilitätsanalyse der Methoden}
+\section{Stabilitätsanalyse der wichtigsten Methoden}
 
 
 \section{Anwendung der Integrationsmethoden in Simulationssoftware}
