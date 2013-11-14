@@ -1,6 +1,8 @@
-\chapter{Hauptteil}
+\chapter{Numerische Integrationsverfahren für Anfangswertprobleme}
 \label{kap:hauptteil}
-\section{Beschreibung der Integrationsverfahren}
+NOCH SCHAUEN, DASS f(x,t) oder f(t,x) konsistent dargestellt ist!
+
+
 Ausgangslage: Numerische Lösung von Anfangswertproblemen. Systeme beschrieben durch allgemeine Zustandsdarstellung:
 (Zur Einfachheit Eingrößensysteme.)
 \begin{align}
@@ -12,65 +14,64 @@ Es ergibt sich als Lösung von $\vec{x}\tt$:
 x\tt = x_0 + \int\limits_0^t \dot{x}(x,t) \d t 
 \end{align}
 Dafür numerische Lösung erforderlich. Dabei wird mit der (zunächst festen) Schrittweite $T$ gerechnet.
-Schreibweise festlegen: $x_k$ bezeichnet numerischen Wert im k-ten Abtastzeitpunkt, $t_k$, die zugehoerigen Zeiten.
+Schreibweise festlegen: $x_i$ bezeichnet numerischen Wert im $i$-ten Abtastzeitpunkt, $t_i$, die zugehoerigen Zeiten.
 Allgemein soll also in jedem Schritt eine Lösung
 \begin{align}
-	x_{k+1} = \Phi(x, t)
+	x_{i+1} = \Phi(x, t)
 \end{align}
 mit noch unbekannter Verfahrensfunktion $\Phi(x,t)$ bestimmt werden.
 
-
-\subsection{Einschrittverfahren}
-\subsubsection{Explizites Eulerverfahren}
-Einfachstes Verfahren, ergibt sich aus dem Taylorschen Satz erster Ordnung. Steigung wird in jedem Zeitschritt berechnet und als konstant angenommen. (Zur Verdeutlichung im Zuge dieser Arbeit nur eine Zustandsgröße!)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Einschrittverfahren}
+\subsection{Explizites Eulerverfahren}
+Einfachstes Verfahren, ergibt sich aus dem Taylor-Satz erster Ordnung. Steigung wird in jedem Zeitschritt berechnet und als konstant angenommen. (Zur Verdeutlichung im Zuge dieser Arbeit nur eine Zustandsgröße!)
 \begin{align}
 		&\frac{\d x}{\d t}=\lambda \dd x + b\dd u \\
 		\Rightarrow & \frac{\Delta x}{T} = \lambda \dd x + b \dd u \\
-		\Rightarrow & x_{k+1} = x_k+\Delta x_k = x_k + (\lambda \dd x_k + b\dd u_k) \dd T\\
+		\Rightarrow & x_{i+1} = x_i+\Delta x_i = x_i + (\lambda \dd x_i + b\dd u_i) \dd T\\
 		\Rightarrow & \text{Stabilitätsanalyse mit digitaler Regelung Methoden machen!!}
 \end{align}
 
 
-\subsubsection{Impliztes Eulerverfahren}
-Andere Möglichkeit: Annahme der Steigung des $k+1$-ten Schrittes für $\Delta x$.
+\subsection{Impliztes Eulerverfahren}
+Andere Möglichkeit: Annahme der Steigung des $i+1$-ten Schrittes für $\Delta x$.
 \begin{align}
-	x_{k+1}&= x_k + \Delta x_{k+1}\\
-	x_{k+1}&=x_k + \Delta x_{k+1} \ \text{mit}\\
-	\Delta x_{k+1} &= (\lambda \dd x_{k+1} + b \dd u_{k+1}) \dd T \ \text{(vorherige Gl. einsetzen)}\\
-	\Rightarrow \Delta x_{k+1}&= (1-\lambda \dd T)^{-1} \dd (b\dd u_{k+1} + \lambda x_k)\dd T
+	x_{i+1}&= x_i + \Delta x_{i+1}\\
+	x_{i+1}&=x_i + \Delta x_{i+1} \ \text{mit}\\
+	\Delta x_{i+1} &= (\lambda \dd x_{i+1} + b \dd u_{i+1}) \dd T \ \text{(vorherige Gl. einsetzen)}\\
+	\Rightarrow \Delta x_{i+1}&= (1-\lambda \dd T)^{-1} \dd (b\dd u_{i+1} + \lambda x_i)\dd T
 \end{align}
-Es ergibt sich eine implizite Gleichung für die Steigung, und $u_{k+1}$ erforderlich.
+Es ergibt sich eine implizite Gleichung für die Steigung, und $u_{i+1}$ erforderlich.
 Besonders: Führt immer zu Stabilität (unabhängig von der Schrittweite), wenn System stabil! (Eigenwerte anschauen!) ABER: oft auch für instabile Systeme stabil!
 
-\subsubsection{Trapezregel/Heun-Verfahren}Referenz auf SIEMENS SKRIPT
+\subsection{Trapezregel/Heun-Verfahren}Referenz auf SIEMENS SKRIPT
 Kombination der beiden Euler-Verfahren $\Rightarrow$ höhere Genauigkeit!\\
-Mittelwert der Steigungen im $k$-ten und $k+1$-ten Schritt:
+Mittelwert der Steigungen im $i$-ten und $i+1$-ten Schritt:
 \begin{align}
-	x_{k+1} &= x_k + \Delta x_k = \\
-			& = x_k + T \dd \eh \dd \Big(f\big(x_k,t\big) + f\big(x_{k+1},t+T\big) + \Big).
+	x_{i+1} &= x_i + \Delta x_i = \\
+			& = x_i + T \dd \eh \dd \Big(f\big(x_i,t\big) + f\big(x_{i+1},t+T\big) + \Big).
 \end{align}
-Dadurch ergibt sich allgemein ebenfalls ein implizites Verfahren. Dies kann nun also möglicherweise nichtlineares Gleichungssystem gelöst werden, oder durch Abschätzung des unbekannten Wertes $f\big(x_{k+1},t+T\big)$ durch das explizite Euler-Verfahren erhält man das Heun-Verfahren nach \cite{gruene}:
+Dadurch ergibt sich allgemein ebenfalls ein implizites Verfahren. Dies kann nun also möglicherweise nichtlineares Gleichungssystem gelöst werden, oder durch Abschätzung des unbekannten Wertes $f\big(x_{i+1},t+T\big)$ durch das explizite Euler-Verfahren erhält man das Heun-Verfahren nach \cite{gruene}:
 \begin{align*}
-	x_{k+1} &= x_k + \Delta x_k = \\
-			& = x_k + T \dd \eh \dd \Big(f\big(x_k,t\big) + f\big( x_k +  T \dd f(x_k,t)  ,t+T\big) \Big).
+	x_{i+1} &= x_i + \Delta x_i = \\
+			& = x_i + T \dd \eh \dd \Big(f\big(x_i,t\big) + f\big( x_i +  T \dd f(x_i,t)  ,t+T\big) \Big).
 \end{align*}
 %Weitere Möglichkeiten, siehe Extrapolationsverfahren.
 
-\subsubsection{Runge-Kutta-Verfahren}
+\subsection{Runge-Kutta-Verfahren}
 Um die bisher betrachteten Methoden zu verbessern, gibt es mehrere Ansätze. Ein naheliegender Gedanke ist, statt nur der Rechten Seite der gew. DGL (REF!), Zeitableitungen höherer Ordnung in die Abschätzung einzubauen. Dies führt zu den Taylor-Methoden, welche auf der Taylor-Satz basieren.
 Da die Differentation der Rechten Seite jedoch nach \cite{gruene} mit verhältnismäßig großem rechnerischen Aufwand verbunden ist, sind diese Verfahren in der Praxis eher ungebräuchlich und sollen im Rahmen dieser Arbeit nicht näher betrachtet werden.
 
-Wie in \cite{gruene} gezeigt wird, lässt sich der \textit{globale} Fehler $e(t_k):= \norm{x_k - x(t_k)}$ gängiger Integrationsverfahren durch
+Wie in \cite{gruene} gezeigt wird, lässt sich der \textit{globale} Fehler $e(t_i):= \norm{x_i - x(t_i)}$ gängiger Integrationsverfahren durch
 \begin{align}
 	e(t) = \mathcal{O}(T^p)
 \end{align}
-abschätzen lässt. (Getroffene Annahmen über die rechte Seite der DGL (\ref{eq:DGL}) sollen im Rahmen dieser Arbeit außer Acht gelassen werden und können in \cite{gruene} nachgelesen werden.) Dabei legt die Konsistenzordnung $p$ fest, wie schnell der globale Fehler gegen Null geht, wenn die Schrittweite verkleinert wird. Es kann gezeigt werden, dass die Konsistenzordnung der Euler-Verfahren $p=1$ beträgt. Das Heun-Verfahren ist mit $p=2$ bereits deutlich genauer.
-
+abschätzen. (Getroffene Annahmen über die rechte Seite der DGL (\ref{eq:DGL}) sollen im Rahmen dieser Arbeit außer Acht gelassen werden und können in \cite{gruene} nachgelesen werden.) Dabei legt die Konsistenzordnung $p$ fest, wie schnell der globale Fehler gegen Null geht, wenn die Schrittweite verkleinert wird. Es kann gezeigt werden, dass die Konsistenzordnung der Euler-Verfahren $p=1$ beträgt. Das Heun-Verfahren ist mit $p=2$ bereits deutlich genauer.\\
 Deshalb ist der erste Ansatz in der Praxis, die Idee der Trapezregel beziehungsweise des Heun-Verfahrens weiter zu führen und die Konvergenzordnung der Verfahren durch weitere Stützstellen zu erhöhen.
 Dies führt zum allgemeinen Ansatz der $s$-\textit{stufigen} expliziten Runge-Kutta-Verfahren:
 \begin{align}
-	x_{k+1}&= x_k + T\, \sum\limits_{i=1}^s b_i\,k_i, \quad \text{mit} \\
-	k_i &= f\left(   t+c_i T,  x_k + T \,\sum\limits_{j=1}^{i-1} a_{ij} k_j    \right) \quad \text{für } i=1,\ldots,s.
+	\Phi(x,t,T)&= x + T\, \sum\limits_{i=1}^s b_i\,k_i, \quad \text{mit} \\
+	k_i &= f\left( t+c_i T,  x_k + T \,\sum\limits_{j=1}^{i-1} a_{ij} k_j    \right) \quad \text{für } i=1,\ldots,s.
 \end{align}
 Dabei wird die Rechte Seite der DGL an den Stützstellen $t+c_i\,T$ berechnet, wobei die vorhergehenden Stützstellen gewichtet mit den Koeffizienten $a_{ij}$ zur Berechnung des zur Stützstelle gehörenden Funktionswertes herangezogen werden. Die Gewichtung der berechneten Steigungen bei der Ermittlung des resultierendes Funktionswertes von $x_{k+1}$ erfolgt durch die Koeffizienten $b_i$. Mit dieser Darstellung ergeben die Runge-Kutta-Verfahren eine unendliche Menge verschiedener Verfahren zur Lösung des Problems.\\
 Um die Runge-Kutta-Verfahren zu klassifizieren, werden die Koeffizienten $a_{ij},b_{i},c_{i}$ häufig in Form des Butcher-Schemas, nach Tabelle \ref{tab:ButEx} dargestellt.
@@ -115,7 +116,7 @@ $\\[\baselineskip]
 \end{table}
 Die selbe Vorgehensweise lässt sich für implizite Verfahren anwenden, sodass sich als Berechnungsvorschrift für $s$-\textit{stufige} implizite Runge-Kutta-Verfahren ergibt:
 \begin{align}
-	x_{k+1} &= x_{k} + T\, \sum\limits_{k=1}^s b_i \, k_i \quad \text{mit}\\
+	\Phi(x,t,T) &= x_{k} + T\, \sum\limits_{k=1}^s b_i \, k_i \quad \text{mit}\\
 	k_i &= f\left(  t+c_i T , x_k + T\, \sum\limits_{j=1}^{s} a_{ij}k_j  \right) \quad \text{für } i=1,\ldots,s. 
 \end{align}
 Beispiele für implizite Runge-Kutta-Verfahren sind das bereits kennengelernte implizite Euler-Verfahren (s=p=1), die implizite Mittelpunktsregel (s=p=2), sowie die implizite Trapezregel (s=p=2), deren Butcher-Schemata in Tabelle \ref{tab:ButcherIm} dargestellt sind.
@@ -141,12 +142,13 @@ $\\[\baselineskip]
 \end{table}
 Der Vorteil der impliziten Verfahren gegenüber den expliziten Verfahren wird sich bei Betrachtung des Stabilitätsverhaltens zeigen. 
 
-\subsection{Schrittweitensteuerung (Adaption)}
-Um die Verfahren weiter zu verbessern, liegt der Gedanke nahe, die bisher als konstant angenommene Schrittweite $T$ als steuerbar anzusehen, sodass $T_k$ an Stellen, bei welchen sich der Funktionswert stärker ändert, kleiner gewählt werden kann und an Stellen langsamer Änderungen hingegen größer. Aus Gründen der numerischen Effizienz ist es üblich, dass im $k$-ten Zeitschritt eine \glqq gute\grqq \ Schrittweite für den Übergang von $t_k$ nach $t_{k+1}$ bestimmt wird, jedoch keine Anpassung von vorhergehenden Schrittweiten mehr erfolgt.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Schrittweitensteuerung (Adaption)}
+Um die Verfahren weiter zu verbessern, liegt der Gedanke nahe, die bisher als konstant angenommene Schrittweite $T$ als steuerbar anzusehen, sodass $T_i$ an Stellen, bei welchen sich der Funktionswert stärker ändert, kleiner gewählt werden kann und an Stellen langsamer Änderungen hingegen größer. Aus Gründen der numerischen Effizienz ist es üblich, dass im $i$-ten Zeitschritt eine \glqq gute\grqq \ Schrittweite für den Übergang von $t_i$ nach $t_{i+1}$ bestimmt wird, jedoch keine Anpassung von vorhergehenden Schrittweiten mehr erfolgt.
 
-Um die Schrittweite anzupassen wird gefordert, dass der \textit{lokale} Fehler $\varepsilon(t)$ unter einer gewissen Toleranzgrenze $tol$ liegen soll. Der \textit{lokale} Fehler ist dabei der Anteil am \textit{globalen} Fehler, der durch den Zeitschritt von $t_k$ bis $t_{k+1}$ hervorgerufen wird. Da die exakte Lösung des Funktionsverlaufs nicht bekannt ist, wird für das verwendete Verfahren $\Phi$ mit Konsistenzordnung $p$ ein anderes Verfahren $\hat{\Phi}$ zur Abschätzung des Fehlers herangezogen. Die Konsistenzordnung des zweiten Verfahrens $\hat{p}$ wird kleiner als die des verwendeten Verfahrens gewählt, sodass $p \geq \hat{p}+1$ gilt. Der Schritt von $t_k$ nach $t_{k+1} = t_k+T_k$ wird mit beiden Verfahren berechnet und die Norm der Differenz der Ergebnisse als \textit{Fehlerschätzer} $\overline{\varepsilon}$ bezeichnet.
+Um die Schrittweite anzupassen wird gefordert, dass der \textit{lokale} Fehler $\varepsilon(t)$ unter einer gewissen Toleranzgrenze $tol$ liegen soll. Der \textit{lokale} Fehler ist dabei der Anteil am \textit{globalen} Fehler, der durch den Zeitschritt von $t_i$ bis $t_{i+1}$ hervorgerufen wird. Da die exakte Lösung des Funktionsverlaufs nicht bekannt ist, wird für das verwendete Verfahren $\Phi$ mit Konsistenzordnung $p$ ein anderes Verfahren $\hat{\Phi}$ zur Abschätzung des Fehlers herangezogen. Die Konsistenzordnung des zweiten Verfahrens $\hat{p}$ wird kleiner als die des verwendeten Verfahrens gewählt, sodass $p \geq \hat{p}+1$ gilt. Der Schritt von $t_i$ nach $t_{i+1} = t_i+T_i$ wird mit beiden Verfahren berechnet und die Norm der Differenz der Ergebnisse als \textit{Fehlerschätzer} $\overline{\varepsilon}$ bezeichnet.
 \begin{equation}
-	\overline{\varepsilon} := \norm{\hat{\Phi}(t_k,x_k,T_k) - \Phi(t_k,x_k,T_k)}.
+	\overline{\varepsilon} := \norm{\hat{\Phi}(t_i,x_i,T_i) - \Phi(t_i,x_i,T_i)}.
 \end{equation}
 Mit Hilfe der Konvergenzeigenschaften lässt sich zeigen, dass die gewünschte Fehlertoleranz näherungsweise eingehalten wird, falls die Schrittweite durch 
 \begin{equation}
@@ -155,10 +157,11 @@ Mit Hilfe der Konvergenzeigenschaften lässt sich zeigen, dass die gewünschte Feh
 \end{equation}
 angepasst wird. Da dies nur approximativ gilt, wird das Argument der Wurzel in der Praxis jedoch häufig durch einen \glqq Sicherheitsfaktor\grqq \ $f_{ac} \in ]0,1[$ (typisch: $0.9$) skaliert.
 
-Nach der Berechnung des Fehlerschätzers $\overline{\varepsilon}$ im Zeitschritt $k$ wird dieser mit der zulässigen Toleranz verglichen. Ist der berechnete Fehler größer, als die zulässige Toleranz ($\overline{\varepsilon} > tol$), wird der selbe Zeitschritt mit der angepassten Schrittweite $T_{\mathrm{neu}}$ erneut berechnet.\\
-Gilt jedoch $\overline{\varepsilon} \leq tol$, so ist die gewünschte Genauigkeit erreicht und die der Berechnung zu Grunde liegende Schrittweite wird für diesen Zeitschritt angenommen. Nun wird erneut (\ref{eq:Schrittweite}) berechnet und $T_\mathrm{neu}$ als Schrittweite $T_{k+1}$ für den nächsten Zeitschritt angenommen. Dies sorgt dafür, dass die Schrittweite bei hoher Genauigkeit auch vergrößert werden kann.
+Nach der Berechnung des Fehlerschätzers $\overline{\varepsilon}$ im Zeitschritt $i$ wird dieser mit der zulässigen Toleranz verglichen. Ist der berechnete Fehler größer, als die zulässige Toleranz ($\overline{\varepsilon} > tol$), wird der selbe Zeitschritt mit der angepassten Schrittweite $T_{\mathrm{neu}}$ erneut berechnet.\\
+Gilt jedoch $\overline{\varepsilon} \leq tol$, so ist die gewünschte Genauigkeit erreicht und die der Berechnung zu Grunde liegende Schrittweite wird für diesen Zeitschritt angenommen. Nun wird erneut (\ref{eq:Schrittweite}) berechnet und $T_\mathrm{neu}$ als Schrittweite $T_{i+1}$ für den nächsten Zeitschritt angenommen. Dies sorgt dafür, dass die Schrittweite bei hoher Genauigkeit auch vergrößert werden kann.
 
-\subsection{Eingebettete Runge-Kutta-Verfahren}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Eingebettete Runge-Kutta-Verfahren}
 Um den Rechenaufwand der Beschriebenen Schrittweitenanpassung zu reduzieren, können die Verfahrensfunktionen $\Phi$ und $\hat{\Phi}$ so geschickt gewählt werden, dass bei deren Auswertungen auf gleiche Zwischenergebnisse zurückgegriffen werden kann. Dies führt auf die sehr häufig verwendeten eingebetteten Runge-Kutta verfahren. Die eingebetteten Verfahren werden mit $\mathrm{RK}p(\hat{p})$ bezeichnet.
 Der Gedanke dahinter ist, dass sich die berechneten Werte der Stützstellen $k_i$ und $\hat{k}_i$ nicht unterscheiden, sondern lediglich deren Linearkombination. Das heißt die Koeffizienten $a_{ij}=\hat{a}_{ij}$ und $c_{i}=\hat{c}_{i}$ stimmen in beiden Verfahren überein. Es gilt lediglich $b_{i}\neq \hat{b}_{j}$. 
 Für eingebettete Runge-Kutta-Verfahren lassen sich dehalb auch sehr einfach Butcher-Schemata nach Tabelle \ref{tab:ButcherEin} erstellen.
@@ -184,12 +187,12 @@ Wie in \cite{gruene} gezeigt wird, muss in diesem Fall zur Konstruktion eines Ve
 $
 	\begin{array}{c|ccccc}
 		0\\
-		\eh & \eh \\
-		\eh & 0 & \eh \\
-		1 & 0 & 0 & 1 \\
-		c_5 & a_{51} & a_{52}& a_{53} & a_{54}\\ \hline
-		& \frac{1}{6} & \frac{2}{6} & \frac{2}{6} & \frac{1}{6} & 0 \\ \hline
-		& \hat{b}_1 & \hat{b}_2 & \hat{b}_3 & \hat{b}_4 & \hat{b}_5
+		\eh & \eh \\[2pt]
+		\eh & 0 & \eh \\[2pt]
+		1 & 0 & 0 & 1 \\[2pt]%
+		c_5 & a_{51} & a_{52}& a_{53} & a_{54}\\\hline
+		& \tikzmark[2pt]{1}{$\frac{1}{6}$} & \frac{2}{6} & \frac{2}{6} & \frac{1}{6} & 0 \\[2pt] \hline
+		& \tikzmark[2pt]{2}{$\hat{b}_1$} & \hat{b}_2 & \hat{b}_3 & \hat{b}_4 & \hat{b}_5
 	\end{array}
 $\\[\baselineskip]
 \caption{Butcher-Schema zur Bestimmung der unbekannten Koeffizienten}
@@ -198,14 +201,18 @@ $\\[\baselineskip]
 Um das zugehörige Verfahren $\hat{\Phi}$ mit $\hat{s}=5$ und $\hat{p}=3$ zu bestimmen, müssen also die unbekannten Koeffizienten in \ref{tab:koeffbest} bestimmt werden. Dies kann in \cite{gruene} nachgelesen werden und soll an dieser Stelle nicht weiter vertieft werden.
 Eines der am weitesten verbreiteten Verfahren ist das Dormand-Prince-RK5(4)-Verfahren, welches in der Numerik-Software \Matlab \ unter dem Namen \verb ode45  standardmäßig eingestellt ist. Die zugehörigen Koeffizienten können in \cite{gruene} nachgelesen werden.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Mehrschrittverfahren}
+Die bisher betrachteten Verfahren sind dadurch charakterisiert, dass die Verfahrensfunktion $\Phi(x,t)$ lediglich vom aktuellen Funktionswert $x_k$, sowie bei impliziten Verfahren dem Funktionswert $x_{k+1}$ abhängt. Deshalb werden diese Verfahren als Einschrittverfahren bezeichnet.\\
+Im Gegensatz dazu hängt der Funktionswert $x_{k+1}$ bei Mehrschrittverfahren zusätzlich dazu von einer beliebigen Anzahl an Vorgängerwerten $x_{i-k+1},\ldots,x_i$ ab.
+
+
 \subsection{Extrapolationsverfahren}
-
-\subsection{explizite Mehrschrittverfahren}
-
-\subsection{implizite Mehrschrittverfahren}
-
+(wahrscheinlich weglassen, gehoert zu den Mehrschrittverfahren!!)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Prädiktor-Korrektor-Verfahren}
 \subsection{BDF-Verfahren}
+\subsection{Schrittweitensteuerung}
 
 TABELLE MIT VERFAHREN, KONSISTENZORDNUNG und STABILITÄT!!!!
 
