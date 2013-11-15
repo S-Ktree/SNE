@@ -1,7 +1,7 @@
 \chapter{Numerische Integrationsverfahren für Anfangswertprobleme}
 \label{kap:hauptteil}
 NOCH SCHAUEN, DASS f(x,t) oder f(t,x) konsistent dargestellt ist!
-
+EVENTUELL: $f_{n}= f(x_n,t_n)$ als Schreibweise einfuehren!! Kann einiges erleichtern!
 
 Ausgangslage: Numerische Lösung von Anfangswertproblemen. Systeme beschrieben durch allgemeine Zustandsdarstellung:
 (Zur Einfachheit Eingrößensysteme.)
@@ -204,16 +204,40 @@ Eines der am weitesten verbreiteten Verfahren ist das Dormand-Prince-RK5(4)-Verf
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Mehrschrittverfahren}
 Die bisher betrachteten Verfahren sind dadurch charakterisiert, dass die Verfahrensfunktion $\Phi(x,t)$ lediglich vom aktuellen Funktionswert $x_k$, sowie bei impliziten Verfahren dem Funktionswert $x_{k+1}$ abhängt. Deshalb werden diese Verfahren als Einschrittverfahren bezeichnet.\\
-Im Gegensatz dazu hängt der Funktionswert $x_{k+1}$ bei Mehrschrittverfahren zusätzlich dazu von einer beliebigen Anzahl an Vorgängerwerten $x_{i-k+1},\ldots,x_i$ ab.
+Im Gegensatz dazu hängt der Funktionswert $x_{k+1}$ bei Mehrschrittverfahren zusätzlich dazu von einer beliebigen Anzahl an Vorgängerwerten $x_{i-k+1},\ldots,x_i$ ab. Damit wird ein $k$-stufiges lineares Mehrschrittverfahren folgendermaßen definiert:
+\begin{align}
+	&a_k x_{i+k}+a_{k-1} x_{i+k-1}+\ldots+a_0 x_i \\
+	&\quad = T\left( b_k f(x_{i+k},t_{i+k}) + b_{k-1}f(x_{i+k-1},t_{i+k-1})+\ldots+b_0f(x_{i},t_{i}) \right)
+\end{align}
+mit $a_k \neq 0$. Durch $\mathcal{Z}$-Transformation (nachzulesen zum Beispiel in \cite{digit}) lassen sich Mehrschrittverfahren auch durch die beiden Polynome
+\begin{align}
+	P_a(z) &= a_0 + a_1 z + \ldots + a_k z^k \\
+	P_b(z) &= b_0 + b_1 z + \ldots + b_k z^k	
+\end{align}
+charakterisieren.
+Ein Beispiel für ein Mehrschrittverfahren ist das (implizite) Milne-Simpson-Verfahren:
+\begin{align}	
+	x_{i+1} = x_{i-1} + \frac{T}{3} \left(f(x_{i+1},t_{i+1})  +4f(x_i,t_i)  +f(x_{i-1},t_{i-1})  \right)
+\end{align}	
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Adams-Verfahren/Prädiktor-Korrektor-Verfahren}
+Wie auch bei den Einschrittverfahren können Mehrschrittverfahren in explizite und implizite Verfahren unterteilt werden. In \cite{faires} wird gezeigt, dass implizite Verfahren im allgemeinen erheblich bessere Ergebnisse erzielen, als explizite Verfahren, jedoch das Auflösen der impliziten Gleichung nach dem gesuchten Funktionswert mit starkem Rechenaufwand verbunden sein kann.\\
+Dies führt zu dem Gedanken, Approximationen, welche durch ein explizites Verfahren gewonnen wurden, durch ein implizites Verfahren zu verbessern. Diese Kombination aus explizitem und implizitem Verfahren wird als Prädiktor-Korrektor-Verfahren bezeichnet. 
 
+Die hierfür am häufigsten verwendeten Mehrschrittverfahren sind die so genannten Adams-Verfahren. Dabei werden die expliziten Verfahren als \textit{Adams-Bashforth-Verfahren} und die impliziten Verfahren als \textit{Adams-Moulton-Verfahren} bezeichnet. (KOEFFIZIENTEN SIEHE ANHANG) Die Herleitung dieser Verfahren kann in \cite{gruene} nachvollzogen werden.\\
+Nach \cite{faires} liegen Rechenaufwand und Genauigkeit bei einem $m$-stufigen \textit{Adams-Bashforth-Verfahren} und einem $m$-1-stufigen \textit{Adams-Moulton-Verfahren} im gleichen Größenbereich, wobei der lokale Fehler von $T^{m+1}$ abhängt. Wie bereits eingangs erwähnt, liefern die impliziten Verfahren jedoch deutlich genauere Approximationen.
+
+Zur Durchführung des Prädiktor-Korrektor-Verfahrens wird zunächst mit dem expliziten $m$-stufigen \textit{Adams-Bashforth-Verfahren} ein Approximationswert $x_{i+1}^{(0)}$ berechnet, also die Prädiktion durchgeführt. Dieser wird dann in die rechte Seite der impliziten Gleichung des \textit{Adams-Moulton-Verfahren} eingesetzt, wodurch eine bessere Schätzung $x_{i+1}^{(1)}$ berechnet werden kann (Korrektur). Diese wird nun als Funktionswert $x(t_{i+1})$ angenommen.
+In \cite{netomac} wird beschrieben, dass der Korrektor-Schritt in der Praxis iterativ wiederholt werden kann, um eine noch höhere Genauigkeit zu erzielen.
+
+Da ein $k$-stufiges Mehrschrittverfahren zur Berechnung des Funktionswertes $x_i$ alle zurückliegenden Funktionswerte bis $x_{i-k}$ benötigt, ist der erste überhaupt berechenbare Funktionswert $x(t=t_k)$. Aus diesem Grund müssen Mehrschrittverfahren durch geeignete Einschrittverfahren \glqq gestartet\grqq \ werden. Man bezeichnet Einschrittverfahren im Gegensatz zu Mehrschrittverfahren aus diesem Grund auch als \textit{selbststartend}.
+
+\subsection{BDF-Verfahren}
+WIEDER NACH GRUENE!
+\subsection{Schrittweitensteuerung}
 \subsection{Extrapolationsverfahren}
 (wahrscheinlich weglassen, gehoert zu den Mehrschrittverfahren!!)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Prädiktor-Korrektor-Verfahren}
-\subsection{BDF-Verfahren}
-\subsection{Schrittweitensteuerung}
-
 TABELLE MIT VERFAHREN, KONSISTENZORDNUNG und STABILITÄT!!!!
 
 % Nach Friedrich: Numerische Methoden:
@@ -244,6 +268,7 @@ TABELLE MIT VERFAHREN, KONSISTENZORDNUNG und STABILITÄT!!!!
 
 
 \section{Stabilitätsanalyse der wichtigsten Methoden}
+VIELLEICHT EINFACH: METHODEN AUS DIGITALE REGELUNG ANWENDEN, HILFE VON GRUENE UND NETOMAC SKRIPT!
 
 
 \section{Anwendung der Integrationsmethoden in Simulationssoftware}
