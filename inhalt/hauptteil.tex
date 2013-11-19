@@ -206,8 +206,9 @@ Eines der am weitesten verbreiteten Verfahren ist das Dormand-Prince-RK5(4)-Verf
 Die bisher betrachteten Verfahren sind dadurch charakterisiert, dass die Verfahrensfunktion $\Phi(x,t)$ lediglich vom aktuellen Funktionswert $x_k$, sowie bei impliziten Verfahren dem Funktionswert $x_{k+1}$ abhängt. Deshalb werden diese Verfahren als Einschrittverfahren bezeichnet.\\
 Im Gegensatz dazu hängt der Funktionswert $x_{k+1}$ bei Mehrschrittverfahren zusätzlich dazu von einer beliebigen Anzahl an Vorgängerwerten $x_{i-k+1},\ldots,x_i$ ab. Damit wird ein $k$-stufiges lineares Mehrschrittverfahren folgendermaßen definiert:
 \begin{align}
-	&a_k x_{i+k}+a_{k-1} x_{i+k-1}+\ldots+a_0 x_i \\
+	&a_k x_{i+k}+a_{k-1} x_{i+k-1}+\ldots+a_0 x_i \notag\\
 	&\quad = T\left( b_k f(x_{i+k},t_{i+k}) + b_{k-1}f(x_{i+k-1},t_{i+k-1})+\ldots+b_0f(x_{i},t_{i}) \right)
+	\label{eq:mehrschritt}
 \end{align}
 mit $a_k \neq 0$. Durch $\mathcal{Z}$-Transformation (nachzulesen zum Beispiel in \cite{digit}) lassen sich Mehrschrittverfahren auch durch die beiden Polynome
 \begin{align}
@@ -234,8 +235,13 @@ In \cite{netomac} wird beschrieben, dass der Korrektor-Schritt in der Praxis ite
 Da ein $k$-stufiges Mehrschrittverfahren zur Berechnung des Funktionswertes $x_i$ alle zurückliegenden Funktionswerte bis $x_{i-k}$ benötigt, ist der erste überhaupt berechenbare Funktionswert $x(t=t_k)$. Aus diesem Grund müssen Mehrschrittverfahren durch geeignete Einschrittverfahren \glqq gestartet\grqq \ werden. Man bezeichnet Einschrittverfahren im Gegensatz zu Mehrschrittverfahren aus diesem Grund auch als \textit{selbststartend}.
 
 \subsection{BDF-Verfahren}
-WIEDER NACH GRUENE!
+(Besonders geeignet für steife DGL aber wo einbringen?)
+Eine weitere Klasse der Mehrschrittverfahren sind die so genannten \textit{Backwards Differentiation Formulas} (BDF). Für diese Verfahren gilt $P_b(z) = z^k$. Damit lassen sich Verfahren erzeugen, die bis zur Ordnung $p=k=6$ stabil sind.
+
+
 \subsection{Schrittweitensteuerung}
+(WAHRSCHEINLICH WEGLASSEN!)
+Die Methoden zur Schrittweitensteuerung lassen sich weitgehend von Einschrittverfahren übertragen. Bei Mehrschrittverfahren besteht lediglich das Problem, dass die Schrittweite in letzten $k$ Schritten übereinstimmen muss, damit Gleichung (\ref{eq:mehrschritt}) sinnvoll ausgewertet werden kann. 
 \subsection{Extrapolationsverfahren}
 (wahrscheinlich weglassen, gehoert zu den Mehrschrittverfahren!!)
 TABELLE MIT VERFAHREN, KONSISTENZORDNUNG und STABILITÄT!!!!
