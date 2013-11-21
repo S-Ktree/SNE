@@ -116,7 +116,7 @@ $\\[\baselineskip]
 \end{table}
 Die selbe Vorgehensweise lässt sich für implizite Verfahren anwenden, sodass sich als Berechnungsvorschrift für $s$-\textit{stufige} implizite Runge-Kutta-Verfahren ergibt:
 \begin{align}
-	\Phi(x,t,T) &= x_{k} + T\, \sum\limits_{k=1}^s b_i \, k_i \quad \text{mit}\\
+	\Phi(x,t,T) &= x + T\, \sum\limits_{i=1}^s b_i \, k_i \quad \text{mit}\\
 	k_i &= f\left(  t+c_i T , x_k + T\, \sum\limits_{j=1}^{s} a_{ij}k_j  \right) \quad \text{für } i=1,\ldots,s. 
 \end{align}
 Beispiele für implizite Runge-Kutta-Verfahren sind das bereits kennengelernte implizite Euler-Verfahren (s=p=1), die implizite Mittelpunktsregel (s=p=2), sowie die implizite Trapezregel (s=p=2), deren Butcher-Schemata in Tabelle \ref{tab:ButcherIm} dargestellt sind.
@@ -325,11 +325,11 @@ Die Matrix der Differenzengleichung $\tilde{A}$ berechnet sich also als Funktion
 \begin{align}
 	\tilde{A}= R(TA).
 \end{align}
-Diese Funktion nimmt für explizite Werte $TA = z \in \mathbb{C}$ die Form
+Diese Funktion nimmt für explizite Werte $z \in \mathbb{C}$ die Form
 \begin{align}
 	R(z) = 1 + zb^T \left( I-z\mathcal{A}  \right)^{-1} e
 \end{align}
-an, wobei $I$ für die Einheitsmatrix steht, $b^T = (b_1, \ldots, b_s)^T$ und $\mathcal{A}=(a_{ij})_{i,j=1,\ldots,s}$ die Koeffizienten des Verfahrens beinhalten und $e=(1,\ldots,1)^T \in \mathbb{R}^s$ gilt. $R(z)$ wird als die Stabilitätsfunktion des Verfahrens bezeichnet. Die Stabilitätsfunktion an sich ist nun unabhängig von der Schrittweite und der Dynamik der betrachteten Differentialgleichung und kann damit noch keine endgültige Aussage über die Stabilität des Verfahrens treffen. 
+an, wobei $I$ für die Einheitsmatrix steht, $b = (b_1, \ldots, b_s)^T$ und $\mathcal{A}=(a_{ij})_{i,j=1,\ldots,s}$ die Koeffizienten des Verfahrens beinhalten und $e=(1,\ldots,1)^T \in \mathbb{R}^s$ gilt. $R(z)$ wird als die Stabilitätsfunktion des Verfahrens bezeichnet. Die Stabilitätsfunktion an sich ist nun unabhängig von der Schrittweite und der Dynamik der betrachteten Differentialgleichung und kann damit noch keine endgültige Aussage über die Stabilität des Verfahrens treffen. 
 Um diese zu ermöglichen, gilt es herauszufinden, welche Bedingungen $A$ und $T$ erfüllen müssen, damit die Eigenwerte der Matrix $\tilde{A}$ stabil sind. 
 
 Hierfür wird das Stabilitätsgebiet $S \subset \mathbb{C}$ eines Runge-Kutta-Verfahrens mit Stabilitätsfunktion $R$ definiert als die Menge von Eigenwerten $\lambda_i$, die $TA$ annehmen darf, damit $\tilde{A}=R(TA)$ exponentiell stabil ist. Ein Verfahren wird als $A$-stabil bezeichnet, wenn es für eine stabile Dynamik $A$ unabhängig von der Schrittweite stabil ist.
@@ -351,7 +351,9 @@ Für das implizite Euler-Verfahren erhält man $R_\mathrm{Eu,im}(z) = \frac{1}{1-z
 \begin{align}
 	|R_\mathrm{Eu,im}(z)| <1  \ \Leftrightarrow \ |1-z|>1,
 \end{align}
-das heißt $S$ ist $\mathbb{C}$ ohne den Kreis $B_1(1)$.
+das heißt $S$ ist $\mathbb{C}$ ohne den Kreis $B_1(1)$. Damit ist das implizite Euler-Verfahren -- wie viele implizite Verfahren -- $A$-stabil, was hilfreich bei der Simulation von stabilen Systemen ist. Allerdings enthält das Stabilitätsgebiet auch Bereiche, in denen die Approximation stabil ist, obwohl das eigentliche System instabil ist, wie zum Beispiel $\Re z > 1$. In diesem Fall würde die Instabilität eines Systems in der Simulation möglicherweise unentdeckt bleiben, was eines der Probleme des impliziten Euler-Verfahrens ist und eine Motivation für die Trapezregel liefert.
+\input{inhalt/Grafiken/stabis.tex}
+
 
 \section{Anwendung der Integrationsmethoden in Simulationssoftware}
 \subsection{PSS Nettomac}
