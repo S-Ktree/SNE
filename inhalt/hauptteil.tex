@@ -49,7 +49,7 @@ Kombination der beiden Euler-Verfahren $\Rightarrow$ höhere Genauigkeit!\\
 Mittelwert der Steigungen im $i$-ten und $i+1$-ten Schritt:
 \begin{align}
 	x_{i+1} &= x_i + \Delta x_i = \\
-			& = x_i + T \dd \eh \dd \Big(f\big(x_i,t\big) + f\big(x_{i+1},t+T\big) + \Big).
+			& = x_i + T \dd \eh \dd \Big(f\big(x_i,t\big) + f\big(x_{i+1},t+T\big)  \Big).
 \end{align}
 Dadurch ergibt sich allgemein ebenfalls ein implizites Verfahren. Dies kann nun also möglicherweise nichtlineares Gleichungssystem gelöst werden, oder durch Abschätzung des unbekannten Wertes $f\big(x_{i+1},t+T\big)$ durch das explizite Euler-Verfahren erhält man das Heun-Verfahren nach \cite{gruene}:
 \begin{align*}
@@ -236,15 +236,15 @@ Da ein $k$-stufiges Mehrschrittverfahren zur Berechnung des Funktionswertes $x_i
 
 \subsection{BDF-Verfahren}
 (Besonders geeignet für steife DGL aber wo einbringen?)
-Eine weitere Klasse der Mehrschrittverfahren sind die so genannten \textit{Backwards Differentiation Formulas} (BDF). Für diese Verfahren gilt $P_b(z) = z^k$. Damit lassen sich Verfahren erzeugen, die bis zur Ordnung $p=k=6$ stabil sind.
+Eine weitere Klasse der Mehrschrittverfahren sind die so genannten \textit{Backwards Differentiation Formulas} (BDF). Für diese Verfahren gilt $P_b(z) = z^k$. Damit lassen sich eine Reihe impliziter Verfahren erzeugen, die besonders gut für steife Differentialgleichungen geeignet sind.
 
-
-\subsection{Schrittweitensteuerung}
-(WAHRSCHEINLICH WEGLASSEN!)
-Die Methoden zur Schrittweitensteuerung lassen sich weitgehend von Einschrittverfahren übertragen. Bei Mehrschrittverfahren besteht lediglich das Problem, dass die Schrittweite in letzten $k$ Schritten übereinstimmen muss, damit Gleichung (\ref{eq:mehrschritt}) sinnvoll ausgewertet werden kann. 
-\subsection{Extrapolationsverfahren}
-(wahrscheinlich weglassen, gehoert zu den Mehrschrittverfahren!!)
-TABELLE MIT VERFAHREN, KONSISTENZORDNUNG und STABILITÄT!!!!
+%
+%\subsection{Schrittweitensteuerung}
+%(WAHRSCHEINLICH WEGLASSEN!)
+%Die Methoden zur Schrittweitensteuerung lassen sich weitgehend von Einschrittverfahren übertragen. Bei Mehrschrittverfahren besteht lediglich das Problem, dass die Schrittweite in letzten $k$ Schritten übereinstimmen muss, damit Gleichung (\ref{eq:mehrschritt}) sinnvoll ausgewertet werden kann. 
+%\subsection{Extrapolationsverfahren}
+%(wahrscheinlich weglassen, gehoert zu den Mehrschrittverfahren!!)
+%TABELLE MIT VERFAHREN, KONSISTENZORDNUNG und STABILITÄT!!!!
 
 % Nach Friedrich: Numerische Methoden:
 %\section{Beschreibung der Integrationsverfahren}
@@ -275,7 +275,83 @@ TABELLE MIT VERFAHREN, KONSISTENZORDNUNG und STABILITÄT!!!!
 
 \section{Stabilitätsanalyse der wichtigsten Methoden}
 VIELLEICHT EINFACH: METHODEN AUS DIGITALE REGELUNG ANWENDEN, HILFE VON GRUENE UND NETOMAC SKRIPT!
+Neben der Konvergenz des Fehlers mit der Schrittweite $e(t) = \mathcal{O}(T^p)$ ist für die Anwendbarkeit eines Verfahrens entscheidend, welche Voraussetzungen an die Schrittweite gestellt werden müssen, damit das Verfahren bei der Lösung von Differentialgleichungen stabil ist. Unter der Stabilität soll in diesem Zusammenhang die exponentielle Stabilität verstanden werden, wie sie in \cite{gruene} beschrieben wird. Um die Betrachtungen zu vereinfachen, soll sich an dieser Stelle auf die Klasse \textit{linearer zeitinvarianter Systeme} beschränkt werden, für die gilt:
+\begin{align}
+	\dot{x}=Ax.
+\end{align}
+Aus der Systemtheorie ist bekannt, dass ein solches System genau dann exponentiell stabil ist, wenn für alle Eigenwerte der Matrix $A$ gilt: $\Re \lambda_i < 0$, das heißt, die Eigenwerte liegen in der linken Halbebene der komplexen Zahlenebene $\mathbb{C}^-$.
 
+\subsection{Steife Differentialgleichungen}
+Zur Einführung soll das Anfangswertproblem
+\begin{align}
+	\dot{x}=\lambda x,\quad x(0)=x_0
+	\label{eq:bsp}
+\end{align}
+betrachtet werden. Für diese einfache Differentialgleichung lautet die geschlossene Lösung $x(t)= e^{\lambda t} x_0$. Das heißt für $\lambda < 0$ konvergiert diese Lösung gegen $0$.
+Eine Approximation des Systems mit dem expliziten Euler-Verfahren liefert
+\begin{align}
+	x_{i+1}=x_i + T \lambda x_i = (1+T\lambda)x_i.
+\end{align}
+Diese Differenzengleichung konvergiert genau dann ebenfalls gegen $0$, wenn 
+\begin{align}
+	|1+T\lambda| < 1
+\end{align}
+gilt. Für die Schrittweite $T$ muss also die Bedingung
+\begin{align}
+	T < \frac{2}{|\lambda|}
+	\label{eq:Tbed}
+\end{align}
+erfüllt sein, damit die Approximation eine Sinnvolle Näherung darstellt. Es ist augenscheinlich, dass dies bei sehr schnellen Systemen mit $\lambda \ll 0$ zu sehr kleinen notwendigen Schrittweiten führt.\\
+Aus diesem Grund werden solche Differentialgleichungen allgemein als \textit{steif} bezeichnet. Die Approximation von steifen Differentialgleichungen führt vor allem bei expliziten Verfahren zu Problemen und stellt die wesentliche Motivation zur Verwendung von impliziten Verfahren dar.
+In Abbildung \ref{fig:example} ist die Approximation von Gleichung (\ref{eq:bsp}) mit dem expliziten Euler-Verfahren für verschiedene Schrittweiten dargestellt. 
+\begin{figure}
+\centering
+\input{inhalt/Grafiken/euler_ex.tex}
+\caption{Simulation des Beispielsystems mit explizitem Euler-Verfahren}
+\label{fig:example}
+\end{figure}
+
+\subsection{Einschrittverfahren}
+Das Beispiel der steifen Differentialgleichungen hat gezeigt, dass durch die Wahl der Schrittweite im allgemeinen das Stabilitätsverhalten des Verfahrens beeinflussen lässt. Im Folgenden sollen Bedingungen aufgezeigt werden, die an die Schrittweite gestellt werden müssen, um die Stabilität eines Verfahrens allgemein zu gewährleisten.
+
+Nach \cite{gruene} lassen sich alle Runge-Kutta-Verfahren mit konstanter Schrittweite, also alle bisher betrachteten Einschrittverfahren ohne Schrittweitensteuerung durch die Differenzengleichung
+\begin{align}
+	x_{i+1}= \tilde{A} x_i 
+\end{align}
+beschreiben.
+Nach \cite{digit} ist eine solche Differenzengleichung genau dann exponentiell stabil, wenn für alle Eigenwerte der Matrix $\tilde{A}$ stabil sind, das heißt $|\tilde{\lambda}_i|<1$ gilt. Dieser Bereich wird im Folgenden mit $B_1(0)$ bezeichnet.
+Zur Untersuchung der Stabilität eines Verfahrens müsste also die Matrix $\tilde{A}$ aus den Koeffizienten des Verfahrens und der Matrix $A$ der zu Grunde liegenden Differentialgleichung berechnet werden.
+Die Matrix der Differenzengleichung $\tilde{A}$ berechnet sich also als Funktion der Art
+\begin{align}
+	\tilde{A}= R(TA).
+\end{align}
+Diese Funktion nimmt für explizite Werte $TA = z \in \mathbb{C}$ die Form
+\begin{align}
+	R(z) = 1 + zb^T \left( I-z\mathcal{A}  \right)^{-1} e
+\end{align}
+an, wobei $I$ für die Einheitsmatrix steht, $b^T = (b_1, \ldots, b_s)^T$ und $\mathcal{A}=(a_{ij})_{i,j=1,\ldots,s}$ die Koeffizienten des Verfahrens beinhalten und $e=(1,\ldots,1)^T \in \mathbb{R}^s$ gilt. $R(z)$ wird als die Stabilitätsfunktion des Verfahrens bezeichnet. Die Stabilitätsfunktion an sich ist nun unabhängig von der Schrittweite und der Dynamik der betrachteten Differentialgleichung und kann damit noch keine endgültige Aussage über die Stabilität des Verfahrens treffen. 
+Um diese zu ermöglichen, gilt es herauszufinden, welche Bedingungen $A$ und $T$ erfüllen müssen, damit die Eigenwerte der Matrix $\tilde{A}$ stabil sind. 
+
+Hierfür wird das Stabilitätsgebiet $S \subset \mathbb{C}$ eines Runge-Kutta-Verfahrens mit Stabilitätsfunktion $R$ definiert als die Menge von Eigenwerten $\lambda_i$, die $TA$ annehmen darf, damit $\tilde{A}=R(TA)$ exponentiell stabil ist. Ein Verfahren wird als $A$-stabil bezeichnet, wenn es für eine stabile Dynamik $A$ unabhängig von der Schrittweite stabil ist.
+
+Das Stabilitätsgebiet entspricht dem Bereich, indem der Betrag der Stabilitätsfunktion kleiner eins ist:
+\begin{align}
+	S = \{z\in\mathbb{C} \big| |R(z)|<1 \}.
+\end{align}
+Damit lassen sich für alle betrachteten Verfahren Voraussetzungen an die Schrittweite in Abhängigkeit der Eigenwerte von $A$ berechnen. Es gilt zu beachten, dass \linebreak \mbox{$\lambda_i \in \Sigma(A) \Rightarrow T\lambda_i \in \Sigma(TA)$}. Allgemein gilt somit, je größer das Stabilitätsgebiet $S$, desto größer kann die Schrittweite $T$ gewählt werden, um Stabilität zu gewährleisten. 
+
+Zur Vergleichbarkeit sollen nun die betrachteten Verfahren auf das Stabilitätsgebiet untersucht werden.
+Für das explizite Euler-Verfahren ergibt sich $R_\mathrm{Eu,ex}(z) = 1+z$. Damit ergibt sich 
+\begin{align}
+	|R_\mathrm{Eu,ex}(z)| <1  \ \Leftrightarrow \ |1+z|<1,
+\end{align}
+also $S = \{ z\in\mathbb{C} \big| |1+z|<1\} = B_1(-1)$. Die Schrittweite muss also so gewählt werden, dass $T\lambda_i \in B_1(-1)$ gilt. Für das betrachtete Beispielsystem entspricht dies genau (\ref{eq:Tbed}).
+
+Für das implizite Euler-Verfahren erhält man $R_\mathrm{Eu,im}(z) = \frac{1}{1-z}$. Für das Stabilitätsgebiet bedeutet das
+\begin{align}
+	|R_\mathrm{Eu,im}(z)| <1  \ \Leftrightarrow \ |1-z|>1,
+\end{align}
+das heißt $S$ ist $\mathbb{C}$ ohne den Kreis $B_1(1)$.
 
 \section{Anwendung der Integrationsmethoden in Simulationssoftware}
 \subsection{PSS Nettomac}

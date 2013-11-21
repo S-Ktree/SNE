@@ -1,7 +1,7 @@
 \chapter{Überblick einiger Verfahren}
 \section{Einschrittverfahren}
-\begin{longtable}{|lcccc|}\hline
-\textbf{Name}&\textbf{Ordnung}&\textbf{Butcher-Schema}&\textbf{Art}&\textbf{Stabilität}\\ \hline
+\begin{longtable}{|lccccc|}\hline
+\textbf{Name}&\textbf{Ordnung}&\textbf{Butcher-Schema}&\textbf{Art}&\textbf{Stabilität} & Stabilitätsfunktion/Bereich\\ \hline
 Euler &1 & $\begin{array}[c]{c|c}
  0 &  \\ \hline
  & 1
@@ -39,6 +39,7 @@ Trapezregel & 2 &$\begin{array}[c]{c|cccc}
 \end{longtable}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Eingebettete Runge-Kutta-Verfahren (Schrittweitensteuerung)}
 \begin{longtable}{|lcc|}\hline
 \tikzmark[2pt]{1}{\parbox{2cm}{\textbf{Name/\\Ordnung}}}&\textbf{Stufen}&\textbf{Butcher-Schema}\\ \hline
@@ -68,6 +69,7 @@ $ \\ \hdashline[1pt/2pt]
 $ \\ \lasthline
 \end{longtable}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{landscape}
 \section{Mehrschrittverfahren}
 \small
 \arraycolsep0pt
@@ -96,14 +98,15 @@ $\begin{array}[c]{l}
 $\begin{array}[c]{l}
 1\\2\\3\\4
 \end{array}$&
-BDF & \makebox[2.5cm][l]{$\begin{array}[c]{l}
+BDF &%\makebox[2.5cm][l]{$\begin{array}[c]{l}
+	$\begin{array}[c]{l}
 	z-1 \ \text{\footnotesize($\hat{=}$ Euler, implizit)}\\
 	\frac{3}{2}z^2-2z+\eh\\
 	\frac{11}{6}z^3-3z^2+\frac{3}{2}z-\frac{1}{3}\\
 	\frac{25}{12}z^4-4z^3+3z^2-\frac{4}{3}z+\frac{1}{4}\\
-\end{array}$} & $z^k$ & implizit & \parbox{3cm}{unendlich großes Stabilitätsgebiet $\Rightarrow$ gut für steife DGL} \\\lasthline
-
+\end{array}$ & $z^k$ & implizit & \parbox{4cm}{unendlich großes Stabilitätsgebiet $\Rightarrow$ gut für steife DGL} \\\lasthline
 \end{longtable}
+\end{landscape}
 \chapter{Anhang Teil 2}
 \chapter{Anhang Teil 3}
 
