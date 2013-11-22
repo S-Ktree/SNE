@@ -331,9 +331,7 @@ Diese Funktion nimmt für explizite Werte $z \in \mathbb{C}$ die Form
 \end{align}
 an, wobei $I$ für die Einheitsmatrix steht, $b = (b_1, \ldots, b_s)^T$ und $\mathcal{A}=(a_{ij})_{i,j=1,\ldots,s}$ die Koeffizienten des Verfahrens beinhalten und $e=(1,\ldots,1)^T \in \mathbb{R}^s$ gilt. $R(z)$ wird als die Stabilitätsfunktion des Verfahrens bezeichnet. Die Stabilitätsfunktion an sich ist nun unabhängig von der Schrittweite und der Dynamik der betrachteten Differentialgleichung und kann damit noch keine endgültige Aussage über die Stabilität des Verfahrens treffen. 
 Um diese zu ermöglichen, gilt es herauszufinden, welche Bedingungen $A$ und $T$ erfüllen müssen, damit die Eigenwerte der Matrix $\tilde{A}$ stabil sind. 
-
 Hierfür wird das Stabilitätsgebiet $S \subset \mathbb{C}$ eines Runge-Kutta-Verfahrens mit Stabilitätsfunktion $R$ definiert als die Menge von Eigenwerten $\lambda_i$, die $TA$ annehmen darf, damit $\tilde{A}=R(TA)$ exponentiell stabil ist. Ein Verfahren wird als $A$-stabil bezeichnet, wenn es für eine stabile Dynamik $A$ unabhängig von der Schrittweite stabil ist.
-
 Das Stabilitätsgebiet entspricht dem Bereich, indem der Betrag der Stabilitätsfunktion kleiner eins ist:
 \begin{align}
 	S = \{z\in\mathbb{C} \big| |R(z)|<1 \}.
@@ -345,22 +343,17 @@ Für das explizite Euler-Verfahren ergibt sich $R_\mathrm{Eu,ex}(z) = 1+z$. Damit
 \begin{align}
 	|R_\mathrm{Eu,ex}(z)| <1  \ \Leftrightarrow \ |1+z|<1,
 \end{align}
-also $S = \{ z\in\mathbb{C} \big| |1+z|<1\} = B_1(-1)$. Die Schrittweite muss also so gewählt werden, dass $T\lambda_i \in B_1(-1)$ gilt. Für das betrachtete Beispielsystem entspricht dies genau (\ref{eq:Tbed}).
-
+also $S = \{ z\in\mathbb{C} \big| |1+z|<1\} = B_1(-1)$. Die Schrittweite muss also so gewählt werden, dass $T\lambda_i \in B_1(-1)$ gilt. Für das betrachtete Beispielsystem entspricht dies genau (\ref{eq:Tbed}).\\
 Für das implizite Euler-Verfahren erhält man $R_\mathrm{Eu,im}(z) = \frac{1}{1-z}$. Für das Stabilitätsgebiet bedeutet das
 \begin{align}
 	|R_\mathrm{Eu,im}(z)| <1  \ \Leftrightarrow \ |1-z|>1,
 \end{align}
-das heißt $S$ ist $\mathbb{C}$ ohne den Kreis $B_1(1)$. Damit ist das implizite Euler-Verfahren -- wie viele implizite Verfahren -- $A$-stabil, was hilfreich bei der Simulation von stabilen Systemen ist. Allerdings enthält das Stabilitätsgebiet auch Bereiche, in denen die Approximation stabil ist, obwohl das eigentliche System instabil ist, wie zum Beispiel $\Re z > 1$. In diesem Fall würde die Instabilität eines Systems in der Simulation möglicherweise unentdeckt bleiben, was eines der Probleme des impliziten Euler-Verfahrens ist und eine Motivation für die Trapezregel liefert. 
-
+das heißt $S$ ist $\mathbb{C}$ ohne den Kreis $B_1(1)$. Damit ist das implizite Euler-Verfahren -- wie viele implizite Verfahren -- $A$-stabil, was hilfreich bei der Simulation von stabilen Systemen ist. Allerdings enthält das Stabilitätsgebiet auch Bereiche, in denen die Approximation stabil ist, obwohl das eigentliche System instabil ist, wie zum Beispiel $\Re z > 1$. In diesem Fall würde die Instabilität eines Systems in der Simulation möglicherweise unentdeckt bleiben, was eines der Probleme des impliziten Euler-Verfahrens ist und eine Motivation für die Trapezregel liefert. \\
 Für diese ergibt sich als Sabiltätsfunktion $R_\mathrm{Trapez}(z)=\frac{z+2}{z-2}$. Das Stabilitätsgebiet entspricht damit genau der linken Halbebene $S_\mathrm{Trapez}=\mathbb{C}^-$. Damit ist die Trapezregel ebenfalls $A$-stabil, enthält jedoch keine Bereiche, in denen ein instabiles System stabil approximiert werden würde. Man bezeichnet diese Tatsache mit 
-\textit{Erhaltung der Isometrie}, das heißt, die Approximation ist genau dann stabil, wenn auch das zu Grunde liegende System exponentiell stabil ist.
-An dieser Stelle wird der Vorteil der impliziten Verfahren gegenüber den expliziten deutlich: Die Stabilitätsbereiche der impliziten Verfahren sind allgemein deutlich größer, als diejenigen der expliziten Verfahren. 
-
-Aufgrund der schwierigen Realisierbarkeit der impliziten Verfahren wurde das Heun-Verfahren auf Basis der Trapezregel und dem expliziten Euler-Verfahren eingeführt. Hierfür ergibt sich die Stabilitätsfunktion $R_\mathrm{Heun}(z) = \frac{1}{2}z^2+z+1$. Das zugehörige Stabilitätsgebiet ist in Abbildung \ref{fig:stabis} zu sehen. Vergleicht man die Stabilitätsgebiete von explizitem Euler-Verfahren und Heun-Verfahren, so wird deutlich, dass das Stabilitätsgebiet des Heun-Verfahrens nur wenig größer ist, als das des expliziten Euler-Verfahrens. 
-
+\textit{Erhaltung der Isometrie}, das heißt, die Approximation ist genau dann stabil, wenn auch das zu Grunde liegende System exponentiell stabil ist.\\
+Aufgrund der schwierigen Realisierbarkeit der impliziten Verfahren wurde das Heun-Verfahren auf Basis der Trapezregel und dem expliziten Euler-Verfahren eingeführt. Hierfür ergibt sich die Stabilitätsfunktion $R_\mathrm{Heun}(z) = \frac{1}{2}z^2+z+1$. Das zugehörige Stabilitätsgebiet ist in Abbildung \ref{fig:stabis} zu sehen. Vergleicht man die Stabilitätsgebiete von explizitem Euler-Verfahren und Heun-Verfahren, so wird deutlich, dass das Stabilitätsgebiet des Heun-Verfahrens nur wenig größer ist, als das des expliziten Euler-Verfahrens. \\
 Ein größeres Stabilitätsgebiet kann zum Beispiel mit dem \textit{klassischen} Runge-Kutta-Verfahren mit der Stabilitätsfunktion $R_{RK}(z)=\frac{1}{24}z^4+\frac{1}{6}z^3+\eh z^2+z+1$ erreicht werden. Ähnlich, wie bei den impliziten Verfahren treten hier jedoch kleine Bereiche auf, in denen ein instabiles System zu einer stabilen Approximation führen würde.
-Grundsätzlich gilt für explizite Runge-Kutta-Verfahren: Je Höher die Ordnung des Verfahrens, desto größer das Stabilitätsgebiet.
+Grundsätzlich gilt für explizite Runge-Kutta-Verfahren: Je Höher die Ordnung des Verfahrens, desto größer das Stabilitätsgebiet. Bei der Betrachtung der Stabilitätsgebiete wird auch der große Vorteil der impliziten Verfahren gegenüber expliziten Verfahren deutlich. Zwar gibt es auch implizite Verfahren, die nur kleine Stabilitätsgebiete besitzen und damit schlecht für die Lösung steifer Differentialgleichungen geeignet sind, jedoch sind die Stabilitätsgebiete von expliziten Verfahren im Allgemeinen kleiner, als die der impliziten Verfahren.
 \begin{figure}
 \centering
 \input{inhalt/Grafiken/stabis.tex}
@@ -369,7 +362,24 @@ Grundsätzlich gilt für explizite Runge-Kutta-Verfahren: Je Höher die Ordnung des
 \end{figure}
 
 \subsection{Mehrschrittverfahren}
-
+Die Stabilität von Mehrschrittverfahren ist nicht so einfach allgemein nachzuweisen, wie bei den allgemeinen Runge-Kutta Verfahren. In \cite{gruene} wird gezeigt, dass die \glqq Stabilität\grqq \ des Polynoms $P_a(z)$ eine Voraussetzung für die \textit{Konvergenz} des Fehlers eines Mehrschrittverfahrens darstellt. Dabei gilt das Polynom als stabil, wenn für alle Nullstellen $\lambda_i$ gilt:
+\begin{align}
+	&|\lambda_i| \leq 1, \\
+	&|\lambda_i|=1 \ \Rightarrow \text{$\lambda_i$ ist einfache Nullstelle.}
+\end{align}
+Diese \glqq Stabilitätsbedingung\grqq \ darf jedoch nicht mit den für Einschrittverfahren gezeigten Stabilitätskriterien verwechselt werden, da sie noch keine Aussage über die tatsächliche Stabilität des Verfahrens trifft, sondern lediglich die Konvergenz des Fehlers ermöglicht, welche bei den Einschrittverfahren ohnehin vorausgesetzt wurde.
+Da eine allgemeine Aussage über die Stabilität eines Mehrschrittverfahrens schwierig ist, wird in \cite{friedrich} gezeigt, dass die Stabilität eines Verfahrens im konkreten Fall überpüft werden kann, indem es folgendermaßen umgeformt wird:
+\begin{align}
+	x_{i+1}+a_{k-1}x_{i}+a_{k-2}x_{i-1}+\ldots+a_0 x_{i+1-k}=0.
+\end{align}
+Das heißt, die Koeffizienten $a_l (l=0,\ldots,s-1)$ beinhalten bereits die Koeffizienten des gewählten Verfahrens, sowie die gewählte Schrittweite. Ähnlich wie bei der Herleitung der Polynome $P_a(z)$ und $P_b(z)$ erhält man damit ein \textit{charakteristisches Polynom}
+\begin{align}
+	P_k(z) = z^k + a_{k-1}z^{k-1}+ a_{k-2}z^{k-2}+\ldots+a_0 = \sum\limits_{l=0}^{k}a_l z^l. 
+\end{align}
+Das gewählte Verfahren ist mit der verwendeten Schrittweite genau dann stabil, wenn für alle Nullstellen des charakteristischen Polynoms $z_l, (l=1,\ldots,k)$ gilt:
+\begin{align}
+	|z_l| < 1.
+\end{align}
 
 
 \section{Anwendung der Integrationsmethoden in Simulationssoftware}
