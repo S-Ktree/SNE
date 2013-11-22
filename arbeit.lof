@@ -1,8 +1,10 @@
 \select@language {ngerman}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Simulation des Beispielsystems mit explizitem Euler-Verfahren\relax }}{12}{figure.caption.55}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Stabilit\"atsgebiete f\"ur einige Einschrittverfahren\relax }}{14}{figure.caption.63}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Simulation des Beispielsystems mit explizitem Euler-Verfahren\relax }}{12}{figure.caption.48}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Stabilit\"atsgebiete f\"ur einige Einschrittverfahren\relax }}{15}{figure.caption.56}
+\addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

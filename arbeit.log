@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.17)  22 NOV 2013 16:38
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.17)  22 NOV 2013 17:39
 entering extended mode
 **arbeit.tex openout_any=a
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.tex"
@@ -1395,36 +1395,26 @@ Kapitel 1.
 
 ] ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/hauptteil.tex"
 Kapitel 2.
-
-Overfull \hbox (6.20282pt too wide) in paragraph at lines 6--8
-[]\T1/aer/m/n/12 Ausgangslage: Nu-me-ri-sche Lö-sung von An-fangs-wert-pro-ble-
-men. Sys-te-me be-schrie-ben durch
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [2
+[2
 
 
 
-]
-[3] [4]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5]
-[6]
-LaTeX Font Info:    Try loading font information for T1+aett on input line 202.
+] [3] [4] [5] [6]
+LaTeX Font Info:    Try loading font information for T1+aett on input line 195.
 
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 ) [7] [8]
-Overfull \hbox (5.08762pt too wide) in paragraph at lines 229--231
+Overfull \hbox (5.08762pt too wide) in paragraph at lines 222--224
 []\T1/aer/m/n/12 Die hier-für am häu-figs-ten ver-wen-de-ten Mehr-schritt-ver-f
 ah-ren sind die so ge-nann-ten Adams-
  []
 
 [9] [10]
+Kapitel 3.
+[11
+
+]
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/Grafiken/euler_ex.te
 x"
 Missing character: There is no ; in font nullfont!
@@ -1432,15 +1422,13 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-) [11]
-Underfull \vbox (badness 2922) has occurred while \output is active []
-
- [12]
-Underfull \hbox (badness 6173) in paragraph at lines 338--340
+) [12]
+Underfull \hbox (badness 6173) in paragraph at lines 332--334
 \T1/aer/m/n/12 Ab-hän-gig-keit der Ei-gen-wer-te von $\OML/cmm/m/it/12 A$ \T1/a
 er/m/n/12 be-rech-nen. Es gilt zu be-ach-ten, dass
  []
 
+[13]
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/Grafiken/stabis.tex"
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -1448,25 +1436,25 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 )
-Underfull \vbox (badness 1087) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [13]
-[14]
-LaTeX Font Info:    Try loading font information for OMS+aer on input line 389.
+ [14]
+[15] [16]
+Kapitel 4.
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 383.
 
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\omsaer.fd"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\omsaer.fd"
 File: omsaer.fd 1999/12/27
 )
 LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 389.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 383.
+ [17
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [15]
-[16]) [17]
+] [18])
+[19]
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/zusammenfassung.tex"
-Kapitel 3.
-) [18
+Kapitel 5.
+) [20
 
 
 
@@ -1482,7 +1470,7 @@ Overfull \hbox (129.47337pt too wide) has occurred while \output is active
  [] [] [] [] [] [] 
  []
 
-[19
+[21
 
 
 
@@ -1501,7 +1489,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--57
 \T1/aer/m/n/12 Prince-
  []
 
-[20]
+[22]
 Underfull \hbox (badness 10000) in paragraph at lines 78--78
 []\T1/aer/m/n/10.95 Milne-
  []
@@ -1526,24 +1514,24 @@ Overfull \hbox (0.58221pt too wide) in paragraph at lines 92--92
 \T1/aer/m/n/10.95 Moulton 
  []
 
-[21
+[23
 
 ]
 Anhang B.
-[22
+[24
 
 
 ]
 Anhang C.
-) [23
+) [25
 
-] ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/symbole.tex") [24
+] ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/symbole.tex") [26
 
 
 
 ] ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.bbl")
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 176.
- [25
+ [27
 
 
 ]
@@ -1562,14 +1550,14 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 176.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 176.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 176.
 Package rerunfilecheck Info: File `arbeit.out' has not changed.
-(rerunfilecheck)             Checksum: 4D72038BADD8EB1544DB7022ACAFB46E;2434.
+(rerunfilecheck)             Checksum: 752B97D845A12E8BD6FA37DE0F71171A;2377.
  ) 
 Here is how much of TeX's memory you used:
- 33883 strings out of 494045
- 813232 string characters out of 3145972
- 1642522 words of memory out of 3000000
- 36256 multiletter control sequences out of 15000+200000
- 59189 words of font info for 127 fonts, out of 3000000 for 9000
+ 33865 strings out of 494045
+ 812988 string characters out of 3145972
+ 1640856 words of memory out of 3000000
+ 36249 multiletter control sequences out of 15000+200000
+ 57340 words of font info for 121 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
  65i,20n,78p,50182b,2033s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
@@ -1580,23 +1568,22 @@ rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Pro
 gram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Progr
 am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program 
 Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Fil
-es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Program File
-s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (
-x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86
-)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files (x86)/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program Files (x86)/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
-/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
-/public/amsfonts/symbols/msbm10.pfb>
-Output written on arbeit.pdf (33 pages, 964736 bytes).
+es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files 
+(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x8
+6)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files (x86)/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program Files (x86)/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
+1/public/amsfonts/symbols/msbm10.pfb>
+Output written on arbeit.pdf (35 pages, 959431 bytes).
 PDF statistics:
- 572 PDF objects out of 1000 (max. 8388607)
- 126 named destinations out of 1000 (max. 500000)
+ 570 PDF objects out of 1000 (max. 8388607)
+ 121 named destinations out of 1000 (max. 500000)
  291 words of extra memory for PDF output out of 10000 (max. 10000000)
 

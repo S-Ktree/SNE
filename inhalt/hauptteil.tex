@@ -3,72 +3,65 @@
 NOCH SCHAUEN, DASS f(x,t) oder f(t,x) konsistent dargestellt ist!
 EVENTUELL: $f_{n}= f(x_n,t_n)$ als Schreibweise einfuehren!! Kann einiges erleichtern!
 
-Ausgangslage: Numerische Lösung von Anfangswertproblemen. Systeme beschrieben durch allgemeine Zustandsdarstellung:
-(Zur Einfachheit Eingrößensysteme.)
+Die Modellbildung dynamischer Systeme führt in vielen Fällen naturgemäß zu gewöhnlichen Differentialgleichung (beziehungsweise Differentialgleichungssystemen) in Abhängigkeit der Zeit $t$, so genannten Anfangswertaufgaben:
 \begin{align}
-\dot{\vec{x}}\tt&= \vec{A}\, \vec{x}\tt + \vec{b} \, u\tt,\qquad \vec{x}(0)=\vec{x}_0 \label{eq:DGL}\\
-y\tt&= \vec{c}^T\, \vec{x}\tt
+\dot{x}(t)=f\left(x(t),t\right), \quad x(0)=x_0.
+\label{eq:AWA}
 \end{align}
-Es ergibt sich als Lösung von $\vec{x}\tt$:
+Dabei ist die zeitliche Ableitung der Zustände $\dot{x}(t)=\frac{\d}{\d t}x(t)$ zu einem bestimmten Zeitpunkt in Form der Funktion $f$ berechenbar. Dabei mag die Funktion $f$ auch nicht in analytische Form dargestellt werden können, sondern lediglich der Funktionswert berechenbar sein. Darüber hinaus ist der Anfangswert der Lösung $x(0)=x_0$ bekannt.\\
+Die exakte Lösung dieses Problems ergibt sich durch Integration der zeitlichen Ableitung:
 \begin{align}
 x\tt = x_0 + \int\limits_0^t \dot{x}(x,t) \d t 
+\label{eq:integral}
 \end{align}
-Dafür numerische Lösung erforderlich. Dabei wird mit der (zunächst festen) Schrittweite $T$ gerechnet.
-Schreibweise festlegen: $x_i$ bezeichnet numerischen Wert im $i$-ten Abtastzeitpunkt, $t_i$, die zugehoerigen Zeiten.
-Allgemein soll also in jedem Schritt eine Lösung
+Um derartige Systeme numerisch, das heißt mit Hilfe von Computersystemen zu simulieren, muss eine numerische Approximation dieser Integration durchgeführt werden. Diese soll zu bestimmten, diskreten Zeitpunkten $t=t_i=i \dd T, i=0,\ldots,n$ Näherungslösungen $x_i$ für den Tatsächlichen Funktionswert $x(t_i)$ liefern. Die Schrittweite $T$ legt dabei den Abstand von zwei benachbarten Abtastzeitpunkten $t_i$ fest.
+
+Es soll also allgemein eine Berechnungsvorschrift
 \begin{align}
 	x_{i+1} = \Phi(x, t)
 \end{align}
-mit noch unbekannter Verfahrensfunktion $\Phi(x,t)$ bestimmt werden.
+mit der Verfahrensfunktion $\Phi(x,t)$ bestimmt werden, welche zum einen eine möglichst genaue Approximation der tatsächlichen Lösung liefert. Zum anderen soll das Verfahren so gewählt werden, dass auch komplexe Systeme approximiert werden können, das heißt, es ist erstrebenswert, den dabei anfallenden Rechenaufwand gering zu halten.
 
+Im Folgenden werden verschiedene Verfahren zur Integration vorgestellt. Diese werden in Einschrittverfahren, Einschrittverfahren mit Schrittweitensteuerung und Mehrschrittverfahren unterteilt. Soweit nicht anders angegeben wird sich dabei auf \cite{gruene} bezogen.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Einschrittverfahren}
 \subsection{Explizites Eulerverfahren}
-Einfachstes Verfahren, ergibt sich aus dem Taylor-Satz erster Ordnung. Steigung wird in jedem Zeitschritt berechnet und als konstant angenommen. (Zur Verdeutlichung im Zuge dieser Arbeit nur eine Zustandsgröße!)
+Der einfachste Ansatz, (\ref{eq:integral}) zu approximieren, ist, die Steigung der Funktion $x(t)$ im Zeitintervall zwischen $t_i$ und $t_{i+1}$ als konstant anzunehmen. Dies entspricht dem Taylor-Satz erster Ordnung und führt auf die Berechnungsvorschrift
 \begin{align}
-		&\frac{\d x}{\d t}=\lambda \dd x + b\dd u \\
-		\Rightarrow & \frac{\Delta x}{T} = \lambda \dd x + b \dd u \\
-		\Rightarrow & x_{i+1} = x_i+\Delta x_i = x_i + (\lambda \dd x_i + b\dd u_i) \dd T\\
-		\Rightarrow & \text{Stabilitätsanalyse mit digitaler Regelung Methoden machen!!}
+		x_{i+1} = x_i + T f(x_i,t_i).
 \end{align}
-
+Dieses Verfahren wird als \textit{explizites Eulerverfahren} bezeichnet. 
 
 \subsection{Impliztes Eulerverfahren}
-Andere Möglichkeit: Annahme der Steigung des $i+1$-ten Schrittes für $\Delta x$.
+Beim expliziten Eulerverfahren wird angenommen, dass die im Zeitpunkt $t_i$ vorliegende Steigung im gesamten Intervall $t_i \ldots t_{i+1}$ gültig ist. Genauso gut könnte angenommen werden, dass im betrachteten Intervall die Steigung des Zeitpunktes $t_{i+1}$ vorliegt:
 \begin{align}
-	x_{i+1}&= x_i + \Delta x_{i+1}\\
-	x_{i+1}&=x_i + \Delta x_{i+1} \ \text{mit}\\
-	\Delta x_{i+1} &= (\lambda \dd x_{i+1} + b \dd u_{i+1}) \dd T \ \text{(vorherige Gl. einsetzen)}\\
-	\Rightarrow \Delta x_{i+1}&= (1-\lambda \dd T)^{-1} \dd (b\dd u_{i+1} + \lambda x_i)\dd T
+	x_{i+1}&= x_i + f(x_{i+1},t_{i+1})
 \end{align}
-Es ergibt sich eine implizite Gleichung für die Steigung, und $u_{i+1}$ erforderlich.
-Besonders: Führt immer zu Stabilität (unabhängig von der Schrittweite), wenn System stabil! (Eigenwerte anschauen!) ABER: oft auch für instabile Systeme stabil!
+In diesem Fall ergibt sich eine implizite Gleichung für den approximierten Wert $x_{i+1}$, welche nur unter Kenntnis von $f$ aufgelöst werden kann. Deshalb wird das Verfahren als \textit{implizites Eulerverfahren} bezeichnet.
 
-\subsection{Trapezregel/Heun-Verfahren}Referenz auf SIEMENS SKRIPT
-Kombination der beiden Euler-Verfahren $\Rightarrow$ höhere Genauigkeit!\\
-Mittelwert der Steigungen im $i$-ten und $i+1$-ten Schritt:
+\subsection{Trapezregel/Heun-Verfahren}
+Einen Ansatz, die Verfahren zu verbessern, liefert die so genannte \textit{Trapezregel}. Bei dieser werden die beiden Euler-Verfahren gewissermaßen kombiniert.
+Dabei nimmt man für die Steigung im betrachteten Intervall den Mittelwert der Steigungen im $i$-ten und $i+1$-ten Schritt an:
 \begin{align}
 	x_{i+1} &= x_i + \Delta x_i = \\
-			& = x_i + T \dd \eh \dd \Big(f\big(x_i,t\big) + f\big(x_{i+1},t+T\big)  \Big).
+			& = x_i + T \dd \eh \dd \Big(f\big(x_i,t_i\big) + f\big(x_{i+1},t_{i+1}\big)  \Big).
 \end{align}
-Dadurch ergibt sich allgemein ebenfalls ein implizites Verfahren. Dies kann nun also möglicherweise nichtlineares Gleichungssystem gelöst werden, oder durch Abschätzung des unbekannten Wertes $f\big(x_{i+1},t+T\big)$ durch das explizite Euler-Verfahren erhält man das Heun-Verfahren nach \cite{gruene}:
+Dadurch ergibt sich allgemein ebenfalls ein implizites Verfahren. Um das Auflösen der impliziten Gleichung zu umgehen, kann der unbekannten Wert $f\big(x_{i+1},t_{i+1}\big)$ durch das explizite Euler-Verfahren abgeschätzt werden. Dies führt auf das \textit{Heun-Verfahren}:
 \begin{align*}
-	x_{i+1} &= x_i + \Delta x_i = \\
-			& = x_i + T \dd \eh \dd \Big(f\big(x_i,t\big) + f\big( x_i +  T \dd f(x_i,t)  ,t+T\big) \Big).
+	x_{i+1}	= x_i + T \dd \eh \dd \Big(f\big(x_i,t_i\big) + f\big( x_i +  T \dd f(x_i,t_i)  ,t_{i+1}\big) \Big).
 \end{align*}
-%Weitere Möglichkeiten, siehe Extrapolationsverfahren.
 
 \subsection{Runge-Kutta-Verfahren}
-Um die bisher betrachteten Methoden zu verbessern, gibt es mehrere Ansätze. Ein naheliegender Gedanke ist, statt nur der Rechten Seite der gew. DGL (REF!), Zeitableitungen höherer Ordnung in die Abschätzung einzubauen. Dies führt zu den Taylor-Methoden, welche auf der Taylor-Satz basieren.
-Da die Differentation der Rechten Seite jedoch nach \cite{gruene} mit verhältnismäßig großem rechnerischen Aufwand verbunden ist, sind diese Verfahren in der Praxis eher ungebräuchlich und sollen im Rahmen dieser Arbeit nicht näher betrachtet werden.
+Um die bisher betrachteten Methoden zu verbessern, gibt es mehrere Ansätze. Ein naheliegender Gedanke ist, statt nur der rechten Seite der Differentialgleichung (\ref{eq:AWA}), Zeitableitungen höherer Ordnung in die Abschätzung einzubauen. Dies führt zu den Taylor-Methoden, welche auf dem Taylor-Satz basieren.
+Da die Differentation der Rechten Seite jedoch nach mit verhältnismäßig großem rechnerischen Aufwand verbunden ist, sind diese Verfahren in der Praxis eher ungebräuchlich und sollen im Rahmen dieser Arbeit nicht näher betrachtet werden.
 
-Wie in \cite{gruene} gezeigt wird, lässt sich der \textit{globale} Fehler $e(t_i):= \norm{x_i - x(t_i)}$ gängiger Integrationsverfahren durch
+Für die betrachteten Integrationsverfahren lässt sich der \textit{globale} Fehler $e(t_i):= \norm{x_i - x(t_i)}$ durch
 \begin{align}
 	e(t) = \mathcal{O}(T^p)
 \end{align}
-abschätzen. (Getroffene Annahmen über die rechte Seite der DGL (\ref{eq:DGL}) sollen im Rahmen dieser Arbeit außer Acht gelassen werden und können in \cite{gruene} nachgelesen werden.) Dabei legt die Konsistenzordnung $p$ fest, wie schnell der globale Fehler gegen Null geht, wenn die Schrittweite verkleinert wird. Es kann gezeigt werden, dass die Konsistenzordnung der Euler-Verfahren $p=1$ beträgt. Das Heun-Verfahren ist mit $p=2$ bereits deutlich genauer.\\
+abschätzen. (Getroffene Annahmen über die rechte Seite der Differentialgleichung (\ref{eq:AWA}) sollen im Rahmen dieser Arbeit außer Acht gelassen werden und können in \cite{gruene} nachgelesen werden.) Dabei legt die Konsistenzordnung $p$ fest, wie schnell der globale Fehler gegen Null geht, wenn die Schrittweite verkleinert wird. Es kann gezeigt werden, dass die Konsistenzordnung der Euler-Verfahren $p=1$ beträgt. Das Heun-Verfahren ist mit $p=2$ bereits deutlich genauer.\\
 Deshalb ist der erste Ansatz in der Praxis, die Idee der Trapezregel beziehungsweise des Heun-Verfahrens weiter zu führen und die Konvergenzordnung der Verfahren durch weitere Stützstellen zu erhöhen.
-Dies führt zum allgemeinen Ansatz der $s$-\textit{stufigen} expliziten Runge-Kutta-Verfahren:
+Dies führt zum allgemeinen Ansatz der $s$-\textit{stufigen expliziten Runge-Kutta-Verfahren}:
 \begin{align}
 	\Phi(x,t,T)&= x + T\, \sum\limits_{i=1}^s b_i\,k_i, \quad \text{mit} \\
 	k_i &= f\left( t+c_i T,  x_k + T \,\sum\limits_{j=1}^{i-1} a_{ij} k_j    \right) \quad \text{für } i=1,\ldots,s.
@@ -90,7 +83,7 @@ $\\[\baselineskip]
 \caption{Allgemeines Butcher-Schema expliziter Runge-Kutta-Verfahren}
 \label{tab:ButEx}
 \end{table}
-Sowohl das explizite Euler-Verfahren (s=p=1), als auch das Heun-Verfahren (s=p=2) lassen sich auf diese Weise beschreiben. Darüber hinaus ist das \textit{klassische} Runge-Kutta-Verfahren (s=p=4) von großer Bedeutung. Für diese Verfahren ergeben sich die in Tabelle \ref{tab:Butcherexamples} dargestellten Butcher-Schemata:
+Sowohl das explizite Euler-Verfahren (s=p=1), als auch das Heun-Verfahren (s=p=2) lassen sich auf diese Weise beschreiben. Darüber hinaus ist das \textit{klassische} Runge-Kutta-Verfahren (s=p=4) von großer Bedeutung. Für diese Verfahren ergeben sich die in Tabelle \ref{tab:Butcherexamples} dargestellten Butcher-Schemata.
 \begin{table}
 \centering
 $
@@ -114,7 +107,7 @@ $\\[\baselineskip]
 \caption{Butcher-Schemata für (von links nach rechts): Euler-Verfahren, Heun-Verfahren, \textit{klassisches} Runge-Kutta-Verfahren}
 \label{tab:Butcherexamples}
 \end{table}
-Die selbe Vorgehensweise lässt sich für implizite Verfahren anwenden, sodass sich als Berechnungsvorschrift für $s$-\textit{stufige} implizite Runge-Kutta-Verfahren ergibt:
+Die selbe Vorgehensweise lässt sich für implizite Verfahren anwenden, sodass sich als Berechnungsvorschrift für $s$-\textit{stufige implizite Runge-Kutta-Verfahren} ergibt:
 \begin{align}
 	\Phi(x,t,T) &= x + T\, \sum\limits_{i=1}^s b_i \, k_i \quad \text{mit}\\
 	k_i &= f\left(  t+c_i T , x_k + T\, \sum\limits_{j=1}^{s} a_{ij}k_j  \right) \quad \text{für } i=1,\ldots,s. 
@@ -140,11 +133,11 @@ $\\[\baselineskip]
 \caption{Butcher-Schemata für implizite Verfahren (von links nach rechts): Euler, Mittelpunktsregel, Trapezregel}
 \label{tab:ButcherIm}
 \end{table}
-Der Vorteil der impliziten Verfahren gegenüber den expliziten Verfahren wird sich bei Betrachtung des Stabilitätsverhaltens zeigen. 
+Der Vorteil der impliziten Verfahren gegenüber den expliziten Verfahren wird sich bei Betrachtung des Stabilitätsverhaltens in Kapitel \ref{sec:stabi} zeigen. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Schrittweitensteuerung (Adaption)}
-Um die Verfahren weiter zu verbessern, liegt der Gedanke nahe, die bisher als konstant angenommene Schrittweite $T$ als steuerbar anzusehen, sodass $T_i$ an Stellen, bei welchen sich der Funktionswert stärker ändert, kleiner gewählt werden kann und an Stellen langsamer Änderungen hingegen größer. Aus Gründen der numerischen Effizienz ist es üblich, dass im $i$-ten Zeitschritt eine \glqq gute\grqq \ Schrittweite für den Übergang von $t_i$ nach $t_{i+1}$ bestimmt wird, jedoch keine Anpassung von vorhergehenden Schrittweiten mehr erfolgt.
+Um die Verfahren weiter zu verbessern und gleichzeitig Rechenzeit einzusparen, liegt der Gedanke nahe, die bisher als konstant angenommene Schrittweite $T$ als steuerbar anzusehen, sodass $T_i$ an Stellen, bei welchen sich der Funktionswert stärker ändert, kleiner gewählt werden kann und an Stellen langsamer Änderungen hingegen größer. Aus Gründen der numerischen Effizienz ist es üblich, dass im $i$-ten Zeitschritt eine \glqq gute\grqq \ Schrittweite für den Übergang von $t_i$ nach $t_{i+1}$ bestimmt wird, jedoch keine Anpassung von vorhergehenden Schrittweiten mehr erfolgt.
 
 Um die Schrittweite anzupassen wird gefordert, dass der \textit{lokale} Fehler $\varepsilon(t)$ unter einer gewissen Toleranzgrenze $tol$ liegen soll. Der \textit{lokale} Fehler ist dabei der Anteil am \textit{globalen} Fehler, der durch den Zeitschritt von $t_i$ bis $t_{i+1}$ hervorgerufen wird. Da die exakte Lösung des Funktionsverlaufs nicht bekannt ist, wird für das verwendete Verfahren $\Phi$ mit Konsistenzordnung $p$ ein anderes Verfahren $\hat{\Phi}$ zur Abschätzung des Fehlers herangezogen. Die Konsistenzordnung des zweiten Verfahrens $\hat{p}$ wird kleiner als die des verwendeten Verfahrens gewählt, sodass $p \geq \hat{p}+1$ gilt. Der Schritt von $t_i$ nach $t_{i+1} = t_i+T_i$ wird mit beiden Verfahren berechnet und die Norm der Differenz der Ergebnisse als \textit{Fehlerschätzer} $\overline{\varepsilon}$ bezeichnet.
 \begin{equation}
@@ -273,7 +266,8 @@ Eine weitere Klasse der Mehrschrittverfahren sind die so genannten \textit{Backw
 % Ausblick:(?) Extrapolationsverfahren und Adaptive Verfahren
 
 
-\section{Stabilitätsanalyse der wichtigsten Methoden}
+\chapter{Stabilitätsanalyse der wichtigsten Methoden}
+\label{sec:stabi}
 VIELLEICHT EINFACH: METHODEN AUS DIGITALE REGELUNG ANWENDEN, HILFE VON GRUENE UND NETOMAC SKRIPT!
 Neben der Konvergenz des Fehlers mit der Schrittweite $e(t) = \mathcal{O}(T^p)$ ist für die Anwendbarkeit eines Verfahrens entscheidend, welche Voraussetzungen an die Schrittweite gestellt werden müssen, damit das Verfahren bei der Lösung von Differentialgleichungen stabil ist. Unter der Stabilität soll in diesem Zusammenhang die exponentielle Stabilität verstanden werden, wie sie in \cite{gruene} beschrieben wird. Um die Betrachtungen zu vereinfachen, soll sich an dieser Stelle auf die Klasse \textit{linearer zeitinvarianter Systeme} beschränkt werden, für die gilt:
 \begin{align}
@@ -281,7 +275,7 @@ Neben der Konvergenz des Fehlers mit der Schrittweite $e(t) = \mathcal{O}(T^p)$ 
 \end{align}
 Aus der Systemtheorie ist bekannt, dass ein solches System genau dann exponentiell stabil ist, wenn für alle Eigenwerte der Matrix $A$ gilt: $\Re \lambda_i < 0$, das heißt, die Eigenwerte liegen in der linken Halbebene der komplexen Zahlenebene $\mathbb{C}^-$.
 
-\subsection{Steife Differentialgleichungen}
+\section{Steife Differentialgleichungen}
 Zur Einführung soll das Anfangswertproblem
 \begin{align}
 	\dot{x}=\lambda x,\quad x(0)=x_0
@@ -311,7 +305,7 @@ In Abbildung \ref{fig:example} ist die Approximation von Gleichung (\ref{eq:bsp}
 \label{fig:example}
 \end{figure}
 
-\subsection{Einschrittverfahren}
+\section{Einschrittverfahren}
 Das Beispiel der steifen Differentialgleichungen hat gezeigt, dass durch die Wahl der Schrittweite im allgemeinen das Stabilitätsverhalten des Verfahrens beeinflussen lässt. Im Folgenden sollen Bedingungen aufgezeigt werden, die an die Schrittweite gestellt werden müssen, um die Stabilität eines Verfahrens allgemein zu gewährleisten.
 
 Nach \cite{gruene} lassen sich alle Runge-Kutta-Verfahren mit konstanter Schrittweite, also alle bisher betrachteten Einschrittverfahren ohne Schrittweitensteuerung durch die Differenzengleichung
@@ -361,7 +355,7 @@ Grundsätzlich gilt für explizite Runge-Kutta-Verfahren: Je Höher die Ordnung des
 \label{fig:stabis}
 \end{figure}
 
-\subsection{Mehrschrittverfahren}
+\section{Mehrschrittverfahren}
 Die Stabilität von Mehrschrittverfahren ist nicht so einfach allgemein nachzuweisen, wie bei den allgemeinen Runge-Kutta Verfahren. In \cite{gruene} wird gezeigt, dass die \glqq Stabilität\grqq \ des Polynoms $P_a(z)$ eine Voraussetzung für die \textit{Konvergenz} des Fehlers eines Mehrschrittverfahrens darstellt. Dabei gilt das Polynom als stabil, wenn für alle Nullstellen $\lambda_i$ gilt:
 \begin{align}
 	&|\lambda_i| \leq 1, \\
@@ -382,9 +376,9 @@ Das gewählte Verfahren ist mit der verwendeten Schrittweite genau dann stabil, w
 \end{align}
 
 
-\section{Anwendung der Integrationsmethoden in Simulationssoftware}
-\subsection{PSS Nettomac}
-\subsection{PowerFactory}
+\chapter{Anwendung der Integrationsmethoden in Simulationssoftware}
+\section{PSS Nettomac}
+\section{PowerFactory}
 RMS Simulation Algorithms \\
 \textbullet     Highly accurate, fixed or variable step-size integration technique for solving AC and DC network load 
 flow and dynamic model equations. This is combined with a non-linear electromechanical model 
@@ -402,8 +396,8 @@ avoid numerical oscillations caused by switching devices and other non-linear ch
 \textbullet    Highly accurate, fixed or variable step-size integration technique for solving AC and DC network 
 transients and dynamic model equations. This is combined with a non-linear electromechanical model 
 representation to enable a high degree of solution accuracy, algorithmic stability and time range validity. 
-\subsection{PSSE}
-\subsection{Eurostag}
+\section{PSSE}
+\section{Eurostag}
 The advanced dynamic functions of EUROSTAG® allow for the full range of transient, mid and long-term stability to be covered thanks to a robust algorithm using an auto-adaptative integration stepsize.
 
 
