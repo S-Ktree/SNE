@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.17)  21 NOV 2013 17:01
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.17)  22 NOV 2013 12:29
 entering extended mode
 **arbeit.tex openout_any=a
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.tex"
@@ -1199,6 +1199,17 @@ File: tikzlibrarypositioning.code.tex 2008/10/06 v2.10 (rcs-revision 1.7)
 s\tikzlibraryplothandlers.code.tex"
 File: tikzlibraryplothandlers.code.tex 2008/01/09 v2.10 (rcs-revision 1.1)
 )
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
+s\tikzlibrarypatterns.code.tex"
+File: tikzlibrarypatterns.code.tex 2008/01/15 v2.10 (rcs-revision 1.2)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibrarypattern
+s.code.tex"
+File: pgflibrarypatterns.code.tex 2008/03/03 v2.10 (rcs-revision 1.13)
+))
+\hatchspread=\skip68
+\hatchthickness=\skip69
+\hatchshift=\skip70
 \@indexfile=\write4
 
 Writing index file arbeit.idx
@@ -1212,20 +1223,20 @@ Writing index file arbeit.idx
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/zusammenfassung.aux"
 ) ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/anhang.aux")
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/symbole.aux"))
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 91.
-LaTeX Font Info:    ... okay on input line 91.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
@@ -1252,9 +1263,9 @@ Package caption Info: End \AtBeginDocument code.
 \everyMPtoPDFconversion=\toks48
 )
 \c@lstlisting=\count284
-Package scrhack Info: undefining \float@addtolists on input line 91.
+Package scrhack Info: undefining \float@addtolists on input line 126.
 \AtBeginShipoutBox=\box70
-Package hyperref Info: Link coloring ON on input line 91.
+Package hyperref Info: Link coloring ON on input line 126.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
 
@@ -1263,9 +1274,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count285
 )
-LaTeX Info: Redefining \ref on input line 91.
-LaTeX Info: Redefining \pageref on input line 91.
-LaTeX Info: Redefining \nameref on input line 91.
+LaTeX Info: Redefining \ref on input line 126.
+LaTeX Info: Redefining \pageref on input line 126.
+LaTeX Info: Redefining \nameref on input line 126.
 
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.out")
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.out")
@@ -1276,7 +1287,7 @@ ABD: EveryShipout initializing macros
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.9} into y
 our preamble.
- on input line 91.
+ on input line 126.
 
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/makros.tex"
 .................................................
@@ -1341,7 +1352,8 @@ Underfull \hbox (badness 10000) in alignment at lines 11--11
  []
 
 )
-LaTeX Font Info:    Try loading font information for T1+aess on input line 97.
+LaTeX Font Info:    Try loading font information for T1+aess on input line 132.
+
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aess.fd"
 File: t1aess.fd 1997/11/16 Font definitions for T1/aess.
 ) [1
@@ -1427,12 +1439,12 @@ er/m/n/12 be-rech-nen. Es gilt zu be-ach-ten, dass
  []
 
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/Grafiken/stabis.tex"
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
 )
-Overfull \hbox (24.67429pt too wide) in paragraph at lines 353--356
-\T1/aer/m/n/12 Tra-pez-re-gel lie-fert. [] 
- []
-
-
 Underfull \vbox (badness 7433) has occurred while \output is active []
 
  [13]
@@ -1444,11 +1456,8 @@ File: omsaer.fd 1999/12/27
 )
 LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 362.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14]
-[15]) [16]
+ [14] [15])
+[16]
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/zusammenfassung.tex"
 Kapitel 3.
 ) [17
@@ -1527,12 +1536,12 @@ Anhang C.
 
 
 ] ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.bbl")
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 141.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 176.
  [24
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 141.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 176.
 
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.aux"
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/makros.aux")
@@ -1544,19 +1553,19 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 141.
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/zusammenfassung.aux"
 ) ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/anhang.aux")
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/symbole.aux"))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 141.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 141.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 176.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 176.
 Package rerunfilecheck Info: File `arbeit.out' has not changed.
 (rerunfilecheck)             Checksum: 26D47B40F0D9F2ADD86AA0C0B150E29A;2358.
  ) 
 Here is how much of TeX's memory you used:
- 33793 strings out of 494045
- 888184 string characters out of 3145972
- 1692188 words of memory out of 3000000
- 36181 multiletter control sequences out of 15000+200000
+ 33870 strings out of 494045
+ 813071 string characters out of 3145972
+ 1635666 words of memory out of 3000000
+ 36252 multiletter control sequences out of 15000+200000
  59189 words of font info for 127 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 65i,20n,78p,5274b,2027s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 65i,20n,78p,50182b,2028s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:
@@ -1579,9 +1588,9 @@ nts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
 ype1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
 e1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
 /public/amsfonts/symbols/msbm10.pfb>
-Output written on arbeit.pdf (32 pages, 959809 bytes).
+Output written on arbeit.pdf (32 pages, 954309 bytes).
 PDF statistics:
- 550 PDF objects out of 1000 (max. 8388607)
+ 551 PDF objects out of 1000 (max. 8388607)
  117 named destinations out of 1000 (max. 500000)
- 279 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 283 words of extra memory for PDF output out of 10000 (max. 10000000)
 

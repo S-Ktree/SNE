@@ -5,8 +5,8 @@ clear all;
 renum=1;
 imnum=1;
 
-re = -4:0.1:2;
-im = -6:0.1:6;
+re = -4:0.01:2;
+im = -6:0.01:6;
 %[X,Y]=meshgrid(re,im);
 
 % eulerex(1201,601)=0;
@@ -14,8 +14,8 @@ im = -6:0.1:6;
 % trapez(1201,601)=0;
 % heun(1201,601)=0;
 % RK(1201,601)=0;
-for real = -4:0.1:2
-    for imagin = -6:0.1:6;
+for real = -4:0.01:2
+    for imagin = -6:0.01:6;
         z=real+1i*imagin;
         if (abs(1+z))<1
            eulerex(imnum,renum)= 1;
@@ -52,19 +52,22 @@ end
 %% Plotten
 close all;
 [X,Y]=meshgrid(re,im);
+
 figure;
 hold on;
 axis equal;
 axis([-4 2 -4 4]);
+% conv2 irgendwie verwenden aber herausfinden wie!!??
 
-
-contour(X,Y,eulerex,'k--','linewidth',2);
-contour(X,Y,eulerim,'r--','linewidth',2);
-contour(X,Y,trapez,'g--','linewidth',2);
-contour(X,Y,heun,'b--','linewidth',2);
-contour(X,Y,RK,'m--','linewidth',2);
+[C,h]=contour(X,Y,eulerex,1,'k--','linewidth',2,'LineStyle','-','LevelStep',2.0);
+contour(X,Y,eulerim,'r--','linewidth',2,'LineStyle','-','LevelStep',2.0);
+contour(X,Y,trapez,'g--','linewidth',2,'LineStyle','-','LevelStep',2.0);
+contour(X,Y,heun,'b--','linewidth',2,'LineStyle','-','LevelStep',2.0);
+contour(X,Y,RK,'m--','linewidth',2,'LineStyle','-','LevelStep',2.0);
 grid on;
 colormap(gray);
 
 %% exportieren
 matlab2tikz('stabis.tex');
+
+%% Gridfit testen: SCHEIßE!
