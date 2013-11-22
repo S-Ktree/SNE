@@ -223,7 +223,7 @@ Ein Beispiel für ein Mehrschrittverfahren ist das (implizite) Milne-Simpson-Verf
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Adams-Verfahren/Prädiktor-Korrektor-Verfahren}
-Wie auch bei den Einschrittverfahren können Mehrschrittverfahren in explizite und implizite Verfahren unterteilt werden. In \cite{faires} wird gezeigt, dass implizite Verfahren im allgemeinen erheblich bessere Ergebnisse erzielen, als explizite Verfahren, jedoch das Auflösen der impliziten Gleichung nach dem gesuchten Funktionswert mit starkem Rechenaufwand verbunden sein kann.\\
+Wie auch bei den Einschrittverfahren können Mehrschrittverfahren in explizite und implizite Verfahren unterteilt werden. In \cite{faires} wird gezeigt, dass implizite Verfahren im allgemeinen erheblich bessere Ergebnisse erzielen, als explizite Verfahren, jedoch das Auflösen der impliziten Gleichung nach dem gesuchten Funktionswert nicht realisierbar sein kann oder zumindest mit erheblichem Rechenaufwand verbunden ist.\\
 Dies führt zu dem Gedanken, Approximationen, welche durch ein explizites Verfahren gewonnen wurden, durch ein implizites Verfahren zu verbessern. Diese Kombination aus explizitem und implizitem Verfahren wird als Prädiktor-Korrektor-Verfahren bezeichnet. 
 
 Die hierfür am häufigsten verwendeten Mehrschrittverfahren sind die so genannten Adams-Verfahren. Dabei werden die expliziten Verfahren als \textit{Adams-Bashforth-Verfahren} und die impliziten Verfahren als \textit{Adams-Moulton-Verfahren} bezeichnet. (KOEFFIZIENTEN SIEHE ANHANG) Die Herleitung dieser Verfahren kann in \cite{gruene} nachvollzogen werden.\\
@@ -351,8 +351,25 @@ Für das implizite Euler-Verfahren erhält man $R_\mathrm{Eu,im}(z) = \frac{1}{1-z
 \begin{align}
 	|R_\mathrm{Eu,im}(z)| <1  \ \Leftrightarrow \ |1-z|>1,
 \end{align}
-das heißt $S$ ist $\mathbb{C}$ ohne den Kreis $B_1(1)$. Damit ist das implizite Euler-Verfahren -- wie viele implizite Verfahren -- $A$-stabil, was hilfreich bei der Simulation von stabilen Systemen ist. Allerdings enthält das Stabilitätsgebiet auch Bereiche, in denen die Approximation stabil ist, obwohl das eigentliche System instabil ist, wie zum Beispiel $\Re z > 1$. In diesem Fall würde die Instabilität eines Systems in der Simulation möglicherweise unentdeckt bleiben, was eines der Probleme des impliziten Euler-Verfahrens ist und eine Motivation für die Trapezregel liefert.
+das heißt $S$ ist $\mathbb{C}$ ohne den Kreis $B_1(1)$. Damit ist das implizite Euler-Verfahren -- wie viele implizite Verfahren -- $A$-stabil, was hilfreich bei der Simulation von stabilen Systemen ist. Allerdings enthält das Stabilitätsgebiet auch Bereiche, in denen die Approximation stabil ist, obwohl das eigentliche System instabil ist, wie zum Beispiel $\Re z > 1$. In diesem Fall würde die Instabilität eines Systems in der Simulation möglicherweise unentdeckt bleiben, was eines der Probleme des impliziten Euler-Verfahrens ist und eine Motivation für die Trapezregel liefert. 
+
+Für diese ergibt sich als Sabiltätsfunktion $R_\mathrm{Trapez}(z)=\frac{z+2}{z-2}$. Das Stabilitätsgebiet entspricht damit genau der linken Halbebene $S_\mathrm{Trapez}=\mathbb{C}^-$. Damit ist die Trapezregel ebenfalls $A$-stabil, enthält jedoch keine Bereiche, in denen ein instabiles System stabil approximiert werden würde. Man bezeichnet diese Tatsache mit 
+\textit{Erhaltung der Isometrie}, das heißt, die Approximation ist genau dann stabil, wenn auch das zu Grunde liegende System exponentiell stabil ist.
+An dieser Stelle wird der Vorteil der impliziten Verfahren gegenüber den expliziten deutlich: Die Stabilitätsbereiche der impliziten Verfahren sind allgemein deutlich größer, als diejenigen der expliziten Verfahren. 
+
+Aufgrund der schwierigen Realisierbarkeit der impliziten Verfahren wurde das Heun-Verfahren auf Basis der Trapezregel und dem expliziten Euler-Verfahren eingeführt. Hierfür ergibt sich die Stabilitätsfunktion $R_\mathrm{Heun}(z) = \frac{1}{2}z^2+z+1$. Das zugehörige Stabilitätsgebiet ist in Abbildung \ref{fig:stabis} zu sehen. Vergleicht man die Stabilitätsgebiete von explizitem Euler-Verfahren und Heun-Verfahren, so wird deutlich, dass das Stabilitätsgebiet des Heun-Verfahrens nur wenig größer ist, als das des expliziten Euler-Verfahrens. 
+
+Ein größeres Stabilitätsgebiet kann zum Beispiel mit dem \textit{klassischen} Runge-Kutta-Verfahren mit der Stabilitätsfunktion $R_{RK}(z)=\frac{1}{24}z^4+\frac{1}{6}z^3+\eh z^2+z+1$ erreicht werden. Ähnlich, wie bei den impliziten Verfahren treten hier jedoch kleine Bereiche auf, in denen ein instabiles System zu einer stabilen Approximation führen würde.
+Grundsätzlich gilt für explizite Runge-Kutta-Verfahren: Je Höher die Ordnung des Verfahrens, desto größer das Stabilitätsgebiet.
+\begin{figure}
+\centering
 \input{inhalt/Grafiken/stabis.tex}
+\caption{Stabilitätsgebiete für einige Einschrittverfahren}
+\label{fig:stabis}
+\end{figure}
+
+\subsection{Mehrschrittverfahren}
+
 
 
 \section{Anwendung der Integrationsmethoden in Simulationssoftware}
