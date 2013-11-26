@@ -41,10 +41,9 @@ In diesem Fall ergibt sich eine implizite Gleichung für den approximierten Wert 
 
 \subsection{Trapezregel/Heun-Verfahren}
 Einen Ansatz, die Verfahren zu verbessern, liefert die so genannte \textit{Trapezregel}. Bei dieser werden die beiden Euler-Verfahren gewissermaßen kombiniert.
-Dabei nimmt man für die Steigung im betrachteten Intervall den Mittelwert der Steigungen im $i$-ten und $i+1$-ten Schritt an:
+Dabei wird für die Steigung im betrachteten Intervall der Mittelwert der Steigungen im $i$-ten und $i+1$-ten Schritt angenommen:
 \begin{align}
-	x_{i+1} &= x_i + \Delta x_i = \\
-			& = x_i + T \dd \eh \dd \Big(f\big(x_i,t_i\big) + f\big(x_{i+1},t_{i+1}\big)  \Big).
+	x_{i+1} = x_i + T \dd \eh \dd \Big(f\big(x_i,t_i\big) + f\big(x_{i+1},t_{i+1}\big)  \Big).
 \end{align}
 Dadurch ergibt sich allgemein ebenfalls ein implizites Verfahren. Um das Auflösen der impliziten Gleichung zu umgehen, kann der unbekannten Wert $f\big(x_{i+1},t_{i+1}\big)$ durch das explizite Euler-Verfahren abgeschätzt werden. Dies führt auf das \textit{Heun-Verfahren}:
 \begin{align*}
@@ -53,20 +52,20 @@ Dadurch ergibt sich allgemein ebenfalls ein implizites Verfahren. Um das Auflöse
 
 \subsection{Runge-Kutta-Verfahren}
 Um die bisher betrachteten Methoden zu verbessern, gibt es mehrere Ansätze. Ein naheliegender Gedanke ist, statt nur der rechten Seite der Differentialgleichung (\ref{eq:AWA}), Zeitableitungen höherer Ordnung in die Abschätzung einzubauen. Dies führt zu den Taylor-Methoden, welche auf dem Taylor-Satz basieren.
-Da die Differentation der Rechten Seite jedoch nach mit verhältnismäßig großem rechnerischen Aufwand verbunden ist, sind diese Verfahren in der Praxis eher ungebräuchlich und sollen im Rahmen dieser Arbeit nicht näher betrachtet werden.
+Da die Differentation der Rechten Seite jedoch mit verhältnismäßig großem rechnerischen Aufwand verbunden ist, sind diese Verfahren in der Praxis eher ungebräuchlich und sollen im Rahmen dieser Arbeit nicht näher betrachtet werden.
 
-Für die betrachteten Integrationsverfahren lässt sich der \textit{globale} Fehler $e(t_i):= \norm{x_i - x(t_i)}$ durch
+Ein anderer Ansatz, die Verfahren zu verbessern ist, zunächst ein Maß einzuführen, mit dem die Verfahren verglichen werden können. Dabei kann gezeigt werden, dass sich für die betrachteten Integrationsverfahren der \textit{globale} Fehler $e(t_i):= \norm{x_i - x(t_i)}$ durch
 \begin{align}
 	e(t) = \mathcal{O}(T^p)
 \end{align}
-abschätzen. (Getroffene Annahmen über die rechte Seite der Differentialgleichung (\ref{eq:AWA}) sollen im Rahmen dieser Arbeit außer Acht gelassen werden und können in \cite{gruene} nachgelesen werden.) Dabei legt die Konsistenzordnung $p$ fest, wie schnell der globale Fehler gegen Null geht, wenn die Schrittweite verkleinert wird. Es kann gezeigt werden, dass die Konsistenzordnung der Euler-Verfahren $p=1$ beträgt. Das Heun-Verfahren ist mit $p=2$ bereits deutlich genauer.\\
+abschätzen lässt. (Getroffene Annahmen über die rechte Seite der Differentialgleichung (\ref{eq:AWA}) sollen im Rahmen dieser Arbeit außer Acht gelassen werden und können in \cite{gruene} nachgelesen werden.) Dabei legt die Konsistenzordnung $p$ fest, wie schnell der globale Fehler gegen Null geht, wenn die Schrittweite verkleinert wird und stellt damit ein Maß für die \glqq Güte\grqq \ des Verfahrens dar. Es kann gezeigt werden, dass die Konsistenzordnung der Euler-Verfahren $p=1$ beträgt. Das Heun-Verfahren ist mit $p=2$ bereits deutlich genauer.\\
 Deshalb ist der erste Ansatz in der Praxis, die Idee der Trapezregel beziehungsweise des Heun-Verfahrens weiter zu führen und die Konvergenzordnung der Verfahren durch weitere Stützstellen zu erhöhen.
-Dies führt zum allgemeinen Ansatz der $s$-\textit{stufigen expliziten Runge-Kutta-Verfahren}:
+Dies führt zum allgemeinen Ansatz der $s$-\textit{stufigen expliziten Runge-Kutta-Verfahren}. Aus Gründen der Übersichtlichkeit wurde der Index $_i$ zum Kennzeichnen des aktuell betrachteten Abtastpunktes im Folgenden weggelassen.
 \begin{align}
 	\Phi(x,t,T)&= x + T\, \sum\limits_{i=1}^s b_i\,k_i, \quad \text{mit} \\
-	k_i &= f\left( t+c_i T,  x_k + T \,\sum\limits_{j=1}^{i-1} a_{ij} k_j    \right) \quad \text{für } i=1,\ldots,s.
+	k_i &= f\left( t+c_i T,  x + T \,\sum\limits_{j=1}^{i-1} a_{ij} k_j    \right) \quad \text{für } i=1,\ldots,s.
 \end{align}
-Dabei wird die Rechte Seite der DGL an den Stützstellen $t+c_i\,T$ berechnet, wobei die vorhergehenden Stützstellen gewichtet mit den Koeffizienten $a_{ij}$ zur Berechnung des zur Stützstelle gehörenden Funktionswertes herangezogen werden. Die Gewichtung der berechneten Steigungen bei der Ermittlung des resultierendes Funktionswertes von $x_{k+1}$ erfolgt durch die Koeffizienten $b_i$. Mit dieser Darstellung ergeben die Runge-Kutta-Verfahren eine unendliche Menge verschiedener Verfahren zur Lösung des Problems.\\
+Dabei wird die Rechte Seite der DGL an den Stützstellen $t+c_i\,T$ berechnet, wobei die vorhergehenden Stützstellen gewichtet mit den Koeffizienten $a_{ij}$ zur Berechnung des zur Stützstelle gehörenden Funktionswertes herangezogen werden. Die Gewichtung der berechneten Steigungen bei der Ermittlung der resultierenden Verfahrensfunktion erfolgt durch die Koeffizienten $b_i$. Mit dieser Darstellung ergeben die Runge-Kutta-Verfahren eine unendliche Menge verschiedener Verfahren zur Lösung des Problems.\\
 Um die Runge-Kutta-Verfahren zu klassifizieren, werden die Koeffizienten $a_{ij},b_{i},c_{i}$ häufig in Form des Butcher-Schemas, nach Tabelle \ref{tab:ButEx} dargestellt.
 \begin{table}
 \centering
@@ -107,10 +106,10 @@ $\\[\baselineskip]
 \caption{Butcher-Schemata für (von links nach rechts): Euler-Verfahren, Heun-Verfahren, \textit{klassisches} Runge-Kutta-Verfahren}
 \label{tab:Butcherexamples}
 \end{table}
-Die selbe Vorgehensweise lässt sich für implizite Verfahren anwenden, sodass sich als Berechnungsvorschrift für $s$-\textit{stufige implizite Runge-Kutta-Verfahren} ergibt:
+\\Die selbe Vorgehensweise lässt sich für implizite Verfahren anwenden, sodass sich als Berechnungsvorschrift für $s$-\textit{stufige implizite Runge-Kutta-Verfahren} ergibt:
 \begin{align}
 	\Phi(x,t,T) &= x + T\, \sum\limits_{i=1}^s b_i \, k_i \quad \text{mit}\\
-	k_i &= f\left(  t+c_i T , x_k + T\, \sum\limits_{j=1}^{s} a_{ij}k_j  \right) \quad \text{für } i=1,\ldots,s. 
+	k_i &= f\left(  t+c_i T , x + T\, \sum\limits_{j=1}^{s} a_{ij}k_j  \right) \quad \text{für } i=1,\ldots,s. 
 \end{align}
 Beispiele für implizite Runge-Kutta-Verfahren sind das bereits kennengelernte implizite Euler-Verfahren (s=p=1), die implizite Mittelpunktsregel (s=p=2), sowie die implizite Trapezregel (s=p=2), deren Butcher-Schemata in Tabelle \ref{tab:ButcherIm} dargestellt sind.
 \begin{table}
@@ -151,7 +150,7 @@ Mit Hilfe der Konvergenzeigenschaften lässt sich zeigen, dass die gewünschte Feh
 angepasst wird. Da dies nur approximativ gilt, wird das Argument der Wurzel in der Praxis jedoch häufig durch einen \glqq Sicherheitsfaktor\grqq \ $f_{ac} \in ]0,1[$ (typisch: $0.9$) skaliert.
 
 Nach der Berechnung des Fehlerschätzers $\overline{\varepsilon}$ im Zeitschritt $i$ wird dieser mit der zulässigen Toleranz verglichen. Ist der berechnete Fehler größer, als die zulässige Toleranz ($\overline{\varepsilon} > tol$), wird der selbe Zeitschritt mit der angepassten Schrittweite $T_{\mathrm{neu}}$ erneut berechnet.\\
-Gilt jedoch $\overline{\varepsilon} \leq tol$, so ist die gewünschte Genauigkeit erreicht und die der Berechnung zu Grunde liegende Schrittweite wird für diesen Zeitschritt angenommen. Nun wird erneut (\ref{eq:Schrittweite}) berechnet und $T_\mathrm{neu}$ als Schrittweite $T_{i+1}$ für den nächsten Zeitschritt angenommen. Dies sorgt dafür, dass die Schrittweite bei hoher Genauigkeit auch vergrößert werden kann.
+Gilt $\overline{\varepsilon} \leq tol$, so ist die gewünschte Genauigkeit erreicht und die der Berechnung zu Grunde liegende Schrittweite wird für diesen Zeitschritt angenommen. Nun wird erneut (\ref{eq:Schrittweite}) berechnet und $T_\mathrm{neu}$ als Schrittweite $T_{i+1}$ für den nächsten Zeitschritt angenommen. Dies sorgt dafür, dass die Schrittweite bei hoher Genauigkeit auch vergrößert werden kann.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Eingebettete Runge-Kutta-Verfahren}
@@ -174,7 +173,7 @@ $\\[\baselineskip]
 \caption{allgemeines Butcher-Schema für eingebettete Runge-Kutta-Verfahren}
 \label{tab:ButcherEin}
 \end{table}
-Wie in \cite{gruene} gezeigt wird, muss in diesem Fall zur Konstruktion eines Verfahrens der Konsistenzordnung $\hat{p}=p-1$ ein Verfahren der Ordnung $\hat{s}=s+1$ gewählt werden. Für das klassische Runge-Kutta-Verfahren (s=p=4) ergibt sich dadurch das Butcher-Schema nach Tabelle \ref{tab:koeffbest}.
+Wie in \cite{gruene} gezeigt wird, muss in diesem Fall zur Konstruktion eines Verfahrens der Konsistenzordnung $\hat{p}=p-1$ ein Verfahren mit Stufenzahl $\hat{s}=s+1$ gewählt werden. Für das klassische Runge-Kutta-Verfahren (s=p=4) ergibt sich dadurch das Butcher-Schema nach Tabelle \ref{tab:koeffbest}.
 \begin{table}
 		\centering
 $
@@ -192,12 +191,12 @@ $\\[\baselineskip]
 \label{tab:koeffbest}
 \end{table}
 Um das zugehörige Verfahren $\hat{\Phi}$ mit $\hat{s}=5$ und $\hat{p}=3$ zu bestimmen, müssen also die unbekannten Koeffizienten in \ref{tab:koeffbest} bestimmt werden. Dies kann in \cite{gruene} nachgelesen werden und soll an dieser Stelle nicht weiter vertieft werden.
-Eines der am weitesten verbreiteten Verfahren ist das Dormand-Prince-RK5(4)-Verfahren, welches in der Numerik-Software \Matlab \ unter dem Namen \verb ode45  standardmäßig eingestellt ist. Die zugehörigen Koeffizienten können in \cite{gruene} nachgelesen werden.
+Eines der am weitesten verbreiteten Verfahren dieser Klasse ist das Dormand-Prince-RK5(4)-Verfahren, welches in der Numerik-Software \Matlab \ unter dem Namen \verb ode45  standardmäßig eingestellt ist. Die zugehörigen Koeffizienten können in Anhang \ref{sec:anheingeb} nachgelesen werden.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Mehrschrittverfahren}
-Die bisher betrachteten Verfahren sind dadurch charakterisiert, dass die Verfahrensfunktion $\Phi(x,t)$ lediglich vom aktuellen Funktionswert $x_k$, sowie bei impliziten Verfahren dem Funktionswert $x_{k+1}$ abhängt. Deshalb werden diese Verfahren als Einschrittverfahren bezeichnet.\\
-Im Gegensatz dazu hängt der Funktionswert $x_{k+1}$ bei Mehrschrittverfahren zusätzlich dazu von einer beliebigen Anzahl an Vorgängerwerten $x_{i-k+1},\ldots,x_i$ ab. Damit wird ein $k$-stufiges lineares Mehrschrittverfahren folgendermaßen definiert:
+Die bisher betrachteten Verfahren sind dadurch charakterisiert, dass die Verfahrensfunktion $\Phi(x,t)$ lediglich vom aktuellen Funktionswert $x_i$ abhängt. Deshalb werden diese Verfahren als Einschrittverfahren bezeichnet.\\
+Im Gegensatz dazu hängt der Funktionswert $x_{i+1}$ bei Mehrschrittverfahren zusätzlich dazu von einer beliebigen Anzahl an Vorgängerwerten $x_{i-k+1},\ldots,x_i$ ab. Damit wird ein $k$-stufiges lineares Mehrschrittverfahren folgendermaßen definiert:
 \begin{align}
 	&a_k x_{i+k}+a_{k-1} x_{i+k-1}+\ldots+a_0 x_i \notag\\
 	&\quad = T\left( b_k f(x_{i+k},t_{i+k}) + b_{k-1}f(x_{i+k-1},t_{i+k-1})+\ldots+b_0f(x_{i},t_{i}) \right)
@@ -217,10 +216,10 @@ Ein Beispiel für ein Mehrschrittverfahren ist das (implizite) Milne-Simpson-Verf
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Adams-Verfahren/Prädiktor-Korrektor-Verfahren}
 Wie auch bei den Einschrittverfahren können Mehrschrittverfahren in explizite und implizite Verfahren unterteilt werden. In \cite{faires} wird gezeigt, dass implizite Verfahren im allgemeinen erheblich bessere Ergebnisse erzielen, als explizite Verfahren, jedoch das Auflösen der impliziten Gleichung nach dem gesuchten Funktionswert nicht realisierbar sein kann oder zumindest mit erheblichem Rechenaufwand verbunden ist.\\
-Dies führt zu dem Gedanken, Approximationen, welche durch ein explizites Verfahren gewonnen wurden, durch ein implizites Verfahren zu verbessern. Diese Kombination aus explizitem und implizitem Verfahren wird als Prädiktor-Korrektor-Verfahren bezeichnet. 
+Dies führt -- ähnlich wie bei dem Heun-Verfahren -- zu dem Gedanken, Approximationen, welche durch ein explizites Verfahren gewonnen wurden, durch ein implizites Verfahren zu verbessern. Diese Kombination aus explizitem und implizitem Mehrschrittverfahren wird als Prädiktor-Korrektor-Verfahren bezeichnet. 
 
-Die hierfür am häufigsten verwendeten Mehrschrittverfahren sind die so genannten Adams-Verfahren. Dabei werden die expliziten Verfahren als \textit{Adams-Bashforth-Verfahren} und die impliziten Verfahren als \textit{Adams-Moulton-Verfahren} bezeichnet. (KOEFFIZIENTEN SIEHE ANHANG) Die Herleitung dieser Verfahren kann in \cite{gruene} nachvollzogen werden.\\
-Nach \cite{faires} liegen Rechenaufwand und Genauigkeit bei einem $m$-stufigen \textit{Adams-Bashforth-Verfahren} und einem $m$-1-stufigen \textit{Adams-Moulton-Verfahren} im gleichen Größenbereich, wobei der lokale Fehler von $T^{m+1}$ abhängt. Wie bereits eingangs erwähnt, liefern die impliziten Verfahren jedoch deutlich genauere Approximationen.
+Die hierfür am häufigsten verwendeten Mehrschrittverfahren sind die so genannten Adams-Verfahren. Dabei werden die expliziten Verfahren als \textit{Adams-Bashforth-Verfahren} und die impliziten Verfahren als \textit{Adams-Moulton-Verfahren} bezeichnet. Die Koeffizienten dieser Verfahren können in Anhang \ref{sec:anhmehr} nachgeschlagen werden.\\
+Nach \cite{faires} liegen Rechenaufwand und Genauigkeit bei einem $m$-stufigen \textit{Adams-Bashforth-Verfahren} und einem $m$-1-stufigen \textit{Adams-Moulton-Verfahren} im gleichen Größenbereich, wobei der lokale Fehler in beiden Fällen von $T^{m+1}$ abhängt. Wie bereits eingangs erwähnt, liefern die impliziten Verfahren jedoch deutlich genauere Approximationen.
 
 Zur Durchführung des Prädiktor-Korrektor-Verfahrens wird zunächst mit dem expliziten $m$-stufigen \textit{Adams-Bashforth-Verfahren} ein Approximationswert $x_{i+1}^{(0)}$ berechnet, also die Prädiktion durchgeführt. Dieser wird dann in die rechte Seite der impliziten Gleichung des \textit{Adams-Moulton-Verfahren} eingesetzt, wodurch eine bessere Schätzung $x_{i+1}^{(1)}$ berechnet werden kann (Korrektur). Diese wird nun als Funktionswert $x(t_{i+1})$ angenommen.
 In \cite{netomac} wird beschrieben, dass der Korrektor-Schritt in der Praxis iterativ wiederholt werden kann, um eine noch höhere Genauigkeit zu erzielen.
@@ -228,8 +227,7 @@ In \cite{netomac} wird beschrieben, dass der Korrektor-Schritt in der Praxis ite
 Da ein $k$-stufiges Mehrschrittverfahren zur Berechnung des Funktionswertes $x_i$ alle zurückliegenden Funktionswerte bis $x_{i-k}$ benötigt, ist der erste überhaupt berechenbare Funktionswert $x(t=t_k)$. Aus diesem Grund müssen Mehrschrittverfahren durch geeignete Einschrittverfahren \glqq gestartet\grqq \ werden. Man bezeichnet Einschrittverfahren im Gegensatz zu Mehrschrittverfahren aus diesem Grund auch als \textit{selbststartend}.
 
 \subsection{BDF-Verfahren}
-(Besonders geeignet für steife DGL aber wo einbringen?)
-Eine weitere Klasse der Mehrschrittverfahren sind die so genannten \textit{Backwards Differentiation Formulas} (BDF). Für diese Verfahren gilt $P_b(z) = z^k$. Damit lassen sich eine Reihe impliziter Verfahren erzeugen, die besonders gut für steife Differentialgleichungen geeignet sind.
+Die zweite sehr bedeutende Klasse der Mehrschrittverfahren sind die so genannten \textit{Backwards Differentiation Formulas} (BDF). Für diese Verfahren gilt $P_b(z) = z^k$. Damit lassen sich eine Reihe impliziter Verfahren erzeugen, die besonders gut für steife Differentialgleichungen geeignet sind. Die Bedeutung dessen wird im folgenden Kapitel erläutert.
 
 %
 %\subsection{Schrittweitensteuerung}
@@ -268,7 +266,6 @@ Eine weitere Klasse der Mehrschrittverfahren sind die so genannten \textit{Backw
 
 \chapter{Stabilitätsanalyse der wichtigsten Methoden}
 \label{sec:stabi}
-VIELLEICHT EINFACH: METHODEN AUS DIGITALE REGELUNG ANWENDEN, HILFE VON GRUENE UND NETOMAC SKRIPT!
 Neben der Konvergenz des Fehlers mit der Schrittweite $e(t) = \mathcal{O}(T^p)$ ist für die Anwendbarkeit eines Verfahrens entscheidend, welche Voraussetzungen an die Schrittweite gestellt werden müssen, damit das Verfahren bei der Lösung von Differentialgleichungen stabil ist. Unter der Stabilität soll in diesem Zusammenhang die exponentielle Stabilität verstanden werden, wie sie in \cite{gruene} beschrieben wird. Um die Betrachtungen zu vereinfachen, soll sich an dieser Stelle auf die Klasse \textit{linearer zeitinvarianter Systeme} beschränkt werden, für die gilt:
 \begin{align}
 	\dot{x}=Ax.
