@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.17)  26 NOV 2013 10:01
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.17)  27 NOV 2013 08:39
 entering extended mode
 **arbeit.tex openout_any=a
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.tex"
@@ -1426,13 +1426,7 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-) [12]
-Underfull \hbox (badness 6173) in paragraph at lines 329--331
-\T1/aer/m/n/12 Ab-hän-gig-keit der Ei-gen-wer-te von $\OML/cmm/m/it/12 A$ \T1/a
-er/m/n/12 be-rech-nen. Es gilt zu be-ach-ten, dass
- []
-
-[13]
+) [12] [13] [14]
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/Grafiken/stabis.tex"
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -1442,16 +1436,16 @@ Missing character: There is no ; in font nullfont!
 )
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [14]
-[15] [16]
+ [15]
+[16]
 Kapitel 4.
-LaTeX Font Info:    Try loading font information for OMS+aer on input line 380.
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 384.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\omsaer.fd"
 File: omsaer.fd 1999/12/27
 )
 LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 380.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 384.
  [17
 
 ] [18])
@@ -1552,7 +1546,7 @@ Package rerunfilecheck Info: File `arbeit.out' has not changed.
 Here is how much of TeX's memory you used:
  33867 strings out of 494045
  813012 string characters out of 3145972
- 1640987 words of memory out of 3000000
+ 1638699 words of memory out of 3000000
  36251 multiletter control sequences out of 15000+200000
  57340 words of font info for 121 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
@@ -1578,7 +1572,7 @@ s/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
 type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
 pe1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
 1/public/amsfonts/symbols/msbm10.pfb>
-Output written on arbeit.pdf (36 pages, 961838 bytes).
+Output written on arbeit.pdf (36 pages, 963595 bytes).
 PDF statistics:
  573 PDF objects out of 1000 (max. 8388607)
  121 named destinations out of 1000 (max. 500000)

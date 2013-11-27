@@ -63,7 +63,7 @@ Deshalb ist der erste Ansatz in der Praxis, die Idee der Trapezregel beziehungsw
 Dies führt zum allgemeinen Ansatz der $s$-\textit{stufigen expliziten Runge-Kutta-Verfahren}. Aus Gründen der Übersichtlichkeit wurde der Index $_i$ zum Kennzeichnen des aktuell betrachteten Abtastpunktes im Folgenden weggelassen.
 \begin{align}
 	\Phi(x,t,T)&= x + T\, \sum\limits_{i=1}^s b_i\,k_i, \quad \text{mit} \\
-	k_i &= f\left( t+c_i T,  x + T \,\sum\limits_{j=1}^{i-1} a_{ij} k_j    \right) \quad \text{für } i=1,\ldots,s.
+	k_i &= f\left(  x + T \,\sum\limits_{j=1}^{i-1} a_{ij} k_j ,t+c_i T    \right) \quad \text{für } i=1,\ldots,s.
 \end{align}
 Dabei wird die Rechte Seite der DGL an den Stützstellen $t+c_i\,T$ berechnet, wobei die vorhergehenden Stützstellen gewichtet mit den Koeffizienten $a_{ij}$ zur Berechnung des zur Stützstelle gehörenden Funktionswertes herangezogen werden. Die Gewichtung der berechneten Steigungen bei der Ermittlung der resultierenden Verfahrensfunktion erfolgt durch die Koeffizienten $b_i$. Mit dieser Darstellung ergeben die Runge-Kutta-Verfahren eine unendliche Menge verschiedener Verfahren zur Lösung des Problems.\\
 Um die Runge-Kutta-Verfahren zu klassifizieren, werden die Koeffizienten $a_{ij},b_{i},c_{i}$ häufig in Form des Butcher-Schemas, nach Tabelle \ref{tab:ButEx} dargestellt.
@@ -109,7 +109,7 @@ $\\[\baselineskip]
 \\Die selbe Vorgehensweise lässt sich für implizite Verfahren anwenden, sodass sich als Berechnungsvorschrift für $s$-\textit{stufige implizite Runge-Kutta-Verfahren} ergibt:
 \begin{align}
 	\Phi(x,t,T) &= x + T\, \sum\limits_{i=1}^s b_i \, k_i \quad \text{mit}\\
-	k_i &= f\left(  t+c_i T , x + T\, \sum\limits_{j=1}^{s} a_{ij}k_j  \right) \quad \text{für } i=1,\ldots,s. 
+	k_i &= f\left(  x + T\, \sum\limits_{j=1}^{s} a_{ij}k_j,  t+c_i T   \right) \quad \text{für } i=1,\ldots,s. 
 \end{align}
 Beispiele für implizite Runge-Kutta-Verfahren sind das bereits kennengelernte implizite Euler-Verfahren (s=p=1), die implizite Mittelpunktsregel (s=p=2), sowie die implizite Trapezregel (s=p=2), deren Butcher-Schemata in Tabelle \ref{tab:ButcherIm} dargestellt sind.
 \begin{table}
@@ -210,7 +210,7 @@ mit $a_k \neq 0$. Durch $\mathcal{Z}$-Transformation (nachzulesen zum Beispiel i
 charakterisieren.
 Ein Beispiel für ein Mehrschrittverfahren ist das (implizite) Milne-Simpson-Verfahren:
 \begin{align}	
-	x_{i+1} = x_{i-1} + \frac{T}{3} \left(f(x_{i+1},t_{i+1})  +4f(x_i,t_i)  +f(x_{i-1},t_{i-1})  \right)
+	x_{i+1} = x_{i-1} + \frac{T}{3} \left(f(x_{i+1},t_{i+1})  +4f(x_i,t_i)  +f(x_{i-1},t_{i-1})  \right).
 \end{align}	
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -292,8 +292,8 @@ gilt. Für die Schrittweite $T$ muss also die Bedingung
 	T < \frac{2}{|\lambda|}
 	\label{eq:Tbed}
 \end{align}
-erfüllt sein, damit die Approximation eine Sinnvolle Näherung darstellt. Es ist augenscheinlich, dass dies bei sehr schnellen Systemen mit $\lambda \ll 0$ zu sehr kleinen notwendigen Schrittweiten führt.\\
-Aus diesem Grund werden solche Differentialgleichungen allgemein als \textit{steif} bezeichnet. Die Approximation von steifen Differentialgleichungen führt vor allem bei expliziten Verfahren zu Problemen und stellt die wesentliche Motivation zur Verwendung von impliziten Verfahren dar.
+erfüllt sein, damit die Approximation eine Sinnvolle Näherung darstellt. Es ist augenscheinlich, dass dies bei sehr schnellen Systemen mit $\Re \lambda \ll 0$ zu sehr kleinen notwendigen Schrittweiten führt.\\
+Aus diesem Grund werden Differentialgleichungen mit sehr schnellen stabilen Eigenwerten $\Re \lambda \ll 0$ allgemein als \textit{steif} bezeichnet. Für den Fall, dass das Anfangswertproblem ein Differentialgleichungssystem mit mehreren Eigenwerten darstellt spricht man von einem \textit{steifen} System, falls mindestens ein solcher Eigenwert vorliegt. Die Approximation von steifen Differentialgleichungen führt vor allem bei expliziten Verfahren zu Problemen und stellt die wesentliche Motivation zur Verwendung von impliziten Verfahren dar.
 In Abbildung \ref{fig:example} ist die Approximation von Gleichung (\ref{eq:bsp}) mit dem expliziten Euler-Verfahren für verschiedene Schrittweiten dargestellt. 
 \begin{figure}
 \centering
@@ -310,39 +310,43 @@ Nach \cite{gruene} lassen sich alle Runge-Kutta-Verfahren mit konstanter Schritt
 	x_{i+1}= \tilde{A} x_i 
 \end{align}
 beschreiben.
-Nach \cite{digit} ist eine solche Differenzengleichung genau dann exponentiell stabil, wenn für alle Eigenwerte der Matrix $\tilde{A}$ stabil sind, das heißt $|\tilde{\lambda}_i|<1$ gilt. Dieser Bereich wird im Folgenden mit $B_1(0)$ bezeichnet.
+Nach \cite{digit} ist eine solche Differenzengleichung genau dann exponentiell stabil, wenn für alle Eigenwerte der Matrix $\tilde{A}$ stabil sind, das heißt $|\tilde{\lambda}_i|<1$ gilt. Die Eigenwerte müssen also im Einheitskreis $B_1(0)$ der komplexen Zahlenebene liegen. ($B_u(v)$ bezeichnet im Folgenden allgemein einen Kreis mit Radius $u$ um den Punkt $v$ in der komplexen Zahlenebene.)
 Zur Untersuchung der Stabilität eines Verfahrens müsste also die Matrix $\tilde{A}$ aus den Koeffizienten des Verfahrens und der Matrix $A$ der zu Grunde liegenden Differentialgleichung berechnet werden.
 Die Matrix der Differenzengleichung $\tilde{A}$ berechnet sich also als Funktion der Art
 \begin{align}
 	\tilde{A}= R(TA).
 \end{align}
-Diese Funktion nimmt für explizite Werte $z \in \mathbb{C}$ die Form
+Es kann gezeigt werden, dass diese Funktion für explizite Werte $z \in \mathbb{C}$ die Form
 \begin{align}
 	R(z) = 1 + zb^T \left( I-z\mathcal{A}  \right)^{-1} e
 \end{align}
-an, wobei $I$ für die Einheitsmatrix steht, $b = (b_1, \ldots, b_s)^T$ und $\mathcal{A}=(a_{ij})_{i,j=1,\ldots,s}$ die Koeffizienten des Verfahrens beinhalten und $e=(1,\ldots,1)^T \in \mathbb{R}^s$ gilt. $R(z)$ wird als die Stabilitätsfunktion des Verfahrens bezeichnet. Die Stabilitätsfunktion an sich ist nun unabhängig von der Schrittweite und der Dynamik der betrachteten Differentialgleichung und kann damit noch keine endgültige Aussage über die Stabilität des Verfahrens treffen. 
+annimmt, wobei $I$ für die Einheitsmatrix steht, $b = (b_1, \ldots, b_s)^T$ und $\mathcal{A}=(a_{ij})_{i,j=1,\ldots,s}$ die Koeffizienten des Verfahrens beinhalten und $e=(1,\ldots,1)^T \in \mathbb{R}^s$ gilt. $R(z)$ wird als die Stabilitätsfunktion des Verfahrens bezeichnet. Die Stabilitätsfunktion an sich ist nun unabhängig von der Schrittweite und der Dynamik der betrachteten Differentialgleichung und kann damit noch keine endgültige Aussage über die Stabilität des Verfahrens treffen. 
 Um diese zu ermöglichen, gilt es herauszufinden, welche Bedingungen $A$ und $T$ erfüllen müssen, damit die Eigenwerte der Matrix $\tilde{A}$ stabil sind. 
-Hierfür wird das Stabilitätsgebiet $S \subset \mathbb{C}$ eines Runge-Kutta-Verfahrens mit Stabilitätsfunktion $R$ definiert als die Menge von Eigenwerten $\lambda_i$, die $TA$ annehmen darf, damit $\tilde{A}=R(TA)$ exponentiell stabil ist. Ein Verfahren wird als $A$-stabil bezeichnet, wenn es für eine stabile Dynamik $A$ unabhängig von der Schrittweite stabil ist.
-Das Stabilitätsgebiet entspricht dem Bereich, indem der Betrag der Stabilitätsfunktion kleiner eins ist:
+Hierfür wird das Stabilitätsgebiet $S \subset \mathbb{C}$ eines Runge-Kutta-Verfahrens mit Stabilitätsfunktion $R$ definiert als die Menge von Eigenwerten $\lambda_i$, die $TA$ annehmen darf, damit $\tilde{A}=R(TA)$ exponentiell stabil ist, das heißt, für den Betrag der Stabilitätsfunktion gilt
 \begin{align}
 	S = \{z\in\mathbb{C} \big| |R(z)|<1 \}.
 \end{align}
-Damit lassen sich für alle betrachteten Verfahren Voraussetzungen an die Schrittweite in Abhängigkeit der Eigenwerte von $A$ berechnen. Es gilt zu beachten, dass \linebreak \mbox{$\lambda_i \in \Sigma(A) \Rightarrow T\lambda_i \in \Sigma(TA)$}. Allgemein gilt somit, je größer das Stabilitätsgebiet $S$, desto größer kann die Schrittweite $T$ gewählt werden, um Stabilität zu gewährleisten. 
+Für die Stabilität des Verfahrens müssen also alle Eigenwerte $T \lambda_i$ der Matrix $\tilde{A}$ im Stabilitätsgebiet liegen.
+Dabei gilt zu beachten, dass für die Menge aller Eigenwerte $\Sigma$ zweier Matrizen gilt: \mbox{$\lambda_i \in \Sigma(A) \Rightarrow T\lambda_i \in \Sigma(TA)$}.\\
+Damit lässt sich die Schrittweite $T$ in Abhängigkeit der Eigenwerte von $A$ so berechnen, dass das verwendete Verfahren stabil ist. Allgemein gilt, je größer das Stabilitätsgebiet $S$, desto größer kann die Schrittweite $T$ gewählt werden, um Stabilität zu gewährleisten. Ein Verfahren wird als $A$-stabil bezeichnet, wenn es für eine stabile Dynamik $A$ unabhängig von der Schrittweite stabil ist. In diesem Fall ist die gesamte linke Halbebene der komplexen Zahlenebene im Stabilitätsgebiet enthalten: $\mathbb{C}^- \subseteq S$.
 
 Zur Vergleichbarkeit sollen nun die betrachteten Verfahren auf das Stabilitätsgebiet untersucht werden.
 Für das explizite Euler-Verfahren ergibt sich $R_\mathrm{Eu,ex}(z) = 1+z$. Damit ergibt sich 
 \begin{align}
 	|R_\mathrm{Eu,ex}(z)| <1  \ \Leftrightarrow \ |1+z|<1,
 \end{align}
-also $S = \{ z\in\mathbb{C} \big| |1+z|<1\} = B_1(-1)$. Die Schrittweite muss also so gewählt werden, dass $T\lambda_i \in B_1(-1)$ gilt. Für das betrachtete Beispielsystem entspricht dies genau (\ref{eq:Tbed}).\\
+also $S = \{ z\in\mathbb{C} \big| |1+z|<1\} = B_1(-1)$. Die Schrittweite muss also so gewählt werden, dass $T\lambda_i \in B_1(-1)$ gilt. Für das betrachtete Beispielsystem entspricht dies genau (\ref{eq:Tbed}).
+
 Für das implizite Euler-Verfahren erhält man $R_\mathrm{Eu,im}(z) = \frac{1}{1-z}$. Für das Stabilitätsgebiet bedeutet das
 \begin{align}
 	|R_\mathrm{Eu,im}(z)| <1  \ \Leftrightarrow \ |1-z|>1,
 \end{align}
-das heißt $S$ ist $\mathbb{C}$ ohne den Kreis $B_1(1)$. Damit ist das implizite Euler-Verfahren -- wie viele implizite Verfahren -- $A$-stabil, was hilfreich bei der Simulation von stabilen Systemen ist. Allerdings enthält das Stabilitätsgebiet auch Bereiche, in denen die Approximation stabil ist, obwohl das eigentliche System instabil ist, wie zum Beispiel $\Re z > 1$. In diesem Fall würde die Instabilität eines Systems in der Simulation möglicherweise unentdeckt bleiben, was eines der Probleme des impliziten Euler-Verfahrens ist und eine Motivation für die Trapezregel liefert. \\
+das heißt $S$ ist $\mathbb{C}$ ohne den Kreis $B_1(1)$. Damit ist das implizite Euler-Verfahren -- wie viele implizite Verfahren -- $A$-stabil, was hilfreich bei der Simulation von stabilen Systemen ist. Allerdings enthält das Stabilitätsgebiet auch Bereiche, in denen die Approximation stabil ist, obwohl das eigentliche System instabil ist, wie zum Beispiel $\Re z > 2$. In diesem Fall würde die Instabilität eines Systems in der Simulation möglicherweise unentdeckt bleiben, was eines der Probleme des impliziten Euler-Verfahrens ist und eine Motivation für die Trapezregel liefert. 
+
 Für diese ergibt sich als Sabiltätsfunktion $R_\mathrm{Trapez}(z)=\frac{z+2}{z-2}$. Das Stabilitätsgebiet entspricht damit genau der linken Halbebene $S_\mathrm{Trapez}=\mathbb{C}^-$. Damit ist die Trapezregel ebenfalls $A$-stabil, enthält jedoch keine Bereiche, in denen ein instabiles System stabil approximiert werden würde. Man bezeichnet diese Tatsache mit 
-\textit{Erhaltung der Isometrie}, das heißt, die Approximation ist genau dann stabil, wenn auch das zu Grunde liegende System exponentiell stabil ist.\\
-Aufgrund der schwierigen Realisierbarkeit der impliziten Verfahren wurde das Heun-Verfahren auf Basis der Trapezregel und dem expliziten Euler-Verfahren eingeführt. Hierfür ergibt sich die Stabilitätsfunktion $R_\mathrm{Heun}(z) = \frac{1}{2}z^2+z+1$. Das zugehörige Stabilitätsgebiet ist in Abbildung \ref{fig:stabis} zu sehen. Vergleicht man die Stabilitätsgebiete von explizitem Euler-Verfahren und Heun-Verfahren, so wird deutlich, dass das Stabilitätsgebiet des Heun-Verfahrens nur wenig größer ist, als das des expliziten Euler-Verfahrens. \\
+\textit{Erhaltung der Isometrie}, das heißt, die Approximation ist genau dann stabil, wenn auch das zu Grunde liegende System exponentiell stabil ist. Damit besitzt die Trapezregel quasi ideale Stabilitätseigenschaften. \\
+Aufgrund der schwierigen Realisierbarkeit der impliziten Verfahren wurde das Heun-Verfahren auf Basis der Trapezregel und dem expliziten Euler-Verfahren eingeführt. Hierfür ergibt sich die Stabilitätsfunktion $R_\mathrm{Heun}(z) = \frac{1}{2}z^2+z+1$. Das zugehörige Stabilitätsgebiet ist in Abbildung \ref{fig:stabis} zu sehen. Vergleicht man die Stabilitätsgebiete von explizitem Euler-Verfahren und Heun-Verfahren, so wird deutlich, dass das Stabilitätsgebiet des Heun-Verfahrens nur wenig größer ist, als das des expliziten Euler-Verfahrens. Zwischen den Stabilitätsgebieten von Heun-Verfahren und Trapezregel besteht hingegen ein deutlicher Größenunterschied.
+
 Ein größeres Stabilitätsgebiet kann zum Beispiel mit dem \textit{klassischen} Runge-Kutta-Verfahren mit der Stabilitätsfunktion $R_{RK}(z)=\frac{1}{24}z^4+\frac{1}{6}z^3+\eh z^2+z+1$ erreicht werden. Ähnlich, wie bei den impliziten Verfahren treten hier jedoch kleine Bereiche auf, in denen ein instabiles System zu einer stabilen Approximation führen würde.
 Grundsätzlich gilt für explizite Runge-Kutta-Verfahren: Je Höher die Ordnung des Verfahrens, desto größer das Stabilitätsgebiet. Bei der Betrachtung der Stabilitätsgebiete wird auch der große Vorteil der impliziten Verfahren gegenüber expliziten Verfahren deutlich. Zwar gibt es auch implizite Verfahren, die nur kleine Stabilitätsgebiete besitzen und damit schlecht für die Lösung steifer Differentialgleichungen geeignet sind, jedoch sind die Stabilitätsgebiete von expliziten Verfahren im Allgemeinen kleiner, als die der impliziten Verfahren.
 \begin{figure}
@@ -372,7 +376,7 @@ Das gewählte Verfahren ist mit der verwendeten Schrittweite genau dann stabil, w
 	|z_l| < 1.
 \end{align}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Anwendung der Integrationsmethoden in Simulationssoftware}
 \section{PSS Nettomac}
 \section{PowerFactory}
