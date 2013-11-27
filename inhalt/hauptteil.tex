@@ -1,32 +1,29 @@
 \chapter{Numerische Integrationsverfahren für Anfangswertprobleme}
 \label{kap:hauptteil}
-NOCH SCHAUEN, DASS f(x,t) oder f(t,x) konsistent dargestellt ist!
-EVENTUELL: $f_{n}= f(x_n,t_n)$ als Schreibweise einfuehren!! Kann einiges erleichtern!
-
-Die Modellbildung dynamischer Systeme führt in vielen Fällen naturgemäß zu gewöhnlichen Differentialgleichung (beziehungsweise Differentialgleichungssystemen) in Abhängigkeit der Zeit $t$, so genannten Anfangswertaufgaben:
+Die Modellbildung dynamischer Systeme führt in vielen Fällen naturgemäß zu gewöhnlichen Differentialgleichungen (beziehungsweise Differentialgleichungssystemen) in Abhängigkeit der Zeit $t$, so genannten \textit{Anfangswertproblemen}:
 \begin{align}
 \dot{x}(t)=f\left(x(t),t\right), \quad x(0)=x_0.
 \label{eq:AWA}
 \end{align}
 Dabei ist die zeitliche Ableitung der Zustände $\dot{x}(t)=\frac{\d}{\d t}x(t)$ zu einem bestimmten Zeitpunkt in Form der Funktion $f$ berechenbar. Dabei mag die Funktion $f$ auch nicht in analytische Form dargestellt werden können, sondern lediglich der Funktionswert berechenbar sein. Darüber hinaus ist der Anfangswert der Lösung $x(0)=x_0$ bekannt.\\
-Die exakte Lösung dieses Problems ergibt sich durch Integration der zeitlichen Ableitung:
+Um derartige Systeme simulieren zu können, muss eine Lösung $x(t)$ des Anfangswertproblems gefunden werden. Die exakte Lösung dieses Problems ergibt sich durch Integration der zeitlichen Ableitung:
 \begin{align}
-x\tt = x_0 + \int\limits_0^t \dot{x}(x,t) \d t 
+x\tt = x_0 + \int\limits_0^t \dot{x}(x,t) \d t.
 \label{eq:integral}
 \end{align}
-Um derartige Systeme numerisch, das heißt mit Hilfe von Computersystemen zu simulieren, muss eine numerische Approximation dieser Integration durchgeführt werden. Diese soll zu bestimmten, diskreten Zeitpunkten $t=t_i=i \dd T, i=0,\ldots,n$ Näherungslösungen $x_i$ für den Tatsächlichen Funktionswert $x(t_i)$ liefern. Die Schrittweite $T$ legt dabei den Abstand von zwei benachbarten Abtastzeitpunkten $t_i$ fest.
+Die Herausforderung der Simulation besteht also darin, eine numerische Approximation dieser Integration zu ermitteln, was das Problem auf die numerische Integration von Anfangswertproblemen reduziert. Diese Approximation soll zu bestimmten, diskreten Zeitpunkten $t=t_i=i \dd T, i=0,\ldots,n$ Näherungslösungen $x_i$ für den Tatsächlichen Funktionswert $x(t_i)$ liefern. Die Schrittweite $T$ legt dabei den Abstand von zwei benachbarten Abtastzeitpunkten $t_i$ fest. 
 
 Es soll also allgemein eine Berechnungsvorschrift
 \begin{align}
 	x_{i+1} = \Phi(x, t)
 \end{align}
-mit der Verfahrensfunktion $\Phi(x,t)$ bestimmt werden, welche zum einen eine möglichst genaue Approximation der tatsächlichen Lösung liefert. Zum anderen soll das Verfahren so gewählt werden, dass auch komplexe Systeme approximiert werden können, das heißt, es ist erstrebenswert, den dabei anfallenden Rechenaufwand gering zu halten.
+mit der Verfahrensfunktion $\Phi(x,t)$ bestimmt werden, welche zum einen eine möglichst genaue Approximation der tatsächlichen Lösung liefert. Zum anderen soll das Verfahren so gewählt werden, dass auch möglichst komplexe Systeme approximiert werden können, das heißt, es ist erstrebenswert, den dabei anfallenden Rechenaufwand gering zu halten.
 
-Im Folgenden werden verschiedene Verfahren zur Integration vorgestellt. Diese werden in Einschrittverfahren, Einschrittverfahren mit Schrittweitensteuerung und Mehrschrittverfahren unterteilt. Soweit nicht anders angegeben wird sich dabei auf \cite{gruene} bezogen.
+Im Folgenden werden verschiedene Verfahren zur Integration vorgestellt. Diese werden in Einschrittverfahren und Mehrschrittverfahren unterteilt. Soweit nicht anders angegeben wird sich dabei auf \cite{gruene} bezogen.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Einschrittverfahren}
 \subsection{Explizites Eulerverfahren}
-Der einfachste Ansatz, (\ref{eq:integral}) zu approximieren, ist, die Steigung der Funktion $x(t)$ im Zeitintervall zwischen $t_i$ und $t_{i+1}$ als konstant anzunehmen. Dies entspricht dem Taylor-Satz erster Ordnung und führt auf die Berechnungsvorschrift
+Der einfachste Ansatz, (\ref{eq:integral}) zu approximieren, ist, die Steigung der Funktion $x(t)$ im Zeitintervall zwischen $t_i$ und $t_{i+1}$ als konstant anzunehmen. Dies entspricht dem Taylor-Satz erster Ordnung und führt auf die \textit{explizite} Berechnungsvorschrift
 \begin{align}
 		x_{i+1} = x_i + T f(x_i,t_i).
 \end{align}
@@ -37,7 +34,7 @@ Beim expliziten Eulerverfahren wird angenommen, dass die im Zeitpunkt $t_i$ vorl
 \begin{align}
 	x_{i+1}&= x_i + f(x_{i+1},t_{i+1})
 \end{align}
-In diesem Fall ergibt sich eine implizite Gleichung für den approximierten Wert $x_{i+1}$, welche nur unter Kenntnis von $f$ aufgelöst werden kann. Deshalb wird das Verfahren als \textit{implizites Eulerverfahren} bezeichnet.
+In diesem Fall ergibt sich eine \textit{implizite Gleichung} für den approximierten Wert $x_{i+1}$, welche nur unter Kenntnis von $f$ aufgelöst werden kann. Deshalb gehört das Verfahren zur Klasse der \textit{impliziten Verfahren} und wird als \textit{implizites Eulerverfahren} bezeichnet.
 
 \subsection{Trapezregel/Heun-Verfahren}
 Einen Ansatz, die Verfahren zu verbessern, liefert die so genannte \textit{Trapezregel}. Bei dieser werden die beiden Euler-Verfahren gewissermaßen kombiniert.
@@ -54,7 +51,7 @@ Dadurch ergibt sich allgemein ebenfalls ein implizites Verfahren. Um das Auflöse
 Um die bisher betrachteten Methoden zu verbessern, gibt es mehrere Ansätze. Ein naheliegender Gedanke ist, statt nur der rechten Seite der Differentialgleichung (\ref{eq:AWA}), Zeitableitungen höherer Ordnung in die Abschätzung einzubauen. Dies führt zu den Taylor-Methoden, welche auf dem Taylor-Satz basieren.
 Da die Differentation der Rechten Seite jedoch mit verhältnismäßig großem rechnerischen Aufwand verbunden ist, sind diese Verfahren in der Praxis eher ungebräuchlich und sollen im Rahmen dieser Arbeit nicht näher betrachtet werden.
 
-Ein anderer Ansatz, die Verfahren zu verbessern ist, zunächst ein Maß einzuführen, mit dem die Verfahren verglichen werden können. Dabei kann gezeigt werden, dass sich für die betrachteten Integrationsverfahren der \textit{globale} Fehler $e(t_i):= \norm{x_i - x(t_i)}$ durch
+Um einen anderen Ansatz zu zeigen, wählt man den \textit{globalen} Fehler $e(t_i):= \norm{x_i - x(t_i)}$, den ein Verfahren im Vergleich zur exakten Lösung macht, als ein Maß, mit dem die Verfahren verglichen werden können. Es kann gezeigt werden, dass sich dieser für die betrachteten Integrationsverfahren mit der Landau-Notation durch
 \begin{align}
 	e(t) = \mathcal{O}(T^p)
 \end{align}
@@ -136,6 +133,7 @@ Der Vorteil der impliziten Verfahren gegenüber den expliziten Verfahren wird sic
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Schrittweitensteuerung (Adaption)}
+% NACH DER BESCHREIBUNG ALLER VERFAHREN!
 Um die Verfahren weiter zu verbessern und gleichzeitig Rechenzeit einzusparen, liegt der Gedanke nahe, die bisher als konstant angenommene Schrittweite $T$ als steuerbar anzusehen, sodass $T_i$ an Stellen, bei welchen sich der Funktionswert stärker ändert, kleiner gewählt werden kann und an Stellen langsamer Änderungen hingegen größer. Aus Gründen der numerischen Effizienz ist es üblich, dass im $i$-ten Zeitschritt eine \glqq gute\grqq \ Schrittweite für den Übergang von $t_i$ nach $t_{i+1}$ bestimmt wird, jedoch keine Anpassung von vorhergehenden Schrittweiten mehr erfolgt.
 
 Um die Schrittweite anzupassen wird gefordert, dass der \textit{lokale} Fehler $\varepsilon(t)$ unter einer gewissen Toleranzgrenze $tol$ liegen soll. Der \textit{lokale} Fehler ist dabei der Anteil am \textit{globalen} Fehler, der durch den Zeitschritt von $t_i$ bis $t_{i+1}$ hervorgerufen wird. Da die exakte Lösung des Funktionsverlaufs nicht bekannt ist, wird für das verwendete Verfahren $\Phi$ mit Konsistenzordnung $p$ ein anderes Verfahren $\hat{\Phi}$ zur Abschätzung des Fehlers herangezogen. Die Konsistenzordnung des zweiten Verfahrens $\hat{p}$ wird kleiner als die des verwendeten Verfahrens gewählt, sodass $p \geq \hat{p}+1$ gilt. Der Schritt von $t_i$ nach $t_{i+1} = t_i+T_i$ wird mit beiden Verfahren berechnet und die Norm der Differenz der Ergebnisse als \textit{Fehlerschätzer} $\overline{\varepsilon}$ bezeichnet.
@@ -378,7 +376,9 @@ Das gewählte Verfahren ist mit der verwendeten Schrittweite genau dann stabil, w
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Anwendung der Integrationsmethoden in Simulationssoftware}
-\section{PSS Nettomac}
+\label{sec:anwend}
+\section{PSS Netomac}
+Die Software \verb PSS \verb Netomac der Firma \siemens verwendet die Trapezregel als Integrationsverfahren. Da die Trapezregel Isometrieerhaltend ist, ergeben sich keine Stabilitätsprobleme. ALGRORITHMISCHE AUFLOESUNG DER IMPLIZITEN GLEICHUNG ODER WAS??
 \section{PowerFactory}
 RMS Simulation Algorithms \\
 \textbullet     Highly accurate, fixed or variable step-size integration technique for solving AC and DC network load 
@@ -398,6 +398,7 @@ avoid numerical oscillations caused by switching devices and other non-linear ch
 transients and dynamic model equations. This is combined with a non-linear electromechanical model 
 representation to enable a high degree of solution accuracy, algorithmic stability and time range validity. 
 \section{PSSE}
+Zweiter Ordnung Euler Integrationsverfahren
 \section{Eurostag}
 The advanced dynamic functions of EUROSTAG® allow for the full range of transient, mid and long-term stability to be covered thanks to a robust algorithm using an auto-adaptative integration stepsize.
 

@@ -1,6 +1,11 @@
 \chapter{Einleitung}
 \label{kap:einleitung}
+Die Analyse von komplexen Energieversorgungsnetzen ist ohne das Hilfsmittel Computer kaum denkbar. Die Größe der Netze, sowie die Anzahl deren Komponenten und Speicherelemente macht eine rein analytische Berechnung sehr schwierig. Der Einsatz des Computers hat es dem Ingenieur nicht nur in der Energietechnik ermöglicht, verschiedenste dynamische Systeme zu simulieren, um dadurch Systemeigenschaften zu beobachten oder mit unerprobten Konzepten zu experimentieren. 
+Dynamische Systeme sind dabei im allgemeinen dadurch gekennzeichnet, dass sie Energiespeicher enthalten, die zu zeitveränderlichen Vorgängen führen. Aus physikalischer Sicht sind diese Vorgänge durch Differentialgleichungen charakterisiert, deren Lösungen sich nicht immer in analytischer Form, oder zumindest einfach angeben lassen.
+Der Computer liefert die Möglichkeit, mit numerischen Methoden Näherungen dieser Lösungen zu berechnen.
+Hierfür gibt es eine Vielzahl verschiedener Methoden, welche unter gewissen Voraussetzungen zu unterschiedlichen Ergebnissen oder zu unterschiedlicher Genauigkeit führen können. 
+Um Simulationssoftware anwenden zu können ist es deshalb notwendig, dass der Benutzer die Grundlagen der hinter der Software steckenden Numerik versteht.
 
-Dieses Kapitel dient zur Hinführung an das Thema. Hier ist herauszuarbeiten, warum das
-Thema von Interesse und Bedeutung ist. Des Weiteren ist kurz der Aufbau der Arbeit
-anzusprechen. Der Umfang des Kapitels sollte eine oder wenige Seiten betragen.
+Aus diesem Grund werden in dieser Arbeit die wichtigsten Verfahren zu numerischen Simulation von dynamischen Systemen vorgestellt. Dabei wird auf Einschrittverfahren, sowie auf Mehrschrittverfahren eingegangen. Darüber hinaus wird die Vorgehensweise der Schrittweitensteuerung erläutert.
+Im \ref{sec:stabi}. Kapitel werden die verschiedenen Verfahren auf Stabilität untersucht, welche eine essenzielle Eigenschaft der numerischen Verfahren darstellt.
+Um die Bedeutung der Verfahren zu verdeutlichen, werden in Kapitel \ref{sec:anwend} einige Softwarepakete der zur Netzsimulation auf ihr verwendetes Verfahren untersucht.
