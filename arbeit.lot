@@ -1,13 +1,11 @@
 \select@language {ngerman}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces Allgemeines Butcher-Schema expliziter Runge-Kutta-Verfahren\relax }}{5}{table.caption.22}
-\contentsline {table}{\numberline {2.2}{\ignorespaces Butcher-Schemata f\"ur (von links nach rechts): Euler-Verfahren, Heun-Verfahren, \textit {klassisches} Runge-Kutta-Verfahren\relax }}{6}{table.caption.23}
-\contentsline {table}{\numberline {2.3}{\ignorespaces Butcher-Schemata f\"ur implizite Verfahren (von links nach rechts): Euler, Mittelpunktsregel, Trapezregel\relax }}{6}{table.caption.26}
-\contentsline {table}{\numberline {2.4}{\ignorespaces allgemeines Butcher-Schema f\"ur eingebettete Runge-Kutta-Verfahren\relax }}{8}{table.caption.31}
-\contentsline {table}{\numberline {2.5}{\ignorespaces Butcher-Schema zur Bestimmung der unbekannten Koeffizienten\relax }}{8}{table.caption.32}
-\addvspace {10\p@ }
-\addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{\ignorespaces Allgemeines Butcher-Schema expliziter Runge-Kutta-Verfahren\relax }}{5}{table.caption.21}
+\contentsline {table}{\numberline {2.2}{\ignorespaces Butcher-Schemata f\"ur (von links nach rechts): Euler-Verfahren, Heun-Verfahren, \textit {klassisches} Runge-Kutta-Verfahren\relax }}{6}{table.caption.22}
+\contentsline {table}{\numberline {2.3}{\ignorespaces Butcher-Schemata f\"ur implizite Verfahren (von links nach rechts): Euler, Mittelpunktsregel, Trapezregel\relax }}{6}{table.caption.25}
+\contentsline {table}{\numberline {2.4}{\ignorespaces allgemeines Butcher-Schema f\"ur eingebettete Runge-Kutta-Verfahren\relax }}{8}{table.caption.30}
+\contentsline {table}{\numberline {2.5}{\ignorespaces Butcher-Schema zur Bestimmung der unbekannten Koeffizienten\relax }}{8}{table.caption.31}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
