@@ -17,4 +17,9 @@ Warning--empty note in digit
 Warning--empty edition in netomac
 Warning--empty address in netomac
 Warning--empty year in netomac
-(There were 7 warnings)
+Warning--empty address in PSSE
+Warning--empty year in PSSE
+Warning--empty address in powerfac
+Warning--empty year in powerfac
+Warning--there's no year in eurostag
+(There were 12 warnings)

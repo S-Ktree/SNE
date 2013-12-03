@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.17)  27 NOV 2013 16:13
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.17)  3 DEC 2013 14:23
 entering extended mode
 **arbeit.tex openout_any=a
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.tex"
@@ -1317,7 +1317,7 @@ our preamble.
 .................................................
 )
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/deckblatt.tex"
-<bilder/ees.pdf, id=138, 2875.83418pt x 560.3816pt>
+<bilder/ees.pdf, id=122, 2875.83418pt x 560.3816pt>
 File: bilder/ees.pdf Graphic file (type pdf)
  <use bilder/ees.pdf>
 Package pdftex.def Info: bilder/ees.pdf used on input line 5.
@@ -1327,7 +1327,7 @@ Overfull \hbox (11.74713pt too wide) in paragraph at lines 5--6
 [][] 
  []
 
-<bilder/fausiegel.pdf, id=139, 389.2402pt x 389.22412pt>
+<bilder/fausiegel.pdf, id=123, 389.2402pt x 389.22412pt>
 File: bilder/fausiegel.pdf Graphic file (type pdf)
 
 <use bilder/fausiegel.pdf>
@@ -1416,18 +1416,7 @@ Kapitel 2.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5]
-[6]
-LaTeX Font Info:    Try loading font information for T1+aett on input line 192.
-
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
-File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-) [7] [8]
-Overfull \hbox (5.08762pt too wide) in paragraph at lines 219--221
-[]\T1/aer/m/n/12 Die hier-für am häu-figs-ten ver-wen-de-ten Mehr-schritt-ver-f
-ah-ren sind die so ge-nann-ten Adams-
- []
-
-[9] [10]
+[6] [7] [8] [9] [10]
 Kapitel 3.
 [11
 
@@ -1452,20 +1441,34 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [15]
 [16]
 Kapitel 4.
-LaTeX Font Info:    Try loading font information for OMS+aer on input line 384.
+LaTeX Font Info:    Try loading font information for OMS+aess on input line 384
+.
+LaTeX Font Info:    No file OMSaess.fd. on input line 384.
+
+LaTeX Font Warning: Font shape `OMS/aess/bx/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead on input line 384.
+
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 385.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\omsaer.fd"
 File: omsaer.fd 1999/12/27
 )
+LaTeX Font Info:    Font shape `OMS/aer/m/sc' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 385.
 LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 384.
- [17
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 385.
 
-] [18])
-[19]
+Underfull \hbox (badness 2142) in paragraph at lines 391--392
+\T1/aer/m/n/12 Ein wei-te-re re-le-van-te Soft-wa-re in der Ener-gie-tech-nik i
+st \T1/aer/m/sc/12 Po-wer-Fac-to-ry \T1/aer/m/n/12 von
+ []
+
+[17
+
+]) [18]
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/zusammenfassung.tex"
 Kapitel 5.
-) [20
+) [19
 
 
 
@@ -1474,7 +1477,7 @@ Anhang A.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [21
+ [20
 
 
 
@@ -1482,7 +1485,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Overfull \vbox (6.87752pt too high) has occurred while \output is active []
 
 
-[22]
+[21]
 Underfull \hbox (badness 10000) in paragraph at lines 48--48
 []\T1/aer/m/n/12 Fehlberg-
  []
@@ -1497,7 +1500,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 59--59
 \T1/aer/m/n/12 Prince-
  []
 
-[23]
+[22]
 Underfull \hbox (badness 10000) in paragraph at lines 81--81
 []\T1/aer/m/n/10.95 Milne-
  []
@@ -1522,30 +1525,37 @@ Overfull \hbox (0.58221pt too wide) in paragraph at lines 95--95
 \T1/aer/m/n/10.95 Moulton 
  []
 
-[24
+[23
 
 ]
 Anhang B.
-[25
+[24
 
 
 ]
 Anhang C.
-) [26
+) [25
 
-] ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/symbole.tex") [27
+] ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/symbole.tex") [26
 
 
 
-] ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.bbl")
+] ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.bbl"
+Underfull \hbox (badness 1325) in paragraph at lines 19--24
+[]\T1/aer/m/sc/12 Harkort\T1/aer/m/n/12 , Chris-ti-an:  Di-gi-ta-le Re-ge-lung 
+/ Lehr-stuhl für Re-ge-lungs-tech-nik,
+ []
+
+LaTeX Font Info:    Font shape `OMS/aer/m/it' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 41.
+)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 177.
- [28
+ [27
 
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 177.
-
-("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.aux"
+ ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.aux"
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/makros.aux")
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/deckblatt.aux")
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\inhalt/erklaerung.aux")
@@ -1558,16 +1568,20 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 177.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 177.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 177.
 Package rerunfilecheck Info: File `arbeit.out' has not changed.
-(rerunfilecheck)             Checksum: F1A8D954CE7CD2251630AC32418B2736;2376.
+(rerunfilecheck)             Checksum: 0F0F19B9DEC9523BB3786ADB02D574F0;2137.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
  ) 
 Here is how much of TeX's memory you used:
- 33980 strings out of 494045
- 814602 string characters out of 3145972
- 1640668 words of memory out of 3000000
- 36358 multiletter control sequences out of 15000+200000
- 57340 words of font info for 121 fonts, out of 3000000 for 9000
+ 33972 strings out of 494045
+ 814399 string characters out of 3145972
+ 1640761 words of memory out of 3000000
+ 36350 multiletter control sequences out of 15000+200000
+ 59474 words of font info for 124 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 65i,20n,78p,50182b,2033s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 65i,20n,78p,50182b,2025s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:
@@ -1587,11 +1601,10 @@ eX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2
 onts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
 s/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
 type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
-1/public/amsfonts/symbols/msbm10.pfb>
-Output written on arbeit.pdf (36 pages, 965190 bytes).
+pe1/public/amsfonts/symbols/msbm10.pfb>
+Output written on arbeit.pdf (35 pages, 962084 bytes).
 PDF statistics:
- 573 PDF objects out of 1000 (max. 8388607)
- 120 named destinations out of 1000 (max. 500000)
- 291 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 555 PDF objects out of 1000 (max. 8388607)
+ 119 named destinations out of 1000 (max. 500000)
+ 259 words of extra memory for PDF output out of 10000 (max. 10000000)
 

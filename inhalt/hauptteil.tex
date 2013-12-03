@@ -45,6 +45,7 @@ Dabei wird für die Steigung im betrachteten Intervall der Mittelwert der Steigun
 Dadurch ergibt sich allgemein ebenfalls ein implizites Verfahren. Um das Auflösen der impliziten Gleichung zu umgehen, kann der unbekannten Wert $f\big(x_{i+1},t_{i+1}\big)$ durch das explizite Euler-Verfahren abgeschätzt werden. Dies führt auf das \textit{Heun-Verfahren}:
 \begin{align*}
 	x_{i+1}	= x_i + T \dd \eh \dd \Big(f\big(x_i,t_i\big) + f\big( x_i +  T \dd f(x_i,t_i)  ,t_{i+1}\big) \Big).
+	\label{eq:Heun}
 \end{align*}
 
 \subsection{Runge-Kutta-Verfahren}
@@ -189,7 +190,7 @@ $\\[\baselineskip]
 \label{tab:koeffbest}
 \end{table}
 Um das zugehörige Verfahren $\hat{\Phi}$ mit $\hat{s}=5$ und $\hat{p}=3$ zu bestimmen, müssen also die unbekannten Koeffizienten in \ref{tab:koeffbest} bestimmt werden. Dies kann in \cite{gruene} nachgelesen werden und soll an dieser Stelle nicht weiter vertieft werden.
-Eines der am weitesten verbreiteten Verfahren dieser Klasse ist das Dormand-Prince-RK5(4)-Verfahren, welches in der Numerik-Software \Matlab \ unter dem Namen \verb ode45  standardmäßig eingestellt ist. Die zugehörigen Koeffizienten können in Anhang \ref{sec:anheingeb} nachgelesen werden.
+Eines der am weitesten verbreiteten Verfahren dieser Klasse ist das Dormand-Prince-RK5(4)-Verfahren, welches in der Numerik-Software \Matlab \ unter dem Namen \textsc{ode45}  standardmäßig eingestellt ist. Die zugehörigen Koeffizienten können in Anhang \ref{sec:anheingeb} nachgelesen werden.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Mehrschrittverfahren}
@@ -376,31 +377,22 @@ Das gewählte Verfahren ist mit der verwendeten Schrittweite genau dann stabil, w
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Anwendung der Integrationsmethoden in Simulationssoftware}
+% Vielleicht keine Unterpunkte, sondern nur ein Kapitel mit unterüberschriften oder so, evtl als subsubsection machen oder so... Weil ist nicht so viel.
 \label{sec:anwend}
-\section{PSS Netomac}
-Die Software \verb PSS \verb Netomac der Firma \siemens verwendet die Trapezregel als Integrationsverfahren. Da die Trapezregel Isometrieerhaltend ist, ergeben sich keine Stabilitätsprobleme. ALGRORITHMISCHE AUFLOESUNG DER IMPLIZITEN GLEICHUNG ODER WAS??
-\section{PowerFactory}
-RMS Simulation Algorithms \\
-\textbullet     Highly accurate, fixed or variable step-size integration technique for solving AC and DC network load 
-flow and dynamic model equations. This is combined with a non-linear electromechanical model 
-representation to enable a high degree of solution accuracy, algorithmic stability and time range validity.\\
-\textbullet     A-stable simulation algorithm for the efficient handling of stiff systems. This is applicable to all or any 
-individually selected model featuring error-controlled automatic step-size adaptation, ranging from 
-milliseconds up to minutes or even hours, including precise handling of interrupts and discontinuities.  
-EMT Simulation Algorithms \\
-\textbullet     The calculation of initial conditions is carried out prior to the EMT simulation, and is based on a solved 
-load flow (symmetrical or asymmetrical). Consequently, there is no need for saving steady state 
-conditions being reached after transients are damped out aiming in simulation re-starting under steady 
-state conditions.  \\
-\textbullet     Special numerical integration methods have been implemented in DIgSILENT PowerFactory in order to 
-avoid numerical oscillations caused by switching devices and other non-linear characteristics.  \\
-\textbullet    Highly accurate, fixed or variable step-size integration technique for solving AC and DC network 
-transients and dynamic model equations. This is combined with a non-linear electromechanical model 
-representation to enable a high degree of solution accuracy, algorithmic stability and time range validity. 
-\section{PSSE}
-Zweiter Ordnung Euler Integrationsverfahren
-\section{Eurostag}
-The advanced dynamic functions of EUROSTAG® allow for the full range of transient, mid and long-term stability to be covered thanks to a robust algorithm using an auto-adaptative integration stepsize.
+Um die Bedeutung der vorgestellten Integrationsmethoden zu verdeutlichen, soll in diesem Kapitel kurz dargelegt werden, welche Verfahren von einigen ausgewählten Programmen, die in der Energietechnik zum Einsatz kommen, verwendet werden.
+
+\subsubsection{PSS\textregistered Netomac, PSS\textregistered E}
+Die Firma \siemens \ liefert mit den Programmen \textsc{PSS\textregistered Netomac} und \textsc{PSS\textregistered E} gleich zwei Softwarepakete, die in der Energietechnik Anwendung finden. 
+Ersteres verwendet die Trapezregel als Integrationsverfahren. Das heißt, es wird Modellwissen verwendet, um die implizite Gleichung wirklich aufzulösen.
+Da die Trapezregel Isometrieerhaltend ist, ergeben sich keine Stabilitätsprobleme und die Wahl der Schrittweite beeinflusst lediglich die Genauigkeit.\\
+In letzterem Softwarepaket wird nach \cite{PSSE} das \glqq second-order Euler\grqq-Verfahren, oder \glqq modified Euler\grqq-Verfahren verwendet. Nach der Schreibweise in dieser Arbeit entspricht dies dem Heun-Verfahren (\ref{eq:Heun}). In diesem Fall muss die Schrittweite klein genug gewählt werden, um Stabilität zu gewährleisten. In \cite{PSSE} wird deshalb empfohlen, die Schrittweite zwischen $\frac{1}{5}$ und $\frac{1}{4}$ der kleinsten im Prozess auftretenden Zeitkonstanten zu wählen.
+ 
+\subsubsection{PowerFactory}
+Ein weitere relevante Software in der Energietechnik ist \textsc{PowerFactory} von \mbox{\textsc{DIgSILENT}}. In \cite{powerfac} wird nicht genau beschrieben, welches Integrationsverfahren verwendet wird. Es wird angedeutet, dass das Verfahren der RMS-Simulation A-stabil ist, was auf ein implizites Verfahren hindeutet. Auch hier sind dynamische Modelle hinterlegt, die das Auswerten der impliziten Gleichung ermöglichen. Darüber hinaus wird angegeben, dass eine automatische Schrittweitenanpassung erfolgt beziehungsweise bei EMT-Simulationen mit variabler oder fester Schrittweite gerechnet werden kann.
+
+
+\subsubsection{Eurostag}
+Die Software \textsc{Eurostag} des französischen Energieversorgers \textsc{RTE} greift nach \cite{eurostag} bei der Simulation auf das in \cite{mixed} beschriebenen \glqq mixed adams - BDF\grqq-Vefahren zurück. Dabei handelt es sich um ein Prädiktor-Korrektor Verfahren, bei dem je nach Problemstellung ein implizites Adams-Verfahren oder ein BDF-Verfahren als Korrektor eingesetzt wird. Darüber hinaus wird die Schrittweite, ähnlich wie bei Einschrittverfahren gezeigt, gesteuert. Wie bei allen Verfahren mit Schrittweitensteuerung kommt es hierbei für die Genauigkeit und für die Stabilität auf die vom Anwender eingestellte Toleranz des lokalen Fehlers an. 
 
 
 
@@ -425,8 +417,6 @@ The advanced dynamic functions of EUROSTAG® allow for the full range of transien
 
 
 
-\newpage
-Hier ist das eigentliche Thema zu bearbeiten.
 
 %\section{Einbindung von Bildern}
 %\label{kap:einbindungbilder}
