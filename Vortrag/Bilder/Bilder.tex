@@ -1,0 +1,73 @@
+\documentclass[german,hyperref={pdfpagelabels=false,breaklinks=true}]{beamer}
+\usepackage{etex}
+\usepackage[ngerman]{babel}
+\usepackage[ansinew]{inputenc}
+\usepackage{amsmath,amssymb,amstext,amsbsy} % American-Maths-Standardized-Symbols
+%\usepackage{trfsigns} % Laplace Zeichen
+%\usepackage{exscale}  % Richte Skalierung von Integral- und Summenzeichen
+\usepackage{graphicx} % Einbinden von Grafiken
+\usepackage{multimedia}
+\usepackage[arrow, matrix, curve]{xy}
+\usepackage{pifont}
+%\usepackage{arydshln}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{calc}
+\usepackage{xparse}
+\usetikzlibrary{intersections,decorations.pathreplacing,fit,calc,positioning,plothandlers,plotmarks,patterns}
+\newlength{\hatchspread}
+\newlength{\hatchthickness}
+\newlength{\hatchshift}
+\newcommand{\hatchcolor}{}
+% declaring the keys in tikz
+\tikzset{hatchspread/.code={\setlength{\hatchspread}{#1}},
+         hatchthickness/.code={\setlength{\hatchthickness}{#1}},
+         hatchshift/.code={\setlength{\hatchshift}{#1}},% must be >= 0
+         hatchcolor/.code={\renewcommand{\hatchcolor}{#1}}}
+% setting the default values
+\tikzset{hatchspread=3pt,
+         hatchthickness=0.4pt,
+         hatchshift=0pt,% must be >= 0
+         hatchcolor=black}
+% declaring the pattern
+\pgfdeclarepatternformonly[\hatchspread,\hatchthickness,\hatchshift,\hatchcolor]% variables
+   {custom north west lines}% name
+   {\pgfqpoint{\dimexpr-2\hatchthickness}{\dimexpr-2\hatchthickness}}% lower left corner
+   {\pgfqpoint{\dimexpr\hatchspread+2\hatchthickness}{\dimexpr\hatchspread+2\hatchthickness}}% upper right corner
+   {\pgfqpoint{\dimexpr\hatchspread}{\dimexpr\hatchspread}}% tile size
+   {% shape description
+    \pgfsetlinewidth{\hatchthickness}
+    \pgfpathmoveto{\pgfqpoint{0pt}{\dimexpr\hatchspread+\hatchshift}}
+    \pgfpathlineto{\pgfqpoint{\dimexpr\hatchspread+0.15pt+\hatchshift}{-0.15pt}}
+    \ifdim \hatchshift > 0pt
+      \pgfpathmoveto{\pgfqpoint{0pt}{\hatchshift}}
+      \pgfpathlineto{\pgfqpoint{\dimexpr0.15pt+\hatchshift}{-0.15pt}}
+    \fi
+    \pgfsetstrokecolor{\hatchcolor}
+%    \pgfsetdash{{1pt}{1pt}}{0pt}% dashing cannot work correctly in all situation this way
+    \pgfusepath{stroke}
+   }
+
+
+\usetheme{default} %damit keine Kopfzeile, die viel Platz wegnimmt.
+\usecolortheme[RGB={20, 30,100}]{structure}  %leichtes Blau, ähnlich dem FAU Logo
+\useinnertheme{circles}  % Damit auch Gliederung schön nummeriert wird
+
+\setbeamercovered{transparent}
+\beamertemplatenavigationsymbolsempty %damit keine Navigationssymbole
+\setbeamerfont{frametitle}{size=\large}
+\setbeamersize{text margin left=10mm}
+\setbeamersize{text margin right=5mm}
+
+%####################################################################################
+%
+\begin{document}
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,draw=orange,very thin,fill opacity=0.5,inner sep=-2pt}
+}
+% siehe RTB Texen makros: tikzmark um optionales Argument des inner sep erweitert!
+\include{plots}
+\begin{frame}
+\input{euler_ex}
+\end{frame}
+\end{document}

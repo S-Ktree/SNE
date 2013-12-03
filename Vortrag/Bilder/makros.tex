@@ -1,0 +1,341 @@
+\newcommand{\dd}{\cdot}
+\renewcommand{\tt}{(t)}
+\newcommand{\kk}{[k]}
+\newcommand{\zz}{(z)}
+\newcommand{\vs}{(s)}
+\renewcommand{\u}[1]{u_#1(t)}
+\newcommand{\y}[1]{y_#1(t)}
+\newcommand{\x}[1]{x_#1(t)}
+\newcommand{\itt}{\int_0^t}
+\newcommand{\iti}{\int_0^\infty}
+\newcommand{\etT}{\e^{-\frac{t}{T}}}
+\newcommand{\ud}[1]{\underline{\dot{#1}}}
+\newcommand{\ut}[1]{\underline{\tilde{#1}}}
+\newcommand{\uh}[1]{\underline{\hat{#1}}}
+\newcommand{\eps}{\ul{\varepsilon}}
+\newcommand{\xk}{\underline{x}_k}
+\newcommand{\ra}{\curvearrowright}
+\newcommand{\eh}{\frac{1}{2}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\A}{\underline{A}}
+\newcommand{\At}{\underline{\tilde{A}}}
+\newcommand{\T}{\underline{T}}
+\newcommand{\I}{\underline{I}}
+\newcommand{\Pm}{\underline{P}}
+\newcommand{\bv}{\underline{b}}
+\newcommand{\bvt}{\underline{\tilde{b}}}
+\newcommand{\xv}{\underline{x}}
+\newcommand{\kt}{\ul{k}^T}
+\newcommand{\ex}{\ul{e}_x}
+\newcommand{\cv}{\underline{c}^T}
+\newcommand{\cvt}{\underline{\tilde{c}}^T}
+\newcommand{\ct}{\frac{c}{\Theta_M}}
+\renewcommand{\d}{\mathrm{d}}
+\newcommand{\jo}{\im\omega}
+\newcommand{\ag}{\alpha\gamma}
+\newcommand{\bg}{\beta\gamma}
+\newcommand{\xvz}{\begin{bmatrix}
+x_1\\x_2
+\end{bmatrix}}
+\newcommand{\xpz}{\begin{bmatrix}
+\dot{x}_1\\ \dot{x}_2
+\end{bmatrix}}
+\newcommand{\PBZ}{\stackrel{\text{PBZ}}{=}}
+\newcommand{\adj}{\mathrm{adj}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%TIKZ:
+\tikzset{%
+	>=latex,
+  highlight/.style={rectangle,rounded corners,draw=orange,very thin,fill opacity=0.5,inner sep=-2pt},
+  frame/.style={
+	rectangle,minimum size=9mm,thick,draw=black
+	},
+ sum/.style={
+	circle,minimum size =3mm,thick,draw=black, inner sep = 0pt
+	},
+ knot/.style={
+	circle,minimum size =2mm,fill=black, inner sep=0pt
+	},
+ skip  loop/.style={to  path={--  ++(0,#1)  -|  (\tikztotarget)}},
+ nonlin/.style = {frame, double,double distance=1pt},
+ times/.style = {alias=sourcenode,frame, 
+        append after command={
+        ($(sourcenode.center)+(-0.2,0.2)$)--($(sourcenode.center)+(0.2,-0.2)$)
+	  ($(sourcenode.center)+(-0.2,-0.2)$)--($(sourcenode.center)+(0.2,0.2)$)	
+        }
+	}
+}
+
+
+
+\newcommand{\tikzrightbrace}[4][0.5\textwidth]{%
+%%% Ein rechter brace der die nodes 2 und 3 umschließt.
+%%% rechts daneben wird der Text 4 mit der Breite 1 *optional angezeigt!
+\tikz[overlay,remember picture]{
+\node[fit=(#2.north east) (#3.south east),inner sep =0] (gesamt#2) {};
+\draw[decorate, decoration=brace] (gesamt#2.north east)--(gesamt#2.south east);
+\path (gesamt#2.east) node[right,xshift=2mm]{\parbox{#1}{#4}};
+}
+}
+
+
+\newcommand{\tikzmark}[3][3pt]{\tikz[remember picture,baseline=(#2.base)] \node[inner sep=#1] (#2) {#3};}
+%tikzmark: markiert inhalt als tikznode: 1(optional): inner sep der node
+%									2: name der Node
+%									3: Inhalt der Node
+\newcommand{\tikzmarktwo}[3][2pt]{\tikz[remember picture,baseline=(#2.base)] 
+\node[inner ysep=#1,inner xsep=0pt, outer xsep=0pt] (#2) {#3};}
+%%tikzmark: markiert inhalt als tikznode: 1(optional): inner ysep der node
+%%									2(optional): inner xsep der node
+%%									3: name der Node
+%%									4: Inhalt der Node
+
+%% Befehl, um einfach Beschriftungen mit Pfeil hinzuzufügen: (hält Abstand nach unten/oben automatisch ein! (standardmäßig in footnotesize aber durch voranstellen einer größe überschreibbar!)
+% #1 (optional, def 0.5cm): Abstand der Beschriftung vom zu Beschriftenden
+% #2 (optional, def 270): Winkel, in dem die Beschriftung angebracht wird.
+% #3 zu beschriftender Text
+% #4 Beschriftung 
+\DeclareDocumentCommand \pin {O{0.5cm} O{270} m m}{
+\tikz[baseline=(mynode.base), pin distance=#1,every pin edge/.style={<-}, inner sep=1pt]{
+\node(mynode)[pin=#2:{\footnotesize  #4}]{#3};
+\coordinate (pin) at (current bounding box.south);
+\path let \p1=(pin), \p2=(mynode.center) in %
+	node[inner sep=0pt](da) at (\x2,\y1){} node(gesamt)[fit=(mynode)(da),inner sep =0pt]{};
+\pgfresetboundingbox
+\useasboundingbox (gesamt.north west)rectangle(gesamt.south east);
+%\draw[fill=red] (current bounding box.south west) circle(0.02cm);
+%\draw[fill=red] (current bounding box.south east) circle(0.02cm);
+}
+}
+
+\DeclareDocumentCommand \pintest{O{0.5cm} O{270} m m}{#1 #2 #3 #4}
+
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+\newcommand{\highlight}[2]{%
+	\tikz[overlay,remember picture]{
+	\node[highlight,fit=(#1.north west)(#1.south east)] (#2){};
+	}
+}
+\newcommand{\underbrac}[2]{%
+	\tikz[overlay,remember picture, very thin, orange]{
+	\node[inner sep=-2pt,fit=(#1.north west)(#1.south east)] (#2){};
+	\path (#1.south west)++(0.065,0.05) edge($(#1.south west)+(0.065,0)$)
+		  ($(#1.south west)+(0.065,0)$) edge ($(#1.south east)-(0.065,0)$)
+  	 	 ($(#1.south east)-(0.065,0)$)++(0,0.05) edge  ($(#1.south east)-(0.065,0)$);
+	}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\tikzdoubleul}[1]{ % doppelte Unterstreichungen auch fuer groessere Objekte
+\tikzmarktwo{tikzdoubleul}{#1}
+\tikz[overlay, remember picture]{
+\path (tikzdoubleul.south west) edge[double, thick, double distance = 1.5pt] (tikzdoubleul.south east);
+}
+}
+
+\newcommand{\uldash}[1]{ % gestrichelte Unterstreichung
+\tikzmarktwo[2pt]{uldash}{#1}
+\tikz[overlay, remember picture]{
+\path (uldash.south west) edge[draw, thick, dashed] (uldash.south east);
+}
+}
+
+\newcommand{\tikzcancel}[1]{ % cancel gestrichelt
+\tikzmarktwo{tikzcancel}{#1}
+\tikz[overlay, remember picture]{
+\path ($(tikzcancel.south west)-(1pt,2pt)$) edge[draw,dotted,thick,color =gray] ($(tikzcancel.north east)+(1pt,2pt)$);
+}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% fuer bessere Underbraces!!
+% normal den underbrace Befehl verwenden aber dann den Text mathclapen! Bsp: \underbrace{a}{\mathclap{text}}
+ \def\mathllap{\mathpalette\mathllapinternal}
+ \def\mathllapinternal#1#2{%
+ \llap{$\mathsurround=0pt#1{#2}$}%  $
+ }
+ \def\clap#1{\hbox  to  0pt{\hss#1\hss}}
+ \def\mathclap{\mathpalette\mathclapinternal}
+ \def\mathclapinternal#1#2{%
+ \clap{$\mathsurround=0pt#1{#2}$}%
+}
+ \def\mathrlap{\mathpalette\mathrlapinternal}
+ \def\mathrlapinternal#1#2{%
+ \rlap{$\mathsurround=0pt#1{#2}$}%  $
+ }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% underbrackets!
+\makeatletter
+\def\overbracket#1{\mathop{\vbox{\ialign{##\crcr\noalign{\kern3\p@}
+\downbracketfill\crcr\noalign{\kern3\p@\nointerlineskip}
+$\hfil\displaystyle{#1}\hfil$\crcr}}}\limits}
+\def\underbracket#1{\mathop{\vtop{\ialign{##\crcr
+$\hfil\displaystyle{#1}\hfil$\crcr\noalign{\kern3\p@\nointerlineskip}
+\upbracketfill\crcr\noalign{\kern3\p@}}}}\limits}
+\def\overparenthesis#1{\mathop{\vbox{\ialign{##\crcr\noalign{\kern3\p@}
+\downparenthfill\crcr\noalign{\kern3\p@\nointerlineskip}
+$\hfil\displaystyle{#1}\hfil$\crcr}}}\limits}
+\def\underparenthesis#1{\mathop{\vtop{\ialign{##\crcr
+$\hfil\displaystyle{#1}\hfil$\crcr\noalign{\kern3\p@\nointerlineskip}
+\upparenthfill\crcr\noalign{\kern3\p@}}}}\limits}
+\def\downparenthfill{$\m@th\braceld\leaders\vrule\hfill\bracerd$}
+\def\upparenthfill{$\m@th\bracelu\leaders\vrule\hfill\braceru$}
+\def\upbracketfill{$\m@th\makesm@sh{\llap{\vrule\@height3\p@\@width.7\p@}}%
+\leaders\vrule\@height.7\p@\hfill
+\makesm@sh{\rlap{\vrule\@height3\p@\@width.7\p@}}$}
+\def\downbracketfill{$\m@th
+\makesm@sh{\llap{\vrule\@height.7\p@\@depth2.3\p@\@width.7\p@}}%
+\leaders\vrule\@height.7\p@\hfill
+\makesm@sh{\rlap{\vrule\@height.7\p@\@depth2.3\p@\@width.7\p@}}$}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Markierung als Studenten rechnen lassen>
+\newcommand{\markstudent}[3] %Argumente: 1: Abstand zwischen jetziger Zeile und Inhalt (Bei Equations: Baselineskip)
+% 2.: Länge des Inhalts /Markierung
+%3. : Inhalt
+{
+\ifLeiter
+\begin{minipage}[t]{0.05\textwidth}	
+	\vspace{#1}
+	\unitlength1cm
+	{\color{orange}
+	\makebox[0.025\textwidth]{\line(0,-1){#2}} 
+	\makebox[0.025\textwidth]{\line(0,-1){#2}}}
+\end{minipage}
+\begin{minipage}[t]{0.95\textwidth}
+#3
+\end{minipage}
+\else
+#3
+\fi
+}
+
+% Markierung für Übungsleiter>
+\newcommand{\markteacher}[3] %Argumente: 1: Abstand zwischen jetziger Zeile und Inhalt (Bei Equations: Baselineskip)
+% 2.: Länge des Inhalts /Markierung
+%3. : Inhalt
+{
+\ifLeiter
+\begin{minipage}[t]{0.05\textwidth}	
+	\vspace{#1}
+	\unitlength1cm
+	{\color{ForestGreen}
+	\makebox[0.025\textwidth]{\begin{sideways}\uwave{\hspace{#2}}\end{sideways}}
+	\makebox[0.025\textwidth]{\begin{sideways}\uwave{\hspace{#2}}\end{sideways}}  
+	}
+\end{minipage}
+\begin{minipage}[t]{0.95\textwidth}
+#3
+\end{minipage}
+\else
+#3
+\fi
+}
+
+% Markierung für Übungsleiter, einzeilig!
+\newcommand{\markteachers}[1] 
+{
+\ifLeiter
+\begin{minipage}[t]{0.05\textwidth}	
+	\vspace{-0.75\baselineskip}
+	\unitlength1cm
+	{\color{OliveGreen}
+	\makebox[0.025\textwidth]{\begin{sideways}\uwave{\hspace{0.85\baselineskip}}\end{sideways}}
+	\makebox[0.025\textwidth]{\begin{sideways}\uwave{\hspace{0.85\baselineskip}}\end{sideways}}  
+	}
+\end{minipage}
+\hspace{-0.5cm}
+\begin{minipage}[t]{0.95\textwidth}
+#1%
+\end{minipage}
+\else
+#1
+\fi
+}
+
+% Absätze machen:
+\newcommand{\absatz}[2]
+{
+\ifdefined\wortlang 
+\else
+\newlength{\wortlang}
+\fi
+\settowidth{\wortlang}{#1}
+\ifdim \wortlang<0.5\linewidth
+\begin{tabular}{p{\wortlang}p{\linewidth-4\tabcolsep-\wortlang}}
+\else
+\begin{tabular}{p{0.5\linewidth-2\tabcolsep}p{0.5\linewidth-2\tabcolsep}}
+\fi
+#1 & #2
+\end{tabular}
+\let\wortlang\relax
+}
+
+
+
+
+\newcommand{\koords}{
+\put(0,0){\makebox(0,0)[rb]{
+\begin{picture}(0,0)
+\put(4,0){\line(0,0){0,1}$4$}
+\put(3,0){\line(0,0){0,1}$3$}
+\put(2,0){\line(0,0){0,1}$2$}
+\put(1,0){\line(0,0){0,1}$1$}
+\put(0,0){\line(0,0){0,1}$0$}
+\put(-1,0){\line(0,0){0,1}$1$}
+\put(-2,0){\line(0,0){0,1}$2$}
+\put(-3,0){\line(0,0){0,1}$3$}
+\put(-4,0){\line(0,0){0,1}$4$}
+\put(-5,0){\line(0,0){0,1}$5$}
+\put(-6,0){\line(0,0){0,1}$6$}
+\put(-7,0){\line(0,0){0,1}$7$}
+\put(-8,0){\line(0,0){0,1}$8$}
+\put(-9,0){\line(0,0){0,1}$9$}
+\put(-10,0){\line(0,0){0,1}$10$}
+\put(-11,0){\line(0,0){0,1}$11$}
+\put(-12,0){\line(0,0){0,1}$12$}
+\put(-13,0){\line(0,0){0,1}$13$}
+\put(-14,0){\line(0,0){0,1}$14$}
+\put(-15,0){\line(0,0){0,1}$15$}
+\put(-16,0){\line(0,0){0,1}$16$}
+\put(-17,0){\line(0,0){0,1}$17$}
+\put(-18,0){\line(0,0){0,1}$18$}
+\put(-19,0){\line(0,0){0,1}$19$}
+\put(-20,0){\line(0,0){0,1}$20$}
+\put(-21,0){\line(0,0){0,1}$21$}
+\put(-22,0){\line(0,0){0,1}$22$}
+\put(-23,0){\line(0,0){0,1}$23$}
+\put(-24,0){\line(0,0){0,1}$24$}
+\put(0,-5){\line(-1,0){0,1}$5$}
+\put(0,-4){\line(-1,0){0,1}$4$}
+\put(0,-3){\line(-1,0){0,1}$3$}
+\put(0,-2){\line(-1,0){0,1}$2$}
+\put(0,-1){\line(-1,0){0,1}$1$}
+\put(0,0){\line(-1,0){0,1}}
+\put(0,1){\line(-1,0){0,1}$1$}
+\put(0,2){\line(-1,0){0,1}$2$}
+\put(0,3){\line(-1,0){0,1}$3$}
+\put(0,4){\line(-1,0){0,1}$4$}
+\put(0,5){\line(-1,0){0,1}$5$}
+\put(0,6){\line(-1,0){0,1}$6$}
+\put(0,7){\line(-1,0){0,1}$7$}
+\put(0,8){\line(-1,0){0,1}$8$}
+\put(0,9){\line(-1,0){0,1}$9$}
+\put(0,10){\line(-1,0){0,1}$10$}
+\put(0,11){\line(-1,0){0,1}$11$}
+\put(0,12){\line(-1,0){0,1}$12$}
+\put(0,13){\line(-1,0){0,1}$13$}
+\put(0,14){\line(-1,0){0,1}$14$}
+\put(0,15){\line(-1,0){0,1}$15$}
+\put(0,16){\line(-1,0){0,1}$16$}
+\end{picture}
+}
+}
+}
+
+\renewcommand{\L}{\mathrsfs{L}}

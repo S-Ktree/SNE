@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.14"
+    ComputedModelVersion    "1.15"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -37,9 +37,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Baum"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Nov 21 10:33:23 2013"
-  RTWModifiedTimeStamp	  306930367
-  ModelVersionFormat	  "1.%<AutoIncrement:14>"
+  LastModifiedDate	  "Tue Dec 03 14:57:12 2013"
+  RTWModifiedTimeStamp	  307983420
+  ModelVersionFormat	  "1.%<AutoIncrement:15>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -76,6 +76,7 @@ Model {
     $ObjectID		    2
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "Beispielmodell"
+    signals_		    []
     overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
@@ -143,7 +144,7 @@ Model {
 	  StartTime		  "0.0"
 	  StopTime		  "10"
 	  AbsTol		  "auto"
-	  FixedStep		  "2.1"
+	  FixedStep		  "0.5"
 	  InitialStep		  "auto"
 	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
@@ -727,7 +728,7 @@ Model {
   }
   System {
     Name		    "Beispielmodell"
-    Location		    [983, 414, 1864, 797]
+    Location		    [760, 292, 1641, 718]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
