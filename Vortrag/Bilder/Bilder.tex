@@ -14,6 +14,8 @@
 \usepackage{pgfplots}
 \usepackage{calc}
 \usepackage{xparse}
+\usepackage{siunitx}
+\usepackage[european,smartlabels]{circuitikz}
 \usetikzlibrary{intersections,decorations.pathreplacing,fit,calc,positioning,plothandlers,plotmarks,patterns}
 \newlength{\hatchspread}
 \newlength{\hatchthickness}
@@ -69,5 +71,8 @@
 \include{plots}
 \begin{frame}
 \input{euler_ex}
+\end{frame}
+\begin{frame}
+\input{netzwerk}
 \end{frame}
 \end{document}
