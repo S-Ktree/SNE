@@ -18,10 +18,13 @@
 \usepackage{siunitx}
 \usepackage[european,smartlabels]{circuitikz}
 \usetikzlibrary{intersections,decorations.pathreplacing,fit,calc,positioning,plothandlers,plotmarks,patterns}
+
+
 \newlength{\hatchspread}
 \newlength{\hatchthickness}
 \newlength{\hatchshift}
 \newcommand{\hatchcolor}{}
+%\pgfplotsset{compat=newest}
 % declaring the keys in tikz
 \tikzset{hatchspread/.code={\setlength{\hatchspread}{#1}},
          hatchthickness/.code={\setlength{\hatchthickness}{#1}},
@@ -65,10 +68,23 @@
 
 %####################################################################################
 %
+%\pgfplotsset{
+%tick  label  style={font=\scriptsize},
+%label  style={font=\scriptsize},
+%legend  style={font=\scriptsize}
+%}
+
 \begin{document}
-\tikzset{%
-  highlight/.style={rectangle,rounded corners,draw=orange,very thin,fill opacity=0.5,inner sep=-2pt}
-}
+%\tikzset{%
+%  highlight/.style={rectangle,rounded corners,draw=orange,very thin,fill opacity=0.5,inner sep=-2pt}
+%}
+
+
+
+\newlength{\breite}
+\newlength{\hoehe}
+\setlength{\breite}{1\textwidth}%{0.7\textwidth}
+\setlength{\hoehe}{0.9\textheight}%{0.6\textheight}
 % siehe RTB Texen makros: tikzmark um optionales Argument des inner sep erweitert!
 \include{plots}
 \begin{frame}{euler,ex}

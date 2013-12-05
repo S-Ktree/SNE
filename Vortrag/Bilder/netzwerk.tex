@@ -9,25 +9,25 @@
 \tikzstyle{every node}=[font=\small]
 \tikzstyle{every path}=[line width=0.8pt,line cap=round,line join=round]
 
-\begin{circuitikz}
+\only<1>{
+\begin{circuitikz}[scale=1.8]
 \draw (0,0)
 	to [C,l=$C$,v_>=$u_C(t)$] (2,0)	
 	to node[currarrow]{}node[above]{$i(t)$} (3,0)
 	to (3,-1.5)
 	to [R,l^=$R$,v_=$u_R(t)$] node (R){} (0,-1.5)
 	to (0,0);
-\end{circuitikz}
-\begin{minipage}{0.6\textwidth}
-\begin{align}
+\end{circuitikz}}
+\only<2->{
+\begin{minipage}{0.7\textwidth}
+\begin{align*}
 u_C(t)&=u_R(t):=u(t)\\
-i(t) &= \frac{-u_R(t)}{R} \label{1} \\
-u_C(t) &= u_0 + \frac{1}{C} \int \limits_0^t i(t) \mathrm{d}t \label{2} \\
-&\text{(\ref{1}) in (\ref{2}), differenzieren, auflösen:} \notag \\
+i(t) &= \frac{-u_R(t)}{R}  \\
+u_C(t) &= u_0 + \frac{1}{C} \int \limits_0^t i(t) \mathrm{d}t \\
 \dot{u}(t) &= \tikzmark{oben}{$\frac{-1}{RC}$} u(t), \quad u(0) = u_0\\
-&\text{umbenennen:}\notag \\
 \dot{x} &= \tikzmark[-0pt]{lambda}{$\lambda$}x, \quad x(0)=x_0\\
 &\text{hier: } \dot{x}=-x
-\end{align}
+\end{align*}
 Echte Lösung:\\
 $x(t) = x_0 e^{\lambda t}$
 \end{minipage}
@@ -35,7 +35,7 @@ $x(t) = x_0 e^{\lambda t}$
 \tikz[overlay, remember picture]{
 \node(obenneu)[highlight,fit=(oben.north west)(oben.south east)]{}; 
 \draw[orange, very thin] (obenneu)->(lambda);
-}
+}}
 %%\begin{circuitikz}
 %    \draw
 %    (0,0)
