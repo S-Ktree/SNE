@@ -38,7 +38,7 @@ Model {
   LastModifiedBy	  "Baum"
   ModifiedDateFormat	  "%<Auto>"
   LastModifiedDate	  "Wed Dec 04 17:30:29 2013"
-  RTWModifiedTimeStamp	  308079024
+  RTWModifiedTimeStamp	  308137539
   ModelVersionFormat	  "1.%<AutoIncrement:16>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
@@ -76,6 +76,7 @@ Model {
     $ObjectID		    2
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "Beispielmodell"
+    signals_		    []
     overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
@@ -143,7 +144,7 @@ Model {
 	  StartTime		  "0.0"
 	  StopTime		  "10"
 	  AbsTol		  "auto"
-	  FixedStep		  "0.5"
+	  FixedStep		  "2.1"
 	  InitialStep		  "auto"
 	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
@@ -158,8 +159,8 @@ Model {
 	  RelTol		  "1e-10"
 	  SolverMode		  "Auto"
 	  ConcurrentTasks	  off
-	  Solver		  "ode4"
-	  SolverName		  "ode4"
+	  Solver		  "ode2"
+	  SolverName		  "ode2"
 	  SolverJacobianMethodControl "auto"
 	  ShapePreserveControl	  "DisableAll"
 	  ZeroCrossControl	  "UseLocalSettings"
@@ -629,7 +630,7 @@ Model {
       }
       Name		      "Configuration"
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition     [ 876, 250, 1756, 880 ] 
+      ConfigPrmDlgPosition     [ 284, 239, 1164, 869 ] 
     }
     PropName		    "ConfigurationSets"
   }
@@ -727,7 +728,7 @@ Model {
   }
   System {
     Name		    "Beispielmodell"
-    Location		    [717, 335, 1598, 761]
+    Location		    [257, 337, 1138, 771]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200

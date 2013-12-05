@@ -29,14 +29,14 @@ ymajorgrids,
 axis x line*=bottom,
 axis y line*=left,
 xlabel=$t$,
-ylabel=$x(t)$
-%legend style={draw=black,fill=white,legend cell align=left}
+ylabel=$x(t)$,
+legend style={draw=black,fill=white,legend cell align=left}
 ]}
 
 \vergleich{color=gray,dashed, thin,forget plot}
 \addplot [
 color=red,
-solid
+solid, very thick
 ]
 table[row sep=crcr]{
 0 1\\
@@ -65,12 +65,12 @@ table[row sep=crcr]{
 11.5 7.89730223053603e-006\\
 12 4.73838133832162e-006\\
 };
-\addlegendentry{0.5};
+\addlegendentry{$T=0.5$};
 
 \only<2->{
 \addplot [
 color=green,
-solid
+solid, very thick
 ]
 table[row sep=crcr]{
 0 1\\
@@ -87,7 +87,7 @@ table[row sep=crcr]{
 11 5.64502926947676e-006\\
 12 1.88167642315892e-006\\
 };
-\addlegendentry{1};}
+\addlegendentry{$T=1$};}
 %
 
 %\addplot [
@@ -105,7 +105,7 @@ table[row sep=crcr]{
 \only<3->{
 \addplot [
 color=blue,
-solid
+solid, very thick
 ]
 table[row sep=crcr]{
 0 1\\
@@ -114,7 +114,7 @@ table[row sep=crcr]{
 6.3 -1.45093657956211e-005\\
 8.4 3.53886970624906e-007\\
 };
-\addlegendentry{2.1};}
+\addlegendentry{$T=2.1$};}
 
 \end{axis}
 \end{tikzpicture}%

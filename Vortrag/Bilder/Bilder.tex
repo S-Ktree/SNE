@@ -1,4 +1,5 @@
 \documentclass[german,hyperref={pdfpagelabels=false,breaklinks=true}]{beamer}
+\usefonttheme[onlymath]{serif}
 \usepackage{etex}
 \usepackage[ngerman]{babel}
 \usepackage[ansinew]{inputenc}
@@ -60,6 +61,7 @@
 \setbeamerfont{frametitle}{size=\large}
 \setbeamersize{text margin left=10mm}
 \setbeamersize{text margin right=5mm}
+\include{makros}
 
 %####################################################################################
 %
@@ -69,16 +71,19 @@
 }
 % siehe RTB Texen makros: tikzmark um optionales Argument des inner sep erweitert!
 \include{plots}
-\begin{frame}
+\begin{frame}{euler,ex}
 \input{euler_ex}
 \end{frame}
-\begin{frame}
+\begin{frame}{Beispiel}
 \input{netzwerk}
 \end{frame}
-\begin{frame}
+\begin{frame}{euler,im}
 \input{euler_im}
 \end{frame}
-\begin{frame}
+\begin{frame}{Trapez}
 \input{trapez}
+\end{frame}
+\begin{frame}{Heun}
+\input{heun}
 \end{frame}
 \end{document}

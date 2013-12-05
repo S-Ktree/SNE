@@ -27,4 +27,4 @@ plot(t_5,x_5);
 legend('0.5','1','4','2.1');
 
 %% Exportieren:
-matlab2tikz('euler_im.tex');
+matlab2tikz('trapez.tex');
