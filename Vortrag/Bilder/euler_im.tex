@@ -45,8 +45,8 @@ ymin=-0.25,
 ymax=1,
 ymajorgrids,
 xlabel=$t$,
-ylabel=$x(t)$,
-%axis background/.style={fill=white}
+%ylabel=$x(t)$,
+axis background/.style={fill=white}
 %legend style={draw=black,fill=white,legend cell align=left}
 ]}
 \only<2-3>{\begin{axis}[%
@@ -63,7 +63,7 @@ ymin=-0.25,
 ymax=1,
 ymajorgrids,
 xlabel=$t$,
-ylabel=$x(t)$,
+%ylabel=$x(t)$,
 axis background/.style={fill=white}
 %legend style={draw=black,fill=white,legend cell align=left}
 ]}
@@ -81,7 +81,7 @@ ymin=-0.25,
 ymax=1,
 ymajorgrids,
 xlabel=$t$,
-ylabel=$x(t)$,
+%ylabel=$x(t)$,
 axis background/.style={fill=white}
 %legend style={draw=black,fill=white,legend cell align=left}
 ]}
@@ -129,7 +129,7 @@ table[row sep=crcr]{
 12 5.94031920635491e-005\\
 };}
 \only<4>{\addlegendentry{$T = 0.5$};}
-\only<5>{\addlegendentry{implizit};}
+\only<5>{\addlegendentry{impliziter Euler};}
 
 
 \only<5>{\addplot [
@@ -159,7 +159,7 @@ table[row sep=crcr]{
 9.5 1.9073486328125e-006\\
 10 9.5367431640625e-007\\
 };}
-\only<5>{\addlegendentry{explizit};}
+\only<5>{\addlegendentry{expliziter Euler};}
 
 
 \only<4>{\addplot [
