@@ -68,11 +68,12 @@
 
 %####################################################################################
 %
-%\pgfplotsset{
-%tick  label  style={font=\scriptsize},
-%label  style={font=\scriptsize},
-%legend  style={font=\scriptsize}
-%}
+\pgfplotsset{
+tick  label  style={font=\footnotesize},
+label  style={font=\footnotesize},
+legend  style={font=\footnotesize},
+ylabel=$.$
+}
 
 \begin{document}
 %\tikzset{%
@@ -83,8 +84,8 @@
 
 \newlength{\breite}
 \newlength{\hoehe}
-\setlength{\breite}{0.95\textwidth}%{0.7\textwidth}
-\setlength{\hoehe}{0.85\textheight}%{0.6\textheight}
+\setlength{\breite}{0.8\textwidth}%{0.7\textwidth}
+\setlength{\hoehe}{0.7\textheight}%{0.6\textheight}
 % siehe RTB Texen makros: tikzmark um optionales Argument des inner sep erweitert!
 \include{plots}
 \begin{frame}{euler,ex}
