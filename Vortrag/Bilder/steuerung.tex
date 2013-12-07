@@ -1,0 +1,128 @@
+\documentclass{article}
+\usepackage[ngerman]{babel}
+\usepackage[a4paper, landscape]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[ansinew]{inputenc}
+\usepackage{amsmath,amssymb,amstext,amsbsy} 
+\usepackage[active,tightpage]{preview}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{calc}
+\usepackage{xparse}
+\usepackage{siunitx}
+\usepackage{helvet}
+\renewcommand*\familydefault{\sfdefault}
+\PreviewEnvironment{tikzpicture}
+\usetikzlibrary{intersections,decorations.pathreplacing,fit,calc,positioning,plothandlers,plotmarks,patterns}
+%\usepackage[arrow, matrix, curve]{xy}
+%\usepackage{pifont}
+%\usepackage{tikz}
+%\usetikzlibrary{intersections,arrows,decorations.pathmorphing,backgrounds,positioning,petri}
+%\usetikzlibrary{positioning,petri,calc,arrows,fit}
+%\usepackage[showframe]{geometry} % zum überprüfen der Ränder!
+%\include{makros}
+
+\begin{document}
+
+\begin{tikzpicture}[
+		>=latex,
+  highlight/.style={rectangle,rounded corners,draw=orange,very thin,fill opacity=0.5,inner sep=-2pt},
+  frame/.style={
+	rectangle,minimum size=9mm,thick,draw=black
+	},
+ sum/.style={
+	circle,minimum size =3mm,thick,draw=black, inner sep = 0pt
+	},
+ knot/.style={
+	circle,minimum size =2mm,fill=black, inner sep=0pt
+	},
+ skip  loop/.style={to  path={--  ++(0,#1)  -|  (\tikztotarget)}},
+ nonlin/.style = {frame, double,double distance=1pt},
+ times/.style = {alias=sourcenode,frame, 
+        append after command={
+        ($(sourcenode.center)+(-0.2,0.2)$)--($(sourcenode.center)+(0.2,-0.2)$)
+	  ($(sourcenode.center)+(-0.2,-0.2)$)--($(sourcenode.center)+(0.2,0.2)$)	
+        }
+	}
+	]
+	
+	\node[inner sep =3mm] (in)at (0,0){}; 
+	\node[right = 0.1cm of in,frame](neu){$\begin{array}{l}x_{i+1} \ \text{\footnotesize mit Konsistenzordnung } s \\
+\hat{x}_{i+1} \ \text{\footnotesize mit Konsistenzordnung } s-1 \end{array}$};
+	\node[right = 0.8cm of  neu,sum](diff){};
+	\node[right =0.5cm of  diff,knot](knoten){};
+	\node[frame, above right =0.1cm and 4cm of knoten](annehmen){$x_{i+1}$ annehmen};
+	\node[frame, below right =0.1cm and 4cm of knoten](anpassen1){Schrittweite anpassen};
+	\node[frame,above = 0.5cm of annehmen,xshift=-0.5cm](anpassen2){Schrittweite anpassen};
+
+\begin{scope}[draw=black,->,thick]
+\draw
+	(in.west) node[left]{$T_0$}
+	to (neu);
+\draw
+	($(neu.east)+(0,2mm)$) to (diff);
+\draw	
+	($(neu.east)-(0,2mm)$) to (diff);
+\draw (knoten) |-node[above,near end]{Differenz $<$ Toleranz} (annehmen);
+\draw (knoten) |-node[below,near end]{Differenz $>$ Toleranz} (anpassen1);
+\draw (annehmen) -- ++(2cm,0) |- (anpassen2);
+\draw let \p1= (in.north), \p2 = (neu.west) in  (in.north) to (\x2,\y1);
+\draw let \p1= (in.south), \p2 = (neu.west) in  (in.south) to (\x2,\y1);
+\end{scope}
+\path[thick,draw=black] 
+	(anpassen2)  -| node[above, near start]{$i=i+1$ (zum nächsten Schritt)} (in.north);
+\path[thick,draw=black] 
+	(anpassen1)  --  ++(0,-1cm) -| node[below, near start]{$i=i$ (Schritt wiederholen)} (in.south);
+\draw[thick]
+	(diff) node[above=2mm]{Differenz} to (knoten);
+\end{tikzpicture}
+
+% Kanten mit 2 90° Knicks zeichnen:
+%\tikz[overlay, remember picture]{
+%	\node(doppel) at (2,0){von};
+%	\node(ist)at (0,-2){bis};
+%	\draw[->,black, thick](doppel.south)--($(doppel.south)-(0,10mm)$) -| (ist.north);
+%}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
