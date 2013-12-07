@@ -29,7 +29,7 @@ ymajorgrids,
 xlabel=$t$,
 %ylabel=$x(t)$,
 axis background/.style={fill=white},
-legend style={draw=black,fill=white,legend cell align=left}
+legend style={draw=black,fill=white,legend cell align=left, at={(0.99,0.8)}}
 ]
 \vergleich{color=gray,dashed, thin,forget plot}
 
@@ -141,6 +141,38 @@ legend style={draw=black,fill=white,legend cell align=left}
 %10 4.62229778146585e-005\\
 %};
 %\addlegendentry{T=0.1/l};
+\addplot [
+color=red,
+solid, very thick
+]
+table[row sep=crcr]{
+0 1\\
+0.5 0.6\\
+1 0.36\\
+1.5 0.216\\
+2 0.1296\\
+2.5 0.07776\\
+3 0.046656\\
+3.5 0.0279936\\
+4 0.01679616\\
+4.5 0.010077696\\
+5 0.0060466176\\
+5.5 0.00362797056\\
+6 0.002176782336\\
+6.5 0.0013060694016\\
+7 0.00078364164096\\
+7.5 0.000470184984576\\
+8 0.0002821109907456\\
+8.5 0.00016926659444736\\
+9 0.000101559956668416\\
+9.5 6.09359740010496e-005\\
+10 3.65615844006297e-005\\
+10.5 2.19369506403778e-005\\
+11 1.31621703842267e-005\\
+11.5 7.89730223053603e-006\\
+12 4.73838133832162e-006\\
+};
+\addlegendentry{Trapez, $T=0.5$};
 
 \addplot [
 color=green,
@@ -169,7 +201,7 @@ table[row sep=crcr]{
 9.5 0.000132348898008484\\
 10 8.27180612553028e-005\\
 };
-\addlegendentry{$T=0.5$};
+\addlegendentry{Heun, $T=0.5$};
 
 %\addplot [
 %color=blue,
@@ -215,7 +247,7 @@ table[row sep=crcr]{
 6.3 1.349232625\\
 8.4 1.490902050625\\
 };
-\addlegendentry{$T=2.1$};}
+\addlegendentry{Heun, $T=2.1$};}
 
 \end{axis}
 \end{tikzpicture}%
