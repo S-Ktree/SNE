@@ -31,14 +31,14 @@ xlabel=$\Re z$,
 ylabel=$\Im z$,
 legend style={draw=black,legend cell align=left,anchor=south east},
 legend pos=south east,
-axis background/.style={fill=red!20, fill opacity=90, postaction={ 
+axis background/.style={fill=red!20, fill opacity=0.5, postaction={ 
     path picture={
     \fill[green!50,pattern=custom north west lines,hatchcolor=green,hatchthickness=1.25pt,hatchspread=10pt] (axis cs:-4,-4) rectangle (axis  cs:0,4);
     \draw[red,line width=2pt,fill=white] (axis cs:1,0) circle(100);
 }}}
 ]
 
-\addplot[solid,line width=2.0pt,draw=mycolor1,fill=mycolor1!50,fill opacity=90]
+\addplot[solid,line width=2.0pt,draw=mycolor1,fill=mycolor1!50,fill opacity=0.5]
 table[row sep=crcr]{
 x y\\
 -2.78 0.289090909090909 \\
@@ -3633,7 +3633,7 @@ x y\\
 };
 \addlegendentry{\scriptsize Trapez};
 
-\addplot[solid,line width=2.0pt,draw=blue,fill=blue!50,fill opacity=90]
+\addplot[solid,line width=2.0pt,draw=blue,fill=blue!50,fill opacity=0.5]
 table[row sep=crcr]{
 x y\\
 -1.99 0.549090909090909 \\
@@ -4733,7 +4733,7 @@ NaN NaN \\
 };
 \addlegendentry{\scriptsize Heun};
 
-\addplot[solid,line width=2.0pt,draw=black, fill=black!50, fill opacity=90]
+\addplot[solid,line width=2.0pt,draw=black, fill=black!50, fill opacity=0.5]
 table[row sep=crcr]{
 x y\\
 -1.99 0.145 \\

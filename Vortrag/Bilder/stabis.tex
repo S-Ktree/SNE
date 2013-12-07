@@ -41,19 +41,19 @@ legend pos=south east,}]
 ]}
 \only<3>{
 \begin{axis}[%
-axis background/.style={fill=red!20, fill opacity=90,
+axis background/.style={fill=red, fill opacity=0.1,
 postaction={
-path picture={\draw[red,line width=2pt,fill=white] (axis cs:1,0) circle(100);}
+path picture={\draw[red,line width=2pt,fill=white,fill opacity=1] (axis cs:1,0) circle(100);}
 }
 }
 ]}
 
 \only<4->{
 \begin{axis}[%
-axis background/.style={fill=red!20, fill opacity=90, postaction={ 
+axis background/.style={fill=red, fill opacity=0.1, postaction={ 
     path picture={
-    \fill[green!50,pattern=custom north west lines,hatchcolor=green,hatchthickness=1.25pt,hatchspread=10pt] (axis cs:-4,-4) rectangle (axis  cs:0,4);
-	\draw[red,line width=2pt,fill=white] (axis cs:1,0) circle(100);
+    \fill[green,pattern=custom north west lines,hatchcolor=green,hatchthickness=1.25pt,hatchspread=10pt, fill opacity=1] (axis cs:-4,-4) rectangle (axis  cs:0,4);
+	\draw[red,line width=2pt,fill=white,fill opacity=1] (axis cs:1,0) circle(100);
 }}}
 ]}
 
@@ -63,7 +63,7 @@ axis background/.style={fill=red!20, fill opacity=90, postaction={
 
 
 \only<5->{
-\addplot[solid,line width=2.0pt,draw=blue,fill=blue!50,fill opacity=90]
+\addplot[solid,line width=2.0pt,draw=blue,fill=blue!50,fill opacity=0.5]
 table[row sep=crcr]{
 x y\\
 -1.99 0.549090909090909 \\
@@ -1185,13 +1185,13 @@ x y\\
 \addlegendentry{\scriptsize Euler, implizit};
 }
 
-\addplot[solid,line width=2.0pt,draw=black, fill=black!50, fill opacity=90]
+\addplot[solid,line width=2.0pt,draw=black, fill=black,fill opacity=0.5]
 %,postaction={draw,decorate,thin,decoration={border,angle=-90, amplitude=2mm,segment length=3mm}}
 table[row sep=crcr]{
 x y\\
 -1 0 \\
 }node[pos=0,inner sep=0pt](Mitte2){};
-\draw[black,line width=2pt, fill=black!50, fill opacity=90] (Mitte2.center) circle(100);
+\draw[black,line width=2pt, fill=black, fill opacity=.5] (Mitte2.center) circle(100);
 
 \only<2->{
 \node(kreuz1)[circle,draw=black, fill=black, inner sep=1.5pt] at (axis cs: -2.1,0){};

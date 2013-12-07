@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.17)  7 DEC 2013 18:23
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.17)  7 DEC 2013 19:07
 entering extended mode
 **Bilder.tex
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\Vortrag\Bilder\Bilder.tex"
@@ -1863,13 +1863,13 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 40670 strings out of 494045
- 979025 string characters out of 3145972
- 1588286 words of memory out of 3000000
- 43031 multiletter control sequences out of 15000+200000
+ 40672 strings out of 494045
+ 979061 string characters out of 3145972
+ 1587432 words of memory out of 3000000
+ 43033 multiletter control sequences out of 15000+200000
  16681 words of font info for 68 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 62i,18n,80p,30621b,2010s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 62i,18n,80p,30621b,2008s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/P
@@ -1886,7 +1886,7 @@ eX 2.9/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program Files (x86)/MiKTeX
 onts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
 type1/public/amsfonts/cm/cmsy9.pfb>
-Output written on Bilder.pdf (26 pages, 215021 bytes).
+Output written on Bilder.pdf (26 pages, 215059 bytes).
 PDF statistics:
  226 PDF objects out of 1000 (max. 8388607)
  53 named destinations out of 1000 (max. 500000)
