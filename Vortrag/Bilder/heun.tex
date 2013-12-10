@@ -26,7 +26,7 @@ yticklabels={0,1},
 ymin=-0.25,
 ymax=1.25,
 ymajorgrids,
-xlabel=$t$,
+xlabel=.,
 %ylabel=$x(t)$,
 axis background/.style={fill=white},
 legend style={draw=black,fill=white,legend cell align=left, at={(0.99,0.8)}}
@@ -140,7 +140,7 @@ legend style={draw=black,fill=white,legend cell align=left, at={(0.99,0.8)}}
 %9.9 5.10751136073575e-005\\
 %10 4.62229778146585e-005\\
 %};
-%\addlegendentry{T=0.1/l};
+%\addlegendentry{\mathrm{T}=0.1/l};
 \addplot [
 color=red,
 solid, very thick
@@ -172,7 +172,7 @@ table[row sep=crcr]{
 11.5 7.89730223053603e-006\\
 12 4.73838133832162e-006\\
 };
-\addlegendentry{Trapez, $T=0.5$};
+\addlegendentry{Trapez, $\mathrm{T}=0.5$};
 
 \addplot [
 color=green,
@@ -201,7 +201,7 @@ table[row sep=crcr]{
 9.5 0.000132348898008484\\
 10 8.27180612553028e-005\\
 };
-\addlegendentry{Heun, $T=0.5$};
+\addlegendentry{Heun, $\mathrm{T}=0.5$};
 
 %\addplot [
 %color=blue,
@@ -220,7 +220,7 @@ table[row sep=crcr]{
 %9 0.001953125\\
 %10 0.0009765625\\
 %};
-%\addlegendentry{T=1/l};
+%\addlegendentry{\mathrm{T}=1/l};
 %
 %\addplot [
 %color=red,
@@ -234,7 +234,7 @@ table[row sep=crcr]{
 %8 1\\
 %10 1\\
 %};
-%\addlegendentry{T=2/l};
+%\addlegendentry{\mathrm{T}=2/l};
 %
 \only<2->{\addplot [
 color=mycolor2, very thick,
@@ -247,7 +247,7 @@ table[row sep=crcr]{
 6.3 1.349232625\\
 8.4 1.490902050625\\
 };
-\addlegendentry{Heun, $T=2.1$};}
+\addlegendentry{Heun, $\mathrm{T}=2.1$};}
 
 \end{axis}
 \end{tikzpicture}%

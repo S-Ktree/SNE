@@ -19,7 +19,7 @@ yticklabels={\vphantom{0,0}0,1},
 ymajorgrids,
 %axis x line*=bottom,
 %axis y line*=left,
-xlabel=$t$,
+xlabel=.,
 %ylabel=$x(t)$,
 axis background/.style={fill=white}
 %legend style={draw=black,legend cell align=left,anchor=south east,at={(1,0)}},
@@ -39,7 +39,7 @@ yticklabels={0,1},
 ymajorgrids,
 %axis x line*=bottom,
 %axis y line*=left,
-xlabel=$t$,
+xlabel=.,
 %ylabel=$x(t)$,
 axis background/.style={fill=white}
 %legend style={draw=black,legend cell align=left,anchor=south east,at={(1,0)}},
@@ -59,7 +59,7 @@ yticklabels={0,0.5,1},
 ymajorgrids,
 %axis x line*=bottom,
 %axis y line*=left,
-xlabel=$t$,
+xlabel=.,
 %ylabel=$x(t)$,
 axis background/.style={fill=white}
 %legend style={draw=black,legend cell align=left,anchor=south east,at={(1,0)}},
@@ -79,7 +79,7 @@ yticklabels={0,0.25,0.5,1},
 ymajorgrids,
 %axis x line*=bottom,
 %axis y line*=left,
-xlabel=$t$,
+xlabel=.,
 %ylabel=$x(t)$,
 axis background/.style={fill=white}
 %legend style={draw=black,legend cell align=left,anchor=south east,at={(1,0)}},
@@ -99,7 +99,7 @@ yticklabels={-1,-0.5,0,0.5,1},
 ymajorgrids,
 %axis x line*=bottom,
 %axis y line*=left,
-xlabel=$t$,
+xlabel=.,
 %ylabel=$x(t)$,
 axis background/.style={fill=white}
 %legend style={draw=black,legend cell align=left,anchor=south east,at={(1,0)}},
@@ -219,9 +219,9 @@ table[row sep=crcr]{
 9.8 3.2791850478503e-005\\
 9.9 2.95126654306527e-005\\
 10 2.65613988875875e-005\\
-};}
-%%\addlegendentry{\scriptsize $T=0.1/|\lambda|$};
-%
+};
+\addlegendentry{\scriptsize $\mathrm{T}=0.1$};
+}%
 
 \only<3>{\addplot [
 color=green, very thick,
@@ -266,7 +266,7 @@ table[row sep=crcr]{
 9.5 1.9073486328125e-006\\
 10 9.5367431640625e-007\\
 };}
-%%\addlegendentry{\scriptsize $T=0.5/|\lambda|$};
+\only<6>{\addlegendentry{\scriptsize $\mathrm{T}=0.5$};}
 %
 %\addplot [
 %color=blue,
@@ -285,7 +285,7 @@ table[row sep=crcr]{
 %9 0\\
 %10 0\\
 %};
-%%\addlegendentry{\scriptsize $T=1/|\lambda|$};
+%%\addlegendentry{\scriptsize $\mathrm{T}=1/|\lambda|$};
 %
 %\addplot [
 %color=red,
@@ -299,7 +299,7 @@ table[row sep=crcr]{
 %8 1\\
 %10 -1\\
 %};
-%%\addlegendentry{\scriptsize $T=2/|\lambda|$};
+%%\addlegendentry{\scriptsize $\mathrm{T}=2/|\lambda|$};
 \only<8->{
 \addplot [
 color=mycolor2,
@@ -321,7 +321,7 @@ table[row sep=crcr]{
 6.3 -1.331\\
 8.4 1.4641\\
 };}
-%%\addlegendentry{\scriptsize $T=2.1/|\lambda|$};
+%%\addlegendentry{\scriptsize $\mathrm{T}=2.1/|\lambda|$};
 
 \end{axis}
 \end{tikzpicture}%

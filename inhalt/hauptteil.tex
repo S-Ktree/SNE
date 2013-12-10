@@ -265,7 +265,7 @@ Die zweite sehr bedeutende Klasse der Mehrschrittverfahren sind die so genannten
 
 \chapter{Stabilitätsanalyse der wichtigsten Methoden}
 \label{sec:stabi}
-Neben der Konvergenz des Fehlers mit der Schrittweite $e(t) = \mathcal{O}(T^p)$ ist für die Anwendbarkeit eines Verfahrens entscheidend, welche Voraussetzungen an die Schrittweite gestellt werden müssen, damit das Verfahren bei der Lösung von Differentialgleichungen stabil ist. Unter der Stabilität soll in diesem Zusammenhang die exponentielle Stabilität verstanden werden, wie sie in \cite{gruene} beschrieben wird. Um die Betrachtungen zu vereinfachen, soll sich an dieser Stelle auf die Klasse \textit{linearer zeitinvarianter Systeme} beschränkt werden, für die gilt:
+Neben der Konvergenz des Fehlers mit der Schrittweite $e(t) = \mathcal{O}(T^p)$ ist für die Anwendbarkeit eines Verfahrens entscheidend, welche Voraussetzungen an die Schrittweite gestellt werden müssen, damit das Verfahren bei der Lösung von Differentialgleichungen stabil ist. Unter der Stabilität soll in diesem Zusammenhang die exponentielle Stabilität verstanden werden, wie sie in \cite{gruene} beschrieben wird. Zur Einfachheit werden die Betrachtungen an dieser Stelle auf die Klasse \textit{linearer zeitinvarianter Systeme} beschränk, für die gilt:
 \begin{align}
 	\dot{x}=Ax.
 \end{align}
@@ -330,7 +330,7 @@ Dabei gilt zu beachten, dass für die Menge aller Eigenwerte $\Sigma$ zweier Matr
 Damit lässt sich die Schrittweite $T$ in Abhängigkeit der Eigenwerte von $A$ so berechnen, dass das verwendete Verfahren stabil ist. Allgemein gilt, je größer das Stabilitätsgebiet $S$, desto größer kann die Schrittweite $T$ gewählt werden, um Stabilität zu gewährleisten. Ein Verfahren wird als $A$-stabil bezeichnet, wenn es für eine stabile Dynamik $A$ unabhängig von der Schrittweite stabil ist. In diesem Fall ist die gesamte linke Halbebene der komplexen Zahlenebene im Stabilitätsgebiet enthalten: $\mathbb{C}^- \subseteq S$.
 
 Zur Vergleichbarkeit sollen nun die betrachteten Verfahren auf das Stabilitätsgebiet untersucht werden.
-Für das explizite Euler-Verfahren ergibt sich $R_\mathrm{Eu,ex}(z) = 1+z$. Damit ergibt sich 
+Für das explizite Euler-Verfahren lautet die Stabilitätsfunktion $R_\mathrm{Eu,ex}(z) = 1+z$. Damit ergibt sich die Ungleichung
 \begin{align}
 	|R_\mathrm{Eu,ex}(z)| <1  \ \Leftrightarrow \ |1+z|<1,
 \end{align}

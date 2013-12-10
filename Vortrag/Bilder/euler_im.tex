@@ -27,7 +27,7 @@
 %ymajorgrids,
 %axis x line*=bottom,
 %axis y line*=left,
-%xlabel=$t$,
+%xlabel=.,
 %ylabel=$x(t)$
 %%legend style={draw=black,legend cell align=left,anchor=south east,at={(1,0)}},
 %]}
@@ -44,7 +44,7 @@ yticklabels={0,1},
 ymin=-0.25,
 ymax=1,
 ymajorgrids,
-xlabel=$t$,
+xlabel=.,
 %ylabel=$x(t)$,
 axis background/.style={fill=white}
 %legend style={draw=black,fill=white,legend cell align=left}
@@ -62,12 +62,30 @@ xtick={0,0.5,1,1.5,2,2.5,3,3.5,4,4.5},
 ymin=-0.25,
 ymax=1,
 ymajorgrids,
-xlabel=$t$,
+xlabel=.,
 %ylabel=$x(t)$,
 axis background/.style={fill=white}
 %legend style={draw=black,fill=white,legend cell align=left}
 ]}
-\only<4-5>{\begin{axis}[%
+\only<4>{\begin{axis}[%
+width=\breite,
+height=\hoehe,
+%scale only axis,
+xmin=0,
+xmax=5,
+xmajorgrids,
+ytick={0,0.67,0.32,1},
+yticklabels={0,0.67,0.32,1},
+xtick={0,0.5,1,1.5,2,2.5,3,3.5,4,4.5},
+ymin=-0.25,
+ymax=1,
+ymajorgrids,
+xlabel=.,
+%ylabel=$x(t)$,
+axis background/.style={fill=white}
+%legend style={draw=black,fill=white,legend cell align=left}
+]}
+\only<5>{\begin{axis}[%
 width=\breite,
 height=\hoehe,
 %scale only axis,
@@ -80,7 +98,7 @@ xtick={0,0.5,1,1.5,2,2.5,3,3.5,4,4.5},
 ymin=-0.25,
 ymax=1,
 ymajorgrids,
-xlabel=$t$,
+xlabel=.,
 %ylabel=$x(t)$,
 axis background/.style={fill=white}
 %legend style={draw=black,fill=white,legend cell align=left}
@@ -128,7 +146,7 @@ table[row sep=crcr]{
 11.5 8.91047880953237e-005\\
 12 5.94031920635491e-005\\
 };}
-\only<4>{\addlegendentry{$T = 0.5$};}
+\only<4>{\addlegendentry{$\mathrm{T} = 0.5$};}
 \only<5>{\addlegendentry{impliziter Euler};}
 
 
@@ -173,7 +191,7 @@ table[row sep=crcr]{
 6.3 0.0335671847202175\\
 8.4 0.010828124103296\\
 };}
-\only<4>{\addlegendentry{$T=2.1$};}
+\only<4>{\addlegendentry{$\mathrm{T}=2.1$};}
 %\addplot [
 %color=green,
 %solid

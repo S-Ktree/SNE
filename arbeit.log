@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.17)  7 DEC 2013 18:59
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.17)  10 DEC 2013 11:53
 entering extended mode
 **arbeit.tex
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\arbeit.tex"
@@ -1552,13 +1552,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 33935 strings out of 494045
- 813228 string characters out of 3145972
- 1640371 words of memory out of 3000000
- 36337 multiletter control sequences out of 15000+200000
+ 33949 strings out of 494045
+ 799552 string characters out of 3145972
+ 1586024 words of memory out of 3000000
+ 36351 multiletter control sequences out of 15000+200000
  56941 words of font info for 120 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 65i,20n,78p,50168b,2025s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 65i,20n,78p,50168b,2039s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:
@@ -1579,9 +1579,9 @@ onts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
 s/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
 type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
 pe1/public/amsfonts/symbols/msbm10.pfb>
-Output written on arbeit.pdf (32 pages, 955931 bytes).
+Output written on arbeit.pdf (32 pages, 952441 bytes).
 PDF statistics:
- 526 PDF objects out of 1000 (max. 8388607)
+ 527 PDF objects out of 1000 (max. 8388607)
  112 named destinations out of 1000 (max. 500000)
- 235 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 239 words of extra memory for PDF output out of 10000 (max. 10000000)
 
