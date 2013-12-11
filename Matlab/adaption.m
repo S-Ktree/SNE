@@ -14,13 +14,13 @@ plot(x_orig.time,x_orig.signals(1).values(:,1),'k--');
 % plot(x_1.time,x_1.signals(1).values(:,1),'b');
 % plot(x_2.time,x_2.signals(1).values(:,1),'r');
 % plot(x_21.time,x_21.signals(1).values(:,1),'m');
-plot(x.time,x.signals(1).values(:,1),'r');
+plot(x.time,x.signals(1).values(:,1),'r','Marker','x');
 
 
 legend('Vergleich','Adaption');
 %% Exportieren:
 %matlab2tikz('euler_ex.tex');
 % matlab2tikz('runge_kutta.tex');
-matlab2tikz('heun.tex');
+matlab2tikz('adaption.tex');
 
 %% Fuer Vortrag:
