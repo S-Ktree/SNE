@@ -1,0 +1,90 @@
+% This file was created by matlab2tikz v0.4.3.
+% Copyright (c) 2008--2013, Nico Schlömer <nico.schloemer@gmail.com>
+% All rights reserved.
+% 
+% The latest updates can be retrieved from
+%   http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz
+% where you can also make suggestions and rate matlab2tikz.
+% 
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=\breite,
+height=\hoehe,
+%scale only axis, % Angegebene Groesse bezieht sich auf die Achsen!!
+xmin=0,
+xmax=10,
+xtick=
+{0,
+0.08,
+0.37893341051782 ,
+0.715056818982418, 
+1.0932604599147,
+1.52573964478501, 
+2.03168701764256 ,
+2.64415293549142,
+3.43133537304389,
+4.61411880332351,
+6.24843042109355 ,
+7.98324476170275,
+12.9832447617028 ,
+15},
+xticklabels={
+0,,,,,,,,,,,,,},
+xmajorgrids,
+ymin=-0.01,
+ymax=1,
+ytick={0,1},
+yticklabels={\vphantom{0,0}0,1},
+ymajorgrids,
+%axis x line*=bottom,
+%axis y line*=left,
+xlabel=.,
+%ylabel=$x(t)$,
+axis background/.style={fill=white}
+%legend style={draw=black,legend cell align=left,anchor=south east,at={(1,0)}},
+]
+\vergleich{color=gray,dashed, thin,forget plot}
+
+\addplot [
+color=red,
+solid,thick,
+mark=x,
+mark options={solid}
+]
+table[row sep=crcr]{
+0 1\\
+0.08 0.923114666666667\\
+0.37893341051782 0.684300293778685\\
+0.715056818982418 0.488615673902038\\
+1.0932604599147 0.334359269669309\\
+1.52573964478501 0.216517102364154\\
+2.03168701764256 0.130009505579058\\
+2.64415293549142 0.0697891707983198\\
+3.43133537304389 0.0308013513681345\\
+4.61411880332351 0.00742077941004497\\
+6.24843042109355 -0.000195600505157976\\
+7.98324476170275 1.95994177024223e-005\\
+12.9832447617028 -0.000241726151663208\\
+15 8.46596835275141e-005\\
+};
+%\addlegendentry{Adaption};
+
+\end{axis}
+\begin{axis}[%
+width=\breite,
+height=\hoehe,
+axis x line*=bottom,
+axis y line*=left,
+ymin=-0.01,
+ymax = 1,
+ytick={0},
+yticklabels={},
+%scale only axis, % Angegebene Groesse bezieht sich auf die Achsen!!
+xmin=0,
+xmax=10,
+xtick={5,10},
+xticklabels={5,10},
+]
+\end{axis}
+\end{tikzpicture}%

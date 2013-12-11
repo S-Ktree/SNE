@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.17)  10 DEC 2013 11:40
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.17)  11 DEC 2013 08:53
 entering extended mode
 **Bilder.tex
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\Vortrag\Bilder\Bilder.tex"
@@ -1850,16 +1850,20 @@ Missing character: There is no ; in font nullfont!
 ) [26
 
 ]
+("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\Vortrag\Bilder\adaption.tex
+") [27
+
+]
 \tf@nav=\write7
 \tf@toc=\write8
 \tf@snm=\write9
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 109.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 109.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 112.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 112.
 
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\Vortrag\Bilder\Bilder.aux"
 ("C:\Sonstiges\Studium\9. Semester\SNE\Ausarbeitung\Vortrag\Bilder\plots.aux"))
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 109.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 109.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 112.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 112.
 Package rerunfilecheck Info: File `Bilder.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -1868,13 +1872,13 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 40709 strings out of 494045
- 979860 string characters out of 3145972
- 1589093 words of memory out of 3000000
- 43070 multiletter control sequences out of 15000+200000
+ 40732 strings out of 494045
+ 980839 string characters out of 3145972
+ 1589129 words of memory out of 3000000
+ 43088 multiletter control sequences out of 15000+200000
  16681 words of font info for 68 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 62i,18n,80p,30621b,2008s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 62i,18n,91p,30621b,2008s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/P
@@ -1891,9 +1895,9 @@ eX 2.9/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program Files (x86)/MiKTeX
 onts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
 type1/public/amsfonts/cm/cmsy9.pfb>
-Output written on Bilder.pdf (26 pages, 217949 bytes).
+Output written on Bilder.pdf (27 pages, 221113 bytes).
 PDF statistics:
- 226 PDF objects out of 1000 (max. 8388607)
- 53 named destinations out of 1000 (max. 500000)
+ 232 PDF objects out of 1000 (max. 8388607)
+ 55 named destinations out of 1000 (max. 500000)
  41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
