@@ -2,16 +2,16 @@
 \section{Einschrittverfahren}
 \begin{sideways}\centering
 \begin{tabular}{|lcccc|}\hline
-\textbf{Name}&\textbf{Ordnung}&\textbf{Butcher-Schema}&\textbf{Art}&\textbf{Stabilitätsfunktion}\\ \hline
+\textbf{Name}&\makebox[2cm][r]{\textbf{Konsistenzordnung}}&\textbf{Butcher-Schema}&\textbf{Art}&\textbf{Stabilitätsfunktion}\\ \hline
 Euler &1 & $\begin{array}[c]{c|c}
  0 &  \\ \hline
  & 1
-\end{array}$ & explizit & ...\\ \hdashline[1pt/2pt]
+\end{array}$ & explizit & $1+\comv{z}$\\ \hdashline[1pt/2pt]
 %%
 Heun & 2 & $\begin{array}[c]{c|cc}
  0   \\
 1 & 1 \\ \hline
- & \eh & \eh \end{array}$ & explizit & ... \\\hdashline[1pt/2pt]
+ & \eh & \eh \end{array}$ & explizit & $\eh \comv{z}^2 +\comv{z} +1$ \\\hdashline[1pt/2pt]
 %%%
 klassisches Runge-Kutta & 4 & $\begin{array}[c]{c|cccc}
 		0 &\\ 
@@ -19,24 +19,21 @@ klassisches Runge-Kutta & 4 & $\begin{array}[c]{c|cccc}
 		\eh & 0 & \eh \\
 		1&0&0&1 \\ \hline
 		& \frac{1}{6}&\frac{2}{6}&\frac{2}{6}&\frac{1}{6}
-	\end{array}$ & explizit & ...\\\hdashline[1pt/2pt]
+	\end{array}$ & explizit & $\frac{1}{24}\comv{z}^4+\frac{1}{6}\comv{z}^2+\eh \comv{z}^2 +\comv{z} +1$\\\hdashline[1pt/2pt]
 %%%%%%%%%%%
 Euler & 1 & $\begin{array}[c]{c|c}
-		0 &\\ \hline
-		&1
-	\end{array}$ & implizit & ...\\\hdashline[1pt/2pt]
-Mittelpunktsregel & 2 & $\begin{array}[c]{c|cc}
-		0 &\\ 
-		1&1 \\ \hline
+		1 & 1\\ \hline
+		 &1
+	\end{array} $ & implizit & $\frac{1}{1-\comv{z}}$ \\\hdashline[1pt/2pt]
+Mittelpunktsregel & 2 & $\begin{array}[c]{c|c}
+		\eh&\eh \\ \hline
+		& 1
+	\end{array}$ & implizit & $\frac{2+\comv{z}}{2-\comv{z}}$  \\\hdashline[1pt/2pt]
+Trapezregel & 2 &$\begin{array}[c]{c|cc}
+		0 & 0 & 0\\ 
+		1&\eh & \eh \\  \hline
 		& \eh & \eh
-	\end{array}$ & implizit & ... \\\hdashline[1pt/2pt]
-Trapezregel & 2 &$\begin{array}[c]{c|cccc}
-		0 &\\ 
-		\eh&\eh \\ 
-		\eh & 0 & \eh \\
-		1&0&0&1 \\ \hline
-		& \frac{1}{6}&\frac{2}{6}&\frac{2}{6}&\frac{1}{6}
-	\end{array}$ & implizit & ... \\ \lasthline
+	\end{array}$ & implizit & $\frac{2+\comv{z}}{2-\comv{z}}$ \\ \lasthline
 \end{tabular}
 \end{sideways}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -71,14 +68,14 @@ $ \\ \hdashline[1pt/2pt]
 $ \\ \lasthline
 \end{longtable}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{landscape}
 \section{Mehrschrittverfahren}
 \label{sec:anhmehr}
 \small
 \arraycolsep0pt
-\begin{longtable}{|llcccc|}\hline
-$k$ &\textbf{Name}&\textbf{$P_a(z)$}&\textbf{$P_b(z)$}&\textbf{Art}&\textbf{Stabilität}\\ \hline
-$\begin{array}{c}2\end{array}$ & \parbox{1.4cm}{Milne-Simpson} &  $z^2-1$ & $\frac{1}{3}z^2 + \frac{4}{3}z + \frac{1}{3}$ & implizit & ...? (Sinn?) \\[4pt] \hdashline[1pt/2pt]
+\begin{sideways}
+\begin{tabular}{|llcccc|}\hline
+$k$ &\textbf{Name}&\textbf{$P_a(z)$}&\textbf{$P_b(z)$}&\textbf{Art}&\textbf{Hinweis}\\ \hline
+$\begin{array}{c}2\end{array}$ & \parbox{1.4cm}{\tikzmark{ms}{Milne-Simpson}} &  $z^2-1$ & $\frac{1}{3}z^2 + \frac{4}{3}z + \frac{1}{3}$ & implizit &  \\[4pt] \hdashline[1pt/2pt]
 $\begin{array}[c]{l}
 1\\2\\3\\4
 \end{array}$&
@@ -88,7 +85,7 @@ $\begin{array}[c]{l}
 	(3z-1)/2 \\
 	(23z^2-16z+5)/12\\
 	(55z^3-59z^2+37z-9)/24
-\end{array}$ & explizit & ... \\\hdashline[1pt/2pt]
+\end{array}$ & \tikzmark[5pt]{explizit}{explizit} & \tikzmark{rechtsoben}{} \\\cdashline{1-5}[1pt/2pt]
 $\begin{array}[c]{l}
 2\\3\\4
 \end{array}$&
@@ -97,7 +94,7 @@ $\begin{array}[c]{l}
 	(5z^2+8z-1)/12\\
 	(9z^3+19z^2-5z+1)/24\\
 	(251z^4+646z^3+-246z^2+106z-19)
-\end{array}$ & implizit & ... \\[4pt]\hdashline[1pt/2pt]
+\end{array}$ & \tikzmark[5pt]{implizit}{implizit} & \tikzmark{rechtsunten}{} \\[4pt]\hdashline[1pt/2pt]
 $\begin{array}[c]{l}
 1\\2\\3\\4
 \end{array}$&
@@ -108,8 +105,16 @@ BDF &%\makebox[2.5cm][l]{$\begin{array}[c]{l}
 	\frac{11}{6}z^3-3z^2+\frac{3}{2}z-\frac{1}{3}\\
 	\frac{25}{12}z^4-4z^3+3z^2-\frac{4}{3}z+\frac{1}{4}\\
 \end{array}$ & $z^k$ & implizit & \parbox{4cm}{unendlich großes Stabilitätsgebiet $\Rightarrow$ gut für steife DGL} \\\lasthline
-\end{longtable}
-\end{landscape}
+\end{tabular}
+\tikz[overlay, remember picture]{
+\node(oben)at ($(explizit.north east)+(4mm,4mm)$){};
+\node(unten)at ($(implizit.south east)+(4mm,-2mm)$){};
+\node(gesamt)[fit=(oben)(unten)]{};
+\draw[decorate,decoration=brace](gesamt.north east)--(gesamt.south east);
+\path (gesamt.east) node[right,xshift=2mm]{\parbox[c]{3.1cm}{häufig zusammen als eingebettete\\ Runge-Kutta-Verfahren\\ verwendet}};
+}
+\end{sideways}
+
 
 
 
