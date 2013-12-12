@@ -208,8 +208,8 @@ Im Gegensatz dazu hängt der Funktionswert $\x_{i+1}$ bei Mehrschrittverfahren zu
 \end{align}
 mit $\a_\up{k} \neq 0$. Durch $\mathcal{Z}$-Transformation (nachzulesen zum Beispiel in \cite{digit}) lassen sich Mehrschrittverfahren auch durch die beiden Polynome
 \begin{align}
-	\up{\up{P}}_\a(z) &= \a_0 + \a_1 z + \ldots + \a_\up{k} z^\up{k} \\
-	\up{\up{P}}_\b(z) &= \b_0 + \b_1 z + \ldots + \b_\up{k} z^\up{k}	
+	\up{\com{P}}_\a(\comv{z}) &= \a_0 + \a_1 \comv{z} + \ldots + \a_\up{k} \comv{z}^\up{k} \\
+	\up{\com{P}}_\b(\comv{z}) &= \b_0 + \b_1 \comv{z} + \ldots + \b_\up{k} \comv{z}^\up{k}	
 \end{align}
 charakterisieren.
 Ein Beispiel für ein Mehrschrittverfahren ist das (implizite) Milne-Simpson-Verfahren:
@@ -231,7 +231,7 @@ In \cite{netomac} wird beschrieben, dass der Korrektor-Schritt in der Praxis ite
 Da ein $\up{k}$-stufiges Mehrschrittverfahren zur Berechnung des Funktionswertes $\x_i$ alle zurückliegenden Funktionswerte bis $\x_{i-\up{k}}$ benötigt, ist der erste überhaupt berechenbare Funktionswert $\x(t=t_\up{k})$. Aus diesem Grund müssen Mehrschrittverfahren durch geeignete Einschrittverfahren \glqq gestartet\grqq \ werden. Man bezeichnet Einschrittverfahren im Gegensatz zu Mehrschrittverfahren aus diesem Grund auch als \textit{selbststartend}.
 
 \subsection{BDF-Verfahren}
-Die zweite sehr bedeutende Klasse der Mehrschrittverfahren sind die so genannten \textit{Backwards Differentiation Formulas} (BDF). Für diese Verfahren gilt $\up{\up{P}}_\b(z) = z^\up{k}$. Damit lassen sich eine Reihe impliziter Verfahren erzeugen, die besonders gut für steife Differentialgleichungen geeignet sind. Die Bedeutung dessen wird im folgenden Kapitel erläutert.
+Die zweite sehr bedeutende Klasse der Mehrschrittverfahren sind die so genannten \textit{Backwards Differentiation Formulas} (BDF). Für diese Verfahren gilt $\up{\com{P}}_\b(z) = \comv{z}^\up{k}$. Damit lassen sich eine Reihe impliziter Verfahren erzeugen, die besonders gut für steife Differentialgleichungen geeignet sind. Die Bedeutung dessen wird im folgenden Kapitel erläutert.
 
 %
 %\subsection{Schrittweitensteuerung}
@@ -360,7 +360,7 @@ Grundsätzlich gilt für explizite Runge-Kutta-Verfahren: Je höher die Ordnung des
 \end{figure}
 
 \section{Mehrschrittverfahren}
-Die Stabilität von Mehrschrittverfahren ist nicht so einfach allgemein nachzuweisen wie bei den allgemeinen Runge-Kutta Verfahren. In \cite{gruene} wird gezeigt, dass die \glqq Stabilität\grqq \ des Polynoms $\up{P}_\a(z)$ eine Voraussetzung für die \textit{Konvergenz} des Fehlers eines Mehrschrittverfahrens darstellt. Dabei gilt das Polynom als stabil, wenn für alle Nullstellen $\com{\lambda}_i$ gilt:
+Die Stabilität von Mehrschrittverfahren ist nicht so einfach allgemein nachzuweisen wie bei den allgemeinen Runge-Kutta Verfahren. In \cite{gruene} wird gezeigt, dass die \glqq Stabilität\grqq \ des Polynoms $\com{P}_\a(\comv{z})$ eine Voraussetzung für die \textit{Konvergenz} des Fehlers eines Mehrschrittverfahrens darstellt. Dabei gilt das Polynom als stabil, wenn für alle Nullstellen $\com{\lambda}_i$ gilt:
 \begin{align}
 	&|\com{\lambda}_i| \leq 1, \\
 	&|\com{\lambda}_i|=1 \ \Rightarrow \text{$\com{\lambda}_i$ ist einfache Nullstelle.}
@@ -370,9 +370,9 @@ Da eine allgemeine Aussage über die Stabilität eines Mehrschrittverfahrens schwi
 \begin{align}
 	\x_{i+1}+\a_{\up{k}-1}\x_{i}+\a_{\up{k}-2}\x_{i-1}+\ldots+\a_0 \x_{i+1-\up{k}}=0.
 \end{align}
-Das heißt, die Koeffizienten $\a_l (l=0,\ldots,\s-1)$ beinhalten bereits die Koeffizienten des gewählten Verfahrens, sowie die gewählte Schrittweite. Ähnlich wie bei der Herleitung der Polynome $\up{P}_\a(z)$ und $\up{P}_\b(z)$ erhält man damit ein \textit{charakteristisches Polynom}
+Das heißt, die Koeffizienten $\a_l (l=0,\ldots,\s-1)$ beinhalten bereits die Koeffizienten des gewählten Verfahrens, sowie die gewählte Schrittweite. Ähnlich wie bei der Herleitung der Polynome $\com{P}_\a(\comv{z})$ und $\com{P}_\b(\comv{z})$ erhält man damit ein \textit{charakteristisches Polynom}
 \begin{align}
-	\up{P}_\up{k}(z) = z^\up{k} + \a_{\up{k}-1}z^{\up{k}-1}+ \a_{\up{k}-2}z^{\up{k}-2}+\ldots+\a_0 = \sum\limits_{l=0}^{\up{k}}\a_l z^l. 
+	\com{P}_\up{k}(\comv{z}) = \comv{z}^\up{k} + \a_{\up{k}-1}\comv{z}^{\up{k}-1}+ \a_{\up{k}-2}\comv{z}^{\up{k}-2}+\ldots+\a_0 = \sum\limits_{l=0}^{\up{k}}\a_l \comv{z}^l. 
 \end{align}
 Das gewählte Verfahren ist mit der verwendeten Schrittweite genau dann stabil, wenn für alle Nullstellen des charakteristischen Polynoms $\com{z}_{0,l}, (l=1,\ldots,\up{k})$ gilt:
 \begin{align}
