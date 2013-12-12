@@ -297,8 +297,8 @@ gilt. Für die Schrittweite $\T$ muss also die Bedingung
 	\label{eq:Tbed}
 \end{align}
 erfüllt sein, damit die Approximation eine sinnvolle Näherung darstellt. Es ist augenscheinlich, dass dies bei sehr schnellen Systemen mit $\Re \lambda \ll 0$ zu sehr kleinen notwendigen Schrittweiten führt.\\
-Aus diesem Grund werden Differentialgleichungen mit sehr schnellen stabilen Eigenwerten $\Re \lambda \ll 0$ allgemein als \textit{steif} bezeichnet. Für den Fall, dass das Anfangswertproblem ein Differentialgleichungssystem mit mehreren Eigenwerten darstellt, spricht man von einem \textit{steifen} System, falls mindestens ein solcher Eigenwert vorliegt. Die Approximation von steifen Differentialgleichungen führt vor allem bei expliziten Verfahren zu Problemen und stellt die wesentliche Motivation zur Verwendung von impliziten Verfahren dar.
-In Abbildung \ref{fig:example} ist die Approximation von Gleichung (\ref{eq:bsp}) mit dem expliziten Euler-Verfahren für verschiedene Schrittweiten dargestellt. 
+Aus diesem Grund werden Differentialgleichungen mit sehr schnellen stabilen Eigenwerten $\Re \lambda \ll 0$ allgemein als \textit{steif} bezeichnet. Für den Fall, dass das Anfangswertproblem ein Differentialgleichungssystem mit mehreren Eigenwerten darstellt, spricht man von einem \textit{steifen} System, falls mindestens ein solcher Eigenwert vorliegt. Die Approximation von steifen Differentialgleichungen führt vor allem bei expliziten Verfahren zu Problemen und stellt die wesentliche Motivation zur Verwendung von impliziten Verfahren dar. \\
+In Abbildung \ref{fig:example} ist die Approximation von Gleichung (\ref{eq:bsp}) mit dem expliziten Euler-Verfahren für verschiedene Schrittweiten dargestellt. Man erkennt, dass sich die Approximation für $\T=2/|\lambda|$ genau an der Grenze zur Stabilität befindet, da diese laufend zwischen den Werten $\x_0$ und $-\x_0$ hin und her springt. Für $\T=2.1/|\lambda|$ ist die Näherungslösung instabil und stellt eine Dauerschwingung mit gegen Unendlich wachsender Amplitude dar.
 \begin{figure}
 \centering
 \input{inhalt/Grafiken/euler_ex.tex}
@@ -345,13 +345,6 @@ Für das implizite Euler-Verfahren erhält man $\com{R}_\mathrm{Eu,im}(\comv{z}) =
 	|\com{R}_\mathrm{Eu,im}(\comv{z})| <1  \ \Leftrightarrow \ |1-\comv{z}|>1,
 \end{align}
 das heißt $\up{S}_\up{Eu,im}$ ist $\mathbb{C}$ ohne den Kreis $\up{B}_1(1)$. In Abbildung \ref{fig:stabis} ist dies durch den hellrot hinterlegten Bereich dargestellt. Damit ist das implizite Euler-Verfahren, wie viele implizite Verfahren, A-stabil, was hilfreich bei der Simulation von stabilen Systemen ist. Allerdings enthält das Stabilitätsgebiet auch Bereiche, in denen die Approximation stabil ist, obwohl das eigentliche System instabil ist, wie zum Beispiel $\Re \comv{z} > 2$. In diesem Fall würde die Instabilität eines Systems in der Simulation möglicherweise unentdeckt bleiben, was eines der Probleme des impliziten Euler-Verfahrens ist und eine Motivation für die Trapezregel liefert. 
-
-Für diese ergibt sich als Stabiltätsfunktion $\com{R}_\mathrm{Trapez}(\comv{z})=\frac{2+\comv{z}}{2-\comv{z}}$. Das Stabilitätsgebiet entspricht damit genau der linken Halbebene $\up{S}_\mathrm{Trapez}=\mathbb{C}^-$. Damit ist die Trapezregel ebenfalls A-stabil, enthält jedoch keine Bereiche, in denen ein instabiles System stabil approximiert werden würde. Man bezeichnet diese Tatsache mit 
-\textit{Erhaltung der Isometrie}, das heißt, die Approximation ist genau dann stabil, wenn auch das zu Grunde liegende System exponentiell stabil ist. Damit besitzt die Trapezregel quasi ideale Stabilitätseigenschaften. \\
-Aufgrund der schwierigen Realisierbarkeit der impliziten Verfahren wurde das Heun-Verfahren auf Basis der Trapezregel und dem expliziten Euler-Verfahren eingeführt. Hierfür ergibt sich die Stabilitätsfunktion $\com{R}_\mathrm{Heun}(\comv{z}) = \frac{1}{2}\comv{z}^2+\comv{z}+1$. Das zugehörige Stabilitätsgebiet ist in Abbildung \ref{fig:stabis} zu sehen. Vergleicht man die Stabilitätsgebiete von explizitem Euler-Verfahren und Heun-Verfahren, so wird deutlich, dass das Stabilitätsgebiet des Heun-Verfahrens nur wenig größer ist als das des expliziten Euler-Verfahrens. Zwischen den Stabilitätsgebieten von Heun-Verfahren und Trapezregel besteht hingegen ein deutlicher Größenunterschied.
-
-Ein größeres Stabilitätsgebiet kann zum Beispiel mit dem \textit{klassischen} Runge-Kutta-Verfahren mit der Stabilitätsfunktion $\com{R}_\up{RK}(\comv{z})=\frac{1}{24}\comv{z}^4+\frac{1}{6}\comv{z}^3+\eh \comv{z}^2+\comv{z}+1$ erreicht werden. Ähnlich, wie bei den impliziten Verfahren treten hier jedoch kleine Bereiche auf, in denen ein instabiles System zu einer stabilen Approximation führen würde.
-Grundsätzlich gilt für explizite Runge-Kutta-Verfahren: Je höher die Ordnung des Verfahrens, desto größer das Stabilitätsgebiet. Bei der Betrachtung der Stabilitätsgebiete wird auch der große Vorteil der impliziten Verfahren gegenüber expliziten Verfahren deutlich. Zwar gibt es auch implizite Verfahren, die nur kleine Stabilitätsgebiete besitzen und damit schlecht für die Lösung steifer Differentialgleichungen geeignet sind, jedoch sind die Stabilitätsgebiete von expliziten Verfahren im Allgemeinen kleiner als die der impliziten Verfahren.
 \begin{figure}
 \centering
 \input{inhalt/Grafiken/stabis.tex}
@@ -359,6 +352,13 @@ Grundsätzlich gilt für explizite Runge-Kutta-Verfahren: Je höher die Ordnung des
 \label{fig:stabis}
 \end{figure}
 
+Für diese ergibt sich als Stabiltätsfunktion $\com{R}_\mathrm{Trapez}(\comv{z})=\frac{2+\comv{z}}{2-\comv{z}}$. Das Stabilitätsgebiet entspricht damit genau der linken Halbebene $\up{S}_\mathrm{Trapez}=\mathbb{C}^-$. Damit ist die Trapezregel ebenfalls A-stabil, enthält jedoch keine Bereiche, in denen ein instabiles System stabil approximiert werden würde. Man bezeichnet diese Tatsache mit 
+\textit{Erhaltung der Isometrie}, das heißt, die Approximation ist genau dann stabil, wenn auch das zu Grunde liegende System exponentiell stabil ist. Damit besitzt die Trapezregel quasi ideale Stabilitätseigenschaften. \\
+Aufgrund der schwierigen Realisierbarkeit der impliziten Verfahren wurde das Heun-Verfahren auf Basis der Trapezregel und dem expliziten Euler-Verfahren eingeführt. Hierfür ergibt sich die Stabilitätsfunktion $\com{R}_\mathrm{Heun}(\comv{z}) = \frac{1}{2}\comv{z}^2+\comv{z}+1$. Das zugehörige Stabilitätsgebiet ist in Abbildung \ref{fig:stabis} zu sehen. Vergleicht man die Stabilitätsgebiete von explizitem Euler-Verfahren und Heun-Verfahren, so wird deutlich, dass das Stabilitätsgebiet des Heun-Verfahrens nur wenig größer ist als das des expliziten Euler-Verfahrens. Zwischen den Stabilitätsgebieten von Heun-Verfahren und Trapezregel besteht hingegen ein deutlicher Größenunterschied.
+
+Ein größeres Stabilitätsgebiet kann zum Beispiel mit dem \textit{klassischen} Runge-Kutta-Verfahren mit der Stabilitätsfunktion $\com{R}_\up{RK}(\comv{z})=\frac{1}{24}\comv{z}^4+\frac{1}{6}\comv{z}^3+\eh \comv{z}^2+\comv{z}+1$ erreicht werden. Ähnlich, wie bei den impliziten Verfahren treten hier jedoch kleine Bereiche auf, in denen ein instabiles System zu einer stabilen Approximation führen würde.
+Grundsätzlich gilt für explizite Runge-Kutta-Verfahren: Je höher die Ordnung des Verfahrens, desto größer das Stabilitätsgebiet. Bei der Betrachtung der Stabilitätsgebiete wird auch der große Vorteil der impliziten Verfahren gegenüber expliziten Verfahren deutlich. Zwar gibt es auch implizite Verfahren, die nur kleine Stabilitätsgebiete besitzen und damit schlecht für die Lösung steifer Differentialgleichungen geeignet sind, jedoch sind die Stabilitätsgebiete von expliziten Verfahren im Allgemeinen kleiner als die der impliziten Verfahren.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Mehrschrittverfahren}
 Die Stabilität von Mehrschrittverfahren ist nicht so einfach allgemein nachzuweisen wie bei den allgemeinen Runge-Kutta Verfahren. In \cite{gruene} wird gezeigt, dass die \glqq Stabilität\grqq \ des Polynoms $\com{P}_\a(\comv{z})$ eine Voraussetzung für die \textit{Konvergenz} des Fehlers eines Mehrschrittverfahrens darstellt. Dabei gilt das Polynom als stabil, wenn für alle Nullstellen $\com{\lambda}_i$ gilt:
 \begin{align}
@@ -387,7 +387,7 @@ Um die Bedeutung der vorgestellten Integrationsmethoden zu verdeutlichen, soll i
 
 \subsubsection{PSS\textregistered Netomac, PSS\textregistered E}
 Die Firma \siemens \ liefert mit den Programmen \textsc{PSS\textregistered Netomac} und \textsc{PSS\textregistered E} gleich zwei Softwarepakete, die in der Energietechnik Anwendung finden. 
-Ersteres verwendet die Trapezregel als Integrationsverfahren. Das heißt, es wird Modellwissen verwendet, um die implizite Gleichung wirklich aufzulösen.
+Ersteres verwendet die Trapezregel als Integrationsverfahren. Das heißt, es wird Modellwissen verwendet, um die implizite Gleichung aufzulösen.
 Da die Trapezregel isometrieerhaltend ist, ergeben sich keine Stabilitätsprobleme und die Wahl der Schrittweite beeinflusst lediglich die Genauigkeit.\\
 In letzterem Softwarepaket wird nach \cite{PSSE} das \glqq second-order Euler\grqq-Verfahren, oder \glqq modified Euler\grqq-Verfahren verwendet. Nach der Schreibweise in dieser Arbeit entspricht dies dem Heun-Verfahren (\ref{eq:Heun}). In diesem Fall muss die Schrittweite klein genug gewählt werden, um Stabilität zu gewährleisten. In \cite{PSSE} wird deshalb empfohlen, die Schrittweite zwischen $\frac{1}{5}$ und $\frac{1}{4}$ der kleinsten im Prozess auftretenden Zeitkonstanten zu wählen.
  
