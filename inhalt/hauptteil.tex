@@ -8,7 +8,7 @@ Die Modellbildung dynamischer Systeme führt in vielen Fällen naturgemäß zu gewöh
 Dabei ist die zeitliche Ableitung der Zustände $\dot{\vec{x}}(t)=\frac{\d}{\d t}\vec{x}(t)$ zu einem bestimmten Zeitpunkt in Form des Funktionenvektors $\vec{f}$ berechenbar. Dabei mag $\vec{f}$ auch nicht in analytische Form dargestellt werden können, sondern lediglich der Funktionswert berechenbar sein. Darüber hinaus ist der Anfangswert der Lösung $\vec{x}(0)=\vec{x}_0$ bekannt.\\
 Um derartige Systeme simulieren zu können, muss eine Lösung $\vec{x}(t)$ des Anfangswertproblems gefunden werden. Die exakte Lösung dieses Problems ergibt sich durch Integration der zeitlichen Ableitung:
 \begin{align}
-\vec{x}\tt = \vec{x}_0 + \int\limits_0^t \dot{\vec{x}}(\vec{x},t) \d t.
+\vec{x}\tt = \vec{x}_0 + \int\limits_0^t \dot{\vec{x}}\Big(\vec{x}(t),t\Big) \d t.
 \label{eq:integral}
 \end{align}
 Die Herausforderung der Simulation besteht also darin, eine numerische Approximation dieser Integration zu ermitteln, was das Problem auf die numerische Integration von Anfangswertproblemen reduziert. Diese Approximation soll zu bestimmten, diskreten Zeitpunkten $t=t_i=i \dd \T, i=0,\ldots,\up{n}$ Näherungslösungen $\vec{x}_i$ für den Tatsächlichen Funktionswert $\vec{x}(t_i)$ liefern. Die Schrittweite $\T$ legt dabei den Abstand von zwei benachbarten Abtastzeitpunkten $t_i$ fest. 
@@ -22,9 +22,9 @@ mit der Verfahrensfunktion $\vec{\Phi}(\vec{x},t)$ bestimmt werden, welche zum e
 Im Folgenden werden verschiedene Verfahren zur Integration vorgestellt. Diese werden in Einschrittverfahren und Mehrschrittverfahren unterteilt. Soweit nicht anders angegeben wird sich dabei auf \cite{gruene} bezogen.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Einschrittverfahren}
-Um die einfachsten Verfahren herzuleiten, sollen die Betrachtungen auf Systeme mit nur einer Zustandsgröße beschränkt werden, sodass sich die Vektordarstellung in Gleichung (\ref{eq:AWA}) zu einer skalaren Darstellung reduziert:
+Um die einfachsten Verfahren herzuleiten, sollen die Betrachtungen auf Systeme mit nur einer Zustandsgröße beschränkt werden, sodass sich die Vektordarstellung in Gleichung (\ref{eq:AWA}) zu einer skalaren Darstellung reduziert. Außerdem wird auf die Kennzeichnung der Zeitabhängigkeit der Größe $\x$ im Folgenden verzichtet:
 \begin{align}
-\dot{\x}(t)=\f\left(\x(t),t\right), \quad \x(0)=\x_0.
+\dot{\x}=\f\left(\x,t\right), \quad \x(0)=\x_0.
 \label{eq:AWAneu}
 \end{align}
 \subsection{Explizites Eulerverfahren}
@@ -43,7 +43,7 @@ In diesem Fall ergibt sich eine \textit{implizite Gleichung} für den approximier
 
 \subsection{Trapezregel/Heun-Verfahren}
 Einen Ansatz, die Verfahren zu verbessern, liefert die so genannte \textit{Trapezregel}. Bei dieser werden die beiden Euler-Verfahren gewissermaßen kombiniert.
-Dabei wird für die Steigung im betrachteten Intervall der Mittelwert der Steigungen im $i$-ten und $i+1$-ten Schritt angenommen:
+Dabei wird für die Steigung im betrachteten Intervall der Mittelwert der Steigungen im $i$-ten und $i$+1-ten Schritt angenommen:
 \begin{align}
 	\x_{i+1} = \x_i + \T \dd \eh \dd \Big(\f\big(\x_i,t_i\big) + \f\big(\x_{i+1},t_{i+1}\big)  \Big).
 \end{align}
@@ -62,7 +62,7 @@ Um einen anderen Ansatz zu zeigen, wählt man den \textit{globalen} Fehler $\up{e
 	\up{e}(t) = \mathcal{O}(\T^\up{p})
 \end{align}
 abschätzen lässt. (Getroffene Annahmen über die rechte Seite der Differentialgleichung (\ref{eq:AWAneu}) sollen im Rahmen dieser Arbeit außer Acht gelassen werden und können in \cite{gruene} nachgelesen werden.) Dabei legt die Konsistenzordnung $\up{p}$ fest, wie schnell der globale Fehler gegen Null geht, wenn die Schrittweite verkleinert wird und stellt damit ein Maß für die \glqq Güte\grqq \ des Verfahrens dar. Es kann gezeigt werden, dass die Konsistenzordnung der Euler-Verfahren $\up{p}=1$ beträgt. Das Heun-Verfahren ist mit $\up{p}=2$ bereits deutlich genauer.\\
-Deshalb ist der erste Ansatz in der Praxis, die Idee der Trapezregel beziehungsweise des Heun-Verfahrens weiter zu führen und die Konvergenzordnung der Verfahren durch weitere Stützstellen zu erhöhen.
+Deshalb ist der erste Ansatz in der Praxis, die Idee der Trapezregel beziehungsweise des Heun-Verfahrens weiter zu führen und die Konsistenzordnung der Verfahren durch weitere Stützstellen zu erhöhen.
 Dies führt zum allgemeinen Ansatz der $s$-\textit{stufigen expliziten Runge-Kutta-Verfahren}. Aus Gründen der Übersichtlichkeit wurde der Index $_i$ zum Kennzeichnen des aktuell betrachteten Abtastpunktes im Folgenden weggelassen.
 \begin{align}
 	\Phi(\x,t,\T)&= \x + \T\, \sum\limits_{i=1}^\up{s} \up{b}_i\,\up{k}_i, \quad \text{mit} \\
@@ -297,7 +297,7 @@ gilt. Für die Schrittweite $\T$ muss also die Bedingung
 	\label{eq:Tbed}
 \end{align}
 erfüllt sein, damit die Approximation eine Sinnvolle Näherung darstellt. Es ist augenscheinlich, dass dies bei sehr schnellen Systemen mit $\Re \lambda \ll 0$ zu sehr kleinen notwendigen Schrittweiten führt.\\
-Aus diesem Grund werden Differentialgleichungen mit sehr schnellen stabilen Eigenwerten $\Re \lambda \ll 0$ allgemein als \textit{steif} bezeichnet. Für den Fall, dass das Anfangswertproblem ein Differentialgleichungssystem mit mehreren Eigenwerten darstellt spricht man von einem \textit{steifen} System, falls mindestens ein solcher Eigenwert vorliegt. Die Approximation von steifen Differentialgleichungen führt vor allem bei expliziten Verfahren zu Problemen und stellt die wesentliche Motivation zur Verwendung von impliziten Verfahren dar.
+Aus diesem Grund werden Differentialgleichungen mit sehr schnellen stabilen Eigenwerten $\Re \lambda \ll 0$ allgemein als \textit{steif} bezeichnet. Für den Fall, dass das Anfangswertproblem ein Differentialgleichungssystem mit mehreren Eigenwerten darstellt, spricht man von einem \textit{steifen} System, falls mindestens ein solcher Eigenwert vorliegt. Die Approximation von steifen Differentialgleichungen führt vor allem bei expliziten Verfahren zu Problemen und stellt die wesentliche Motivation zur Verwendung von impliziten Verfahren dar.
 In Abbildung \ref{fig:example} ist die Approximation von Gleichung (\ref{eq:bsp}) mit dem expliziten Euler-Verfahren für verschiedene Schrittweiten dargestellt. 
 \begin{figure}
 \centering
@@ -314,7 +314,7 @@ Nach \cite{gruene} lassen sich alle Runge-Kutta-Verfahren mit konstanter Schritt
 	\vec{x}_{i+1}= \tilde{\vec{A}} \vec{x}_i 
 \end{align}
 beschreiben.
-Nach \cite{digit} ist eine solche Differenzengleichung genau dann exponentiell stabil, wenn für alle Eigenwerte der Matrix $\tilde{A}$ stabil sind, das heißt $|\tilde{\underline{\lambda}}_i|<1$ gilt. Die Eigenwerte müssen also im Einheitskreis $\up{B}_1(0)$ der komplexen Zahlenebene liegen. ($\up{B}_\up{u}(\com{v})$ bezeichnet im Folgenden allgemein einen Kreis mit Radius $\up{u}$ um den Punkt $\com{v}$ in der komplexen Zahlenebene.)
+Nach \cite{digit} ist eine solche Differenzengleichung genau dann exponentiell stabil, wenn für alle Eigenwerte der Matrix $\tilde{\vec{A}}$ stabil sind, das heißt $|\tilde{\underline{\lambda}}_i|<1$ gilt. Die Eigenwerte müssen also im Einheitskreis $\up{B}_1(0)$ der komplexen Zahlenebene liegen. ($\up{B}_\up{u}(\com{v})$ bezeichnet im Folgenden allgemein einen Kreis mit Radius $\up{u}$ um den Punkt $\com{v}$ in der komplexen Zahlenebene.)
 Zur Untersuchung der Stabilität eines Verfahrens müsste also die Matrix $\tilde{\vec{A}}$ aus den Koeffizienten des Verfahrens und der Matrix $\vec{A}$ der zu Grunde liegenden Differentialgleichung berechnet werden,
 also als Funktion der Art
 \begin{align}
@@ -324,14 +324,13 @@ Es kann gezeigt werden, dass diese Funktion für explizite Werte $\comv{z} \in \m
 \begin{align}
 	\com{R}(\comv{z}) = 1 + \comv{z} \vec{b}^\T \left( \vec{I}-\comv{z}\vec{\mathcal{A}}  \right)^{-1} \vec{e}
 \end{align}
-annimmt, wobei $I$ für die Einheitsmatrix steht, $\vec{b} = (\b_1, \ldots, \b_s)^\T$ und $\vec{\mathcal{A}}=(\a_{ij})_{i,j=1,\ldots,\s}$ die Koeffizienten des Verfahrens beinhalten und $\vec{e}=(1,\ldots,1)^\T \in \mathbb{R}^\s$ gilt. $\com{R}(z)$ wird als die Stabilitätsfunktion des Verfahrens bezeichnet. Die Stabilitätsfunktion an sich ist nun unabhängig von der Schrittweite und der Dynamik der betrachteten Differentialgleichung und kann damit noch keine endgültige Aussage über die Stabilität des Verfahrens treffen. 
+annimmt, wobei $\vec{I}$ für die Einheitsmatrix steht, $\vec{b} = (\b_1, \ldots, \b_s)^\T$ und $\vec{\mathcal{A}}=(\a_{ij})_{i,j=1,\ldots,\s}$ die Koeffizienten des Verfahrens beinhalten und $\vec{e}=(1,\ldots,1)^\T \in \mathbb{R}^\s$ gilt. $\com{R}(z)$ wird als die \textit{Stabilitätsfunktion} des Verfahrens bezeichnet. Die Stabilitätsfunktion an sich ist nun unabhängig von der Schrittweite und der Dynamik der betrachteten Differentialgleichung und kann damit noch keine endgültige Aussage über die Stabilität des Verfahrens treffen. 
 Um diese zu ermöglichen, gilt es herauszufinden, welche Bedingungen $\vec{A}$ und $\T$ erfüllen müssen, damit die Eigenwerte der Matrix $\tilde{\vec{A}}$ stabil sind. 
 Hierfür wird das Stabilitätsgebiet $\up{S} \subset \mathbb{C}$ eines Runge-Kutta-Verfahrens mit Stabilitätsfunktion $\com{R}$ definiert als die Menge von Eigenwerten $\com{\lambda}_i$, die $\T\vec{A}$ annehmen darf, damit $\tilde{\vec{A}}=\vec{R}(\T\vec{A})$ exponentiell stabil ist. Dies ist genau dann der Fall, wenn der Betrag der Stabilitätsfunktion kleiner eins ist:
 \begin{align}
 	\up{S} = \{\comv{z}\in\mathbb{C} \big| |\com{R}(\comv{z})|<1 \}.
 \end{align}
-Für die Stabilität des Verfahrens müssen also alle Eigenwerte $\T \com{\lambda}_i$ der Matrix $\tilde{\vec{A}}$ im Stabilitätsgebiet liegen.
-Dabei gilt zu beachten, dass für die Menge aller Eigenwerte $\up{\Sigma}$ zweier Matrizen gilt: \mbox{$\com{\lambda}_i \in \Sigma(\vec{A}) \Rightarrow \T\com{\lambda}_i \in \up{\Sigma}(\T\vec{A})$}.\\
+Da für die Menge aller Eigenwerte $\up{\Sigma}$ zweier Matrizen gilt: \mbox{$\com{\lambda}_i \in \Sigma(\vec{A}) \Rightarrow \T\com{\lambda}_i \in \up{\Sigma}(\T\vec{A})$}, müssen für die Stabilität des Verfahrens also alle Eigenwerte $\T \com{\lambda}_i$ der Matrix $\tilde{\vec{A}}$ im Stabilitätsgebiet liegen.\\
 Damit lässt sich die Schrittweite $\T$ in Abhängigkeit der Eigenwerte von $\vec{A}$ so berechnen, dass das verwendete Verfahren stabil ist. Allgemein gilt, je größer das Stabilitätsgebiet $\up{S}$, desto größer kann die Schrittweite $\T$ gewählt werden, um Stabilität zu gewährleisten. Ein Verfahren wird als A-stabil bezeichnet, wenn es für eine stabile Dynamik $\vec{A}$ unabhängig von der Schrittweite stabil ist. In diesem Fall ist die gesamte linke Halbebene der komplexen Zahlenebene im Stabilitätsgebiet enthalten: $\mathbb{C}^- \subseteq \up{S}$.
 
 Zur Vergleichbarkeit sollen nun die betrachteten Verfahren auf das Stabilitätsgebiet untersucht werden.
