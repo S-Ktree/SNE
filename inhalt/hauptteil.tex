@@ -11,7 +11,7 @@ Um derartige Systeme simulieren zu können, muss eine Lösung $\vec{x}(t)$ des Anf
 \vec{x}\tt = \vec{x}_0 + \int\limits_0^t \dot{\vec{x}}\Big(\vec{x}(t),t\Big) \d t.
 \label{eq:integral}
 \end{align}
-Die Herausforderung der Simulation besteht also darin, eine numerische Approximation dieser Integration zu ermitteln, was das Problem auf die numerische Integration von Anfangswertproblemen reduziert. Diese Approximation soll zu bestimmten, diskreten Zeitpunkten $t=t_i=i \dd \T, i=0,\ldots,\up{n}$ Näherungslösungen $\vec{x}_i$ für den Tatsächlichen Funktionswert $\vec{x}(t_i)$ liefern. Die Schrittweite $\T$ legt dabei den Abstand von zwei benachbarten Abtastzeitpunkten $t_i$ fest. 
+Die Herausforderung der Simulation besteht also darin, eine numerische Approximation dieser Integration zu ermitteln, was das Problem auf die numerische Integration von Anfangswertproblemen reduziert. Diese Approximation soll zu bestimmten, diskreten Zeitpunkten $t=t_i=i \dd \T, i=0,\ldots,\up{n}$ Näherungslösungen $\vec{x}_i$ für den tatsächlichen Funktionswert $\vec{x}(t_i)$ liefern. Die Schrittweite $\T$ legt dabei den Abstand von zwei benachbarten Abtastzeitpunkten $t_i$ fest. 
 
 Es soll also allgemein eine Berechnungsvorschrift
 \begin{align}
@@ -47,28 +47,28 @@ Dabei wird für die Steigung im betrachteten Intervall der Mittelwert der Steigun
 \begin{align}
 	\x_{i+1} = \x_i + \T \dd \eh \dd \Big(\f\big(\x_i,t_i\big) + \f\big(\x_{i+1},t_{i+1}\big)  \Big).
 \end{align}
-Dadurch ergibt sich allgemein ebenfalls ein implizites Verfahren. Um das Auflösen der impliziten Gleichung zu umgehen, kann der unbekannten Wert $\f\big(\x_{i+1},t_{i+1}\big)$ durch das explizite Euler-Verfahren abgeschätzt werden. Dies führt auf das \textit{Heun-Verfahren}:
+Dadurch ergibt sich allgemein ebenfalls ein implizites Verfahren. Um das Auflösen der impliziten Gleichung zu umgehen, kann der unbekannte Wert $\f\big(\x_{i+1},t_{i+1}\big)$ durch das explizite Euler-Verfahren abgeschätzt werden. Dies führt auf das \textit{Heun-Verfahren}:
 \begin{align*}
 	\x_{i+1}	= \x_i + \T \dd \eh \dd \Big(\f\big(\x_i,t_i\big) + \f\big( \x_i +  \T \dd \f(\x_i,t_i)  ,t_{i+1}\big) \Big).
 	\label{eq:Heun}
 \end{align*}
 
 \subsection{Runge-Kutta-Verfahren}
-Um die bisher betrachteten Methoden zu verbessern, gibt es mehrere Ansätze. Ein naheliegender Gedanke ist, statt nur der rechten Seite der Differentialgleichung (\ref{eq:AWAneu}), Zeitableitungen höherer Ordnung in die Abschätzung einzubauen. Dies führt zu den Taylor-Methoden, welche auf dem Taylor-Satz basieren.
-Da die Differentation der Rechten Seite jedoch mit verhältnismäßig großem rechnerischen Aufwand verbunden ist, sind diese Verfahren in der Praxis eher ungebräuchlich und sollen im Rahmen dieser Arbeit nicht näher betrachtet werden.
+Um die bisher betrachteten Methoden zu verbessern, gibt es mehrere Ansätze. Ein naheliegender Gedanke ist, statt nur der rechten Seite der Differentialgleichung (\ref{eq:AWAneu}) Zeitab\-leitungen höherer Ordnung in die Abschätzung einzubauen. Dies führt zu den Taylor-Methoden, welche auf dem Taylor-Satz basieren.
+Da die Differentation der rechten Seite jedoch mit verhältnismäßig großem rechnerischen Aufwand verbunden ist, sind diese Verfahren in der Praxis eher ungebräuchlich und sollen im Rahmen dieser Arbeit nicht näher betrachtet werden.
 
 Um einen anderen Ansatz zu zeigen, wählt man den \textit{globalen} Fehler $\up{e}(t_i):= \norm{\x_i - \x(t_i)}$, den ein Verfahren im Vergleich zur exakten Lösung macht, als ein Maß, mit dem die Verfahren verglichen werden können. Es kann gezeigt werden, dass sich dieser für die betrachteten Integrationsverfahren mit der Landau-Notation durch
 \begin{align}
 	\up{e}(t) = \mathcal{O}(\T^\up{p})
 \end{align}
-abschätzen lässt. (Getroffene Annahmen über die rechte Seite der Differentialgleichung (\ref{eq:AWAneu}) sollen im Rahmen dieser Arbeit außer Acht gelassen werden und können in \cite{gruene} nachgelesen werden.) Dabei legt die Konsistenzordnung $\up{p}$ fest, wie schnell der globale Fehler gegen Null geht, wenn die Schrittweite verkleinert wird und stellt damit ein Maß für die \glqq Güte\grqq \ des Verfahrens dar. Es kann gezeigt werden, dass die Konsistenzordnung der Euler-Verfahren $\up{p}=1$ beträgt. Das Heun-Verfahren ist mit $\up{p}=2$ bereits deutlich genauer.\\
+abschätzen lässt. (Getroffene Annahmen über die rechte Seite der Differentialgleichung (\ref{eq:AWAneu}) sollen im Rahmen dieser Arbeit außer Acht gelassen werden und können in \cite{gruene} nachgelesen werden.) Dabei legt die Konsistenzordnung $\up{p}$ fest, wie schnell der globale Fehler gegen Null geht, wenn die Schrittweite verkleinert wird, und stellt damit ein Maß für die \glqq Güte\grqq \ des Verfahrens dar. Es kann gezeigt werden, dass die Konsistenzordnung der Euler-Verfahren $\up{p}=1$ beträgt. Das Heun-Verfahren ist mit $\up{p}=2$ bereits deutlich genauer.\\
 Deshalb ist der erste Ansatz in der Praxis, die Idee der Trapezregel beziehungsweise des Heun-Verfahrens weiter zu führen und die Konsistenzordnung der Verfahren durch weitere Stützstellen zu erhöhen.
 Dies führt zum allgemeinen Ansatz der $s$-\textit{stufigen expliziten Runge-Kutta-Verfahren}. Aus Gründen der Übersichtlichkeit wurde der Index $_i$ zum Kennzeichnen des aktuell betrachteten Abtastpunktes im Folgenden weggelassen.
 \begin{align}
 	\Phi(\x,t,\T)&= \x + \T\, \sum\limits_{i=1}^\up{s} \up{b}_i\,\up{k}_i, \quad \text{mit} \\
 	\up{k}_i &= \f\left(  \x + \T \,\sum\limits_{j=1}^{i-1} \up{a}_{ij} \up{k}_j ,t+\up{c}_i \T    \right) \quad \text{für } i=1,\ldots,\up{s}.
 \end{align}
-Dabei wird die Rechte Seite der DGL an den Stützstellen $t+c_i\,\T$ berechnet, wobei die vorhergehenden Stützstellen gewichtet mit den Koeffizienten $\up{a}_{ij}$ zur Berechnung des zur Stützstelle gehörenden Funktionswertes herangezogen werden. Die Gewichtung der berechneten Steigungen bei der Ermittlung der resultierenden Verfahrensfunktion erfolgt durch die Koeffizienten $\up{b}_i$. Mit dieser Darstellung ergeben die Runge-Kutta-Verfahren eine unendliche Menge verschiedener Verfahren zur Lösung des Problems.\\
+Dabei wird die rechte Seite der DGL an den Stützstellen $t+c_i\,\T$ berechnet, wobei die vorhergehenden Stützstellen gewichtet mit den Koeffizienten $\up{a}_{ij}$ zur Berechnung des zur Stützstelle gehörenden Funktionswertes herangezogen werden. Die Gewichtung der berechneten Steigungen bei der Ermittlung der resultierenden Verfahrensfunktion erfolgt durch die Koeffizienten $\up{b}_i$. Mit dieser Darstellung ergeben die Runge-Kutta-Verfahren eine unendliche Menge verschiedener Verfahren zur Lösung des Problems.\\
 Um die Runge-Kutta-Verfahren zu klassifizieren, werden die Koeffizienten $\up{a}_{ij},\up{b}_{i},\up{c}_{i}$ häufig in Form des Butcher-Schemas, nach Tabelle \ref{tab:ButEx} dargestellt.
 \begin{table}
 \centering
@@ -142,7 +142,7 @@ Der Vorteil der impliziten Verfahren gegenüber den expliziten Verfahren wird sic
 % NACH DER BESCHREIBUNG ALLER VERFAHREN!
 Um die Verfahren weiter zu verbessern und gleichzeitig Rechenzeit einzusparen, liegt der Gedanke nahe, die bisher als konstant angenommene Schrittweite $\T$ als steuerbar anzusehen, sodass $\T_i$ an Stellen, bei welchen sich der Funktionswert stärker ändert, kleiner gewählt werden kann und an Stellen langsamer Änderungen hingegen größer. Aus Gründen der numerischen Effizienz ist es üblich, dass im $i$-ten Zeitschritt eine \glqq gute\grqq \ Schrittweite für den Übergang von $t_i$ nach $t_{i+1}$ bestimmt wird, jedoch keine Anpassung von vorhergehenden Schrittweiten mehr erfolgt.
 
-Um die Schrittweite anzupassen wird gefordert, dass der \textit{lokale} Fehler $\up{\varepsilon}(t)$ unter einer gewissen Toleranzgrenze $\up{tol}$ liegen soll. Der \textit{lokale} Fehler ist dabei der Anteil am \textit{globalen} Fehler, der durch den Zeitschritt von $t_i$ bis $t_{i+1}$ hervorgerufen wird. Da die exakte Lösung des Funktionsverlaufs nicht bekannt ist, wird für das verwendete Verfahren $\Phi$ mit Konsistenzordnung $\up{p}$ ein anderes Verfahren $\hat{\Phi}$ zur Abschätzung des Fehlers herangezogen. Die Konsistenzordnung des zweiten Verfahrens $\hat{\up{p}}$ wird kleiner als die des verwendeten Verfahrens gewählt, sodass $\up{p} \geq \hat{\up{p}}+1$ gilt. Der Schritt von $t_i$ nach $t_{i+1} = t_i+\T_i$ wird mit beiden Verfahren berechnet und die Norm der Differenz der Ergebnisse als \textit{Fehlerschätzer} $\up{\overline{\varepsilon}}$ bezeichnet.
+Um die Schrittweite anzupassen, wird gefordert, dass der \textit{lokale} Fehler $\up{\varepsilon}(t)$ unter einer gewissen Toleranzgrenze $\up{tol}$ liegen soll. Der \textit{lokale} Fehler ist dabei der Anteil am \textit{globalen} Fehler, der durch den Zeitschritt von $t_i$ bis $t_{i+1}$ hervorgerufen wird. Da die exakte Lösung des Funktionsverlaufs nicht bekannt ist, wird für das verwendete Verfahren $\Phi$ mit Konsistenzordnung $\up{p}$ ein anderes Verfahren $\hat{\Phi}$ zur Abschätzung des Fehlers herangezogen. Die Konsistenzordnung des zweiten Verfahrens $\hat{\up{p}}$ wird kleiner als die des verwendeten Verfahrens gewählt, sodass $\up{p} \geq \hat{\up{p}}+1$ gilt. Der Schritt von $t_i$ nach $t_{i+1} = t_i+\T_i$ wird mit beiden Verfahren berechnet und die Norm der Differenz der Ergebnisse als \textit{Fehlerschätzer} $\up{\overline{\varepsilon}}$ bezeichnet.
 \begin{equation}
 	\up{\overline{\varepsilon}} := \norm{\hat{\Phi}(t_i,\x_i,\T_i) - \Phi(t_i,\x_i,\T_i)}.
 \end{equation}
@@ -158,7 +158,7 @@ Gilt $\overline{\varepsilon} \leq \up{tol}$, so ist die gewünschte Genauigkeit e
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Eingebettete Runge-Kutta-Verfahren}
-Um den Rechenaufwand der Beschriebenen Schrittweitenanpassung zu reduzieren, können die Verfahrensfunktionen $\Phi$ und $\hat{\Phi}$ so geschickt gewählt werden, dass bei deren Auswertungen auf gleiche Zwischenergebnisse zurückgegriffen werden kann. Dies führt auf die sehr häufig verwendeten eingebetteten Runge-Kutta verfahren. Die eingebetteten Verfahren werden mit $\mathrm{RK}\up{p}(\hat{\up{p}})$ bezeichnet.
+Um den Rechenaufwand der beschriebenen Schrittweitenanpassung zu reduzieren, können die Verfahrensfunktionen $\Phi$ und $\hat{\Phi}$ so geschickt gewählt werden, dass bei deren Auswertungen auf gleiche Zwischenergebnisse zurückgegriffen werden kann. Dies führt auf die sehr häufig verwendeten eingebetteten Runge-Kutta-Verfahren. Die eingebetteten Verfahren werden mit $\mathrm{RK}\up{p}(\hat{\up{p}})$ bezeichnet.
 Der Gedanke dahinter ist, dass sich die berechneten Werte der Stützstellen $\up{k}_i$ und $\hat{\up{k}}_i$ nicht unterscheiden, sondern lediglich deren Linearkombination. Das heißt die Koeffizienten $\a_{ij}=\hat{\a}_{ij}$ und $\c_{i}=\hat{\c}_{i}$ stimmen in beiden Verfahren überein. Es gilt lediglich $\b_{i}\neq \hat{\b}_{j}$. 
 Für eingebettete Runge-Kutta-Verfahren lassen sich dehalb auch sehr einfach Butcher-Schemata nach Tabelle \ref{tab:ButcherEin} erstellen.
 \begin{table}
@@ -219,7 +219,7 @@ Ein Beispiel für ein Mehrschrittverfahren ist das (implizite) Milne-Simpson-Verf
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Adams-Verfahren/Prädiktor-Korrektor-Verfahren}
-Wie auch bei den Einschrittverfahren können Mehrschrittverfahren in explizite und implizite Verfahren unterteilt werden. In \cite{faires} wird gezeigt, dass implizite Verfahren im allgemeinen erheblich bessere Ergebnisse erzielen, als explizite Verfahren, jedoch das Auflösen der impliziten Gleichung nach dem gesuchten Funktionswert nicht realisierbar sein kann oder zumindest mit erheblichem Rechenaufwand verbunden ist.\\
+Wie auch bei den Einschrittverfahren können Mehrschrittverfahren in explizite und implizite Verfahren unterteilt werden. In \cite{faires} wird gezeigt, dass implizite Verfahren im allgemeinen erheblich bessere Ergebnisse erzielen als explizite Verfahren, jedoch das Auflösen der impliziten Gleichung nach dem gesuchten Funktionswert nicht realisierbar sein kann oder zumindest mit erheblichem Rechenaufwand verbunden ist.\\
 Dies führt -- ähnlich wie bei dem Heun-Verfahren -- zu dem Gedanken, Approximationen, welche durch ein explizites Verfahren gewonnen wurden, durch ein implizites Verfahren zu verbessern. Diese Kombination aus explizitem und implizitem Mehrschrittverfahren wird als Prädiktor-Korrektor-Verfahren bezeichnet. 
 
 Die hierfür am häufigsten verwendeten Mehrschrittverfahren sind die so genannten Adams-Verfahren. Dabei werden die expliziten Verfahren als \textit{Adams-Bashforth-Verfahren} und die impliziten Verfahren als \textit{Adams-Moulton-Verfahren} bezeichnet. Die Koeffizienten dieser Verfahren können in Anhang \ref{sec:anhmehr} nachgeschlagen werden.\\
@@ -296,7 +296,7 @@ gilt. Für die Schrittweite $\T$ muss also die Bedingung
 	\T < \frac{2}{|\lambda|}
 	\label{eq:Tbed}
 \end{align}
-erfüllt sein, damit die Approximation eine Sinnvolle Näherung darstellt. Es ist augenscheinlich, dass dies bei sehr schnellen Systemen mit $\Re \lambda \ll 0$ zu sehr kleinen notwendigen Schrittweiten führt.\\
+erfüllt sein, damit die Approximation eine sinnvolle Näherung darstellt. Es ist augenscheinlich, dass dies bei sehr schnellen Systemen mit $\Re \lambda \ll 0$ zu sehr kleinen notwendigen Schrittweiten führt.\\
 Aus diesem Grund werden Differentialgleichungen mit sehr schnellen stabilen Eigenwerten $\Re \lambda \ll 0$ allgemein als \textit{steif} bezeichnet. Für den Fall, dass das Anfangswertproblem ein Differentialgleichungssystem mit mehreren Eigenwerten darstellt, spricht man von einem \textit{steifen} System, falls mindestens ein solcher Eigenwert vorliegt. Die Approximation von steifen Differentialgleichungen führt vor allem bei expliziten Verfahren zu Problemen und stellt die wesentliche Motivation zur Verwendung von impliziten Verfahren dar.
 In Abbildung \ref{fig:example} ist die Approximation von Gleichung (\ref{eq:bsp}) mit dem expliziten Euler-Verfahren für verschiedene Schrittweiten dargestellt. 
 \begin{figure}
@@ -307,7 +307,7 @@ In Abbildung \ref{fig:example} ist die Approximation von Gleichung (\ref{eq:bsp}
 \end{figure}
 
 \section{Einschrittverfahren}
-Das Beispiel der steifen Differentialgleichungen hat gezeigt, dass durch die Wahl der Schrittweite im allgemeinen das Stabilitätsverhalten des Verfahrens beeinflussen lässt. Im Folgenden sollen Bedingungen aufgezeigt werden, die an die Schrittweite gestellt werden müssen, um die Stabilität eines Verfahrens allgemein zu gewährleisten.
+Das Beispiel der steifen Differentialgleichungen hat gezeigt, dass sich durch die Wahl der Schrittweite im allgemeinen das Stabilitätsverhalten des Verfahrens beeinflussen lässt. Im Folgenden sollen Bedingungen aufgezeigt werden, die an die Schrittweite gestellt werden müssen, um die Stabilität eines Verfahrens allgemein zu gewährleisten.
 
 Nach \cite{gruene} lassen sich alle Runge-Kutta-Verfahren mit konstanter Schrittweite, also alle bisher betrachteten Einschrittverfahren ohne Schrittweitensteuerung durch die Differenzengleichung
 \begin{align}
@@ -344,14 +344,14 @@ Für das implizite Euler-Verfahren erhält man $\com{R}_\mathrm{Eu,im}(\comv{z}) =
 \begin{align}
 	|\com{R}_\mathrm{Eu,im}(\comv{z})| <1  \ \Leftrightarrow \ |1-\comv{z}|>1,
 \end{align}
-das heißt $\up{S}_\up{Eu,im}$ ist $\mathbb{C}$ ohne den Kreis $\up{B}_1(1)$. Damit ist das implizite Euler-Verfahren -- wie viele implizite Verfahren -- A-stabil, was hilfreich bei der Simulation von stabilen Systemen ist. Allerdings enthält das Stabilitätsgebiet auch Bereiche, in denen die Approximation stabil ist, obwohl das eigentliche System instabil ist, wie zum Beispiel $\Re \comv{z} > 2$. In diesem Fall würde die Instabilität eines Systems in der Simulation möglicherweise unentdeckt bleiben, was eines der Probleme des impliziten Euler-Verfahrens ist und eine Motivation für die Trapezregel liefert. 
+das heißt $\up{S}_\up{Eu,im}$ ist $\mathbb{C}$ ohne den Kreis $\up{B}_1(1)$. In Abbildung \ref{fig:stabis} ist dies durch den hellrot hinterlegten Bereich dargestellt. Damit ist das implizite Euler-Verfahren, wie viele implizite Verfahren, A-stabil, was hilfreich bei der Simulation von stabilen Systemen ist. Allerdings enthält das Stabilitätsgebiet auch Bereiche, in denen die Approximation stabil ist, obwohl das eigentliche System instabil ist, wie zum Beispiel $\Re \comv{z} > 2$. In diesem Fall würde die Instabilität eines Systems in der Simulation möglicherweise unentdeckt bleiben, was eines der Probleme des impliziten Euler-Verfahrens ist und eine Motivation für die Trapezregel liefert. 
 
-Für diese ergibt sich als Sabiltätsfunktion $\com{R}_\mathrm{Trapez}(\comv{z})=\frac{2+\comv{z}}{2-\comv{z}}$. Das Stabilitätsgebiet entspricht damit genau der linken Halbebene $\up{S}_\mathrm{Trapez}=\mathbb{C}^-$. Damit ist die Trapezregel ebenfalls A-stabil, enthält jedoch keine Bereiche, in denen ein instabiles System stabil approximiert werden würde. Man bezeichnet diese Tatsache mit 
+Für diese ergibt sich als Stabiltätsfunktion $\com{R}_\mathrm{Trapez}(\comv{z})=\frac{2+\comv{z}}{2-\comv{z}}$. Das Stabilitätsgebiet entspricht damit genau der linken Halbebene $\up{S}_\mathrm{Trapez}=\mathbb{C}^-$. Damit ist die Trapezregel ebenfalls A-stabil, enthält jedoch keine Bereiche, in denen ein instabiles System stabil approximiert werden würde. Man bezeichnet diese Tatsache mit 
 \textit{Erhaltung der Isometrie}, das heißt, die Approximation ist genau dann stabil, wenn auch das zu Grunde liegende System exponentiell stabil ist. Damit besitzt die Trapezregel quasi ideale Stabilitätseigenschaften. \\
-Aufgrund der schwierigen Realisierbarkeit der impliziten Verfahren wurde das Heun-Verfahren auf Basis der Trapezregel und dem expliziten Euler-Verfahren eingeführt. Hierfür ergibt sich die Stabilitätsfunktion $\com{R}_\mathrm{Heun}(\comv{z}) = \frac{1}{2}\comv{z}^2+\comv{z}+1$. Das zugehörige Stabilitätsgebiet ist in Abbildung \ref{fig:stabis} zu sehen. Vergleicht man die Stabilitätsgebiete von explizitem Euler-Verfahren und Heun-Verfahren, so wird deutlich, dass das Stabilitätsgebiet des Heun-Verfahrens nur wenig größer ist, als das des expliziten Euler-Verfahrens. Zwischen den Stabilitätsgebieten von Heun-Verfahren und Trapezregel besteht hingegen ein deutlicher Größenunterschied.
+Aufgrund der schwierigen Realisierbarkeit der impliziten Verfahren wurde das Heun-Verfahren auf Basis der Trapezregel und dem expliziten Euler-Verfahren eingeführt. Hierfür ergibt sich die Stabilitätsfunktion $\com{R}_\mathrm{Heun}(\comv{z}) = \frac{1}{2}\comv{z}^2+\comv{z}+1$. Das zugehörige Stabilitätsgebiet ist in Abbildung \ref{fig:stabis} zu sehen. Vergleicht man die Stabilitätsgebiete von explizitem Euler-Verfahren und Heun-Verfahren, so wird deutlich, dass das Stabilitätsgebiet des Heun-Verfahrens nur wenig größer ist als das des expliziten Euler-Verfahrens. Zwischen den Stabilitätsgebieten von Heun-Verfahren und Trapezregel besteht hingegen ein deutlicher Größenunterschied.
 
 Ein größeres Stabilitätsgebiet kann zum Beispiel mit dem \textit{klassischen} Runge-Kutta-Verfahren mit der Stabilitätsfunktion $\com{R}_\up{RK}(\comv{z})=\frac{1}{24}\comv{z}^4+\frac{1}{6}\comv{z}^3+\eh \comv{z}^2+\comv{z}+1$ erreicht werden. Ähnlich, wie bei den impliziten Verfahren treten hier jedoch kleine Bereiche auf, in denen ein instabiles System zu einer stabilen Approximation führen würde.
-Grundsätzlich gilt für explizite Runge-Kutta-Verfahren: Je Höher die Ordnung des Verfahrens, desto größer das Stabilitätsgebiet. Bei der Betrachtung der Stabilitätsgebiete wird auch der große Vorteil der impliziten Verfahren gegenüber expliziten Verfahren deutlich. Zwar gibt es auch implizite Verfahren, die nur kleine Stabilitätsgebiete besitzen und damit schlecht für die Lösung steifer Differentialgleichungen geeignet sind, jedoch sind die Stabilitätsgebiete von expliziten Verfahren im Allgemeinen kleiner, als die der impliziten Verfahren.
+Grundsätzlich gilt für explizite Runge-Kutta-Verfahren: Je höher die Ordnung des Verfahrens, desto größer das Stabilitätsgebiet. Bei der Betrachtung der Stabilitätsgebiete wird auch der große Vorteil der impliziten Verfahren gegenüber expliziten Verfahren deutlich. Zwar gibt es auch implizite Verfahren, die nur kleine Stabilitätsgebiete besitzen und damit schlecht für die Lösung steifer Differentialgleichungen geeignet sind, jedoch sind die Stabilitätsgebiete von expliziten Verfahren im Allgemeinen kleiner als die der impliziten Verfahren.
 \begin{figure}
 \centering
 \input{inhalt/Grafiken/stabis.tex}
@@ -360,7 +360,7 @@ Grundsätzlich gilt für explizite Runge-Kutta-Verfahren: Je Höher die Ordnung des
 \end{figure}
 
 \section{Mehrschrittverfahren}
-Die Stabilität von Mehrschrittverfahren ist nicht so einfach allgemein nachzuweisen, wie bei den allgemeinen Runge-Kutta Verfahren. In \cite{gruene} wird gezeigt, dass die \glqq Stabilität\grqq \ des Polynoms $\com{P}_\a(\comv{z})$ eine Voraussetzung für die \textit{Konvergenz} des Fehlers eines Mehrschrittverfahrens darstellt. Dabei gilt das Polynom als stabil, wenn für alle Nullstellen $\com{\lambda}_i$ gilt:
+Die Stabilität von Mehrschrittverfahren ist nicht so einfach allgemein nachzuweisen wie bei den allgemeinen Runge-Kutta Verfahren. In \cite{gruene} wird gezeigt, dass die \glqq Stabilität\grqq \ des Polynoms $\com{P}_\a(\comv{z})$ eine Voraussetzung für die \textit{Konvergenz} des Fehlers eines Mehrschrittverfahrens darstellt. Dabei gilt das Polynom als stabil, wenn für alle Nullstellen $\com{\lambda}_i$ gilt:
 \begin{align}
 	&|\com{\lambda}_i| \leq 1, \\
 	&|\com{\lambda}_i|=1 \ \Rightarrow \text{$\com{\lambda}_i$ ist einfache Nullstelle.}
@@ -388,7 +388,7 @@ Um die Bedeutung der vorgestellten Integrationsmethoden zu verdeutlichen, soll i
 \subsubsection{PSS\textregistered Netomac, PSS\textregistered E}
 Die Firma \siemens \ liefert mit den Programmen \textsc{PSS\textregistered Netomac} und \textsc{PSS\textregistered E} gleich zwei Softwarepakete, die in der Energietechnik Anwendung finden. 
 Ersteres verwendet die Trapezregel als Integrationsverfahren. Das heißt, es wird Modellwissen verwendet, um die implizite Gleichung wirklich aufzulösen.
-Da die Trapezregel Isometrieerhaltend ist, ergeben sich keine Stabilitätsprobleme und die Wahl der Schrittweite beeinflusst lediglich die Genauigkeit.\\
+Da die Trapezregel isometrieerhaltend ist, ergeben sich keine Stabilitätsprobleme und die Wahl der Schrittweite beeinflusst lediglich die Genauigkeit.\\
 In letzterem Softwarepaket wird nach \cite{PSSE} das \glqq second-order Euler\grqq-Verfahren, oder \glqq modified Euler\grqq-Verfahren verwendet. Nach der Schreibweise in dieser Arbeit entspricht dies dem Heun-Verfahren (\ref{eq:Heun}). In diesem Fall muss die Schrittweite klein genug gewählt werden, um Stabilität zu gewährleisten. In \cite{PSSE} wird deshalb empfohlen, die Schrittweite zwischen $\frac{1}{5}$ und $\frac{1}{4}$ der kleinsten im Prozess auftretenden Zeitkonstanten zu wählen.
  
 \subsubsection{PowerFactory}
